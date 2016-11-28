@@ -18,6 +18,7 @@ public final class MyRandom {
 	 * @param max
 	 * @return
 	 * kami
+	 * kami2
 	 */
 	public static int getInt(int max) {
 		Random rGen = new Random();
