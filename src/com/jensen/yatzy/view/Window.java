@@ -15,6 +15,7 @@ public class Window extends JFrame {
 		super();
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setTitle("Yatzy");
+		
 	}
 	
 	

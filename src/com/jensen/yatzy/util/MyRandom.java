@@ -17,7 +17,6 @@ public final class MyRandom {
 	 * 
 	 * @param max
 	 * @return
-	 * 
 	 */
 	public static int getInt(int max) {
 		Random rGen = new Random();
