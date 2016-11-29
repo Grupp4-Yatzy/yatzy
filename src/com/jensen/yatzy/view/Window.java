@@ -1,4 +1,4 @@
-package com.jensen.yatzy.view;
+package src.com.jensen.yatzy.view;
 
 import java.awt.GraphicsConfiguration;
 import java.awt.HeadlessException;
