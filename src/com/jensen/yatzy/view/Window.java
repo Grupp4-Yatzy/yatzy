@@ -18,7 +18,7 @@ public class Window extends JFrame {
 		
 	}
 	
-	
+	//test
 	public void setCurrentPanel(JPanel newPanel) {
 		if (this.currentPanel != null)
 			this.remove(this.currentPanel);
