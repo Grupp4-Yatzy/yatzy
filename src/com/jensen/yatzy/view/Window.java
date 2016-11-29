@@ -17,7 +17,8 @@ public class Window extends JFrame {
 		this.setTitle("Yatzy");
 	}
 	
-	public void changePanelTo(JPanel newPanel) {
+	
+	public void setCurrentPanel(JPanel newPanel) {
 		if (this.currentPanel != null)
 			this.remove(this.currentPanel);
 		this.currentPanel = newPanel;
