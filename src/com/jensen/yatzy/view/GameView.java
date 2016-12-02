@@ -1,6 +1,7 @@
 package com.jensen.yatzy.view;
 
 
+import com.jensen.yatzy.model.Dice;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -14,95 +15,48 @@ import javax.swing.table.TableColumnModel;
 
 public class GameView extends JPanel{
     //JPanel eastPanel = new JPanel();
-    JPanel westPanel = new JPanel();
-    JPanel northPanel = new JPanel();
-    JPanel southPanel = new JPanel();
-    JPanel centerPanel = new JPanel();
+    JPanel westPanel;
+    //JPanel northPanel = new JPanel();
+    //JPanel southPanel = new JPanel();
+    //JPanel centerPanel = new JPanel();
     JButton rollButton = new JButton("Roll");
     JButton doneButton = new JButton("Done");
     JButton[] diceButtons = new JButton[5];
-    ArrayList<String> playerNames = new ArrayList<>();
-    String[] combinations = {"Ettor", "Tvåor","Treor","Fyror","Femmor","Sexor",
-                            "Summa","Bonus","Ett par","Två par","Tretal","Fyrtal",
-                             "L.Stege","S.Stege","Kåk","Chans","¨Yatzy","Totalt"};
+    ArrayList<JLabel> playerNames = new ArrayList<>();
+    String[] combinations;
     JTable table;
-    private static final int COLUMN_WIDTH=100;
+    private static final int COLUMN_WIDTH = 100;
+    JPanel northGridPanel = new JPanel();
+    Dimension combinationLabelSize = new Dimension(100,100/10);
     
     
     public GameView (){
         
         this.setLayout(new BorderLayout());
         
-        
-        GridLayout grid = new GridLayout(0,1);
-        grid.setVgap(5);
-        westPanel.setLayout(grid);
+        westPanel = new JPanel();
+        GridLayout westGrid = new GridLayout(0,1);
+        westGrid.setVgap(5);
+        westPanel.setLayout(westGrid);
         westPanel.setBackground(Color.blue);
         //westPanel.setPreferredSize(new Dimension(100,100));
-        Dimension size = new Dimension(100,100/10);
-        for(int i=0; i<combinations.length; i++){
-            JLabel label = new JLabel(combinations[i]);
-            
-            label.setPreferredSize(size);
-            label.setSize(size);
-            label.setBackground(Color.PINK);
-            label.setOpaque(true);
-            label.setHorizontalAlignment(JLabel.CENTER);
-            westPanel.add(label);
-             
-        }
         
-        JPanel northGridPanel = new JPanel();
-        GridLayout northGrid = new GridLayout(1,0);
-        //northGrid.setHgap(50);
+        JPanel northPanel = new JPanel();
+        
+        GridLayout northGrid = new GridLayout(1,0);       
         northPanel.setLayout(new BorderLayout());
         northPanel.setBackground(Color.BLACK);
+        northGridPanel.setLayout(northGrid);
+        northGrid.setHgap(2);
         northGridPanel.setBackground(Color.CYAN);
         ArrayList<JLabel> labels = new ArrayList<>();
-        //northPanel.setPreferredSize(new Dimension(600,100));
-        String[] names = {"Benjamin", "Robin", "Roberto", "Kami"};
-        System.out.println(names.toString());
-        setPlayerNames(names);
-        for(String playerName: playerNames){
-            JLabel label = new JLabel(playerName);
-            
-            //label.setPreferredSize(new Dimension(200,100/10));
-            label.setBackground(Color.GREEN);
-            label.setOpaque(true);
-            label.setHorizontalAlignment(JLabel.CENTER);
-            labels.add(label);
-            label.setPreferredSize(new Dimension(COLUMN_WIDTH, 20));
-            northGridPanel.add(label);
-            
-        }
         
+        
+        
+        JPanel centerPanel = new JPanel();
         centerPanel.setBackground(Color.yellow);
         //centerPanel.setPreferredSize(new Dimension(200,200));
-        
-        Integer[][] data = new Integer[combinations.length][playerNames.size()];
-        //Källa på följande kodstycke taget från https://www.youtube.com/watch?v=iMBfneE2Ztg
-        table = new JTable(data, playerNames.toArray()){
-            @Override
-            public boolean isCellEditable(int row, int column){
-                return false;
-            }
-            
-            @Override
-            public Component prepareRenderer(TableCellRenderer renderer, int row, int column){
-                Component c = super.prepareRenderer(renderer, row, column);
-                if(row % 2 == 0)
-                    c.setBackground(Color.LIGHT_GRAY);
-                else
-                    c.setBackground(Color.WHITE);
-                return c;
-            }
-        };
-        //Slut på lånad kod
-        TableColumnModel columnModel = table.getColumnModel();
-        for(int i=0; i<columnModel.getColumnCount();i++){
-            columnModel.getColumn(i).setPreferredWidth(COLUMN_WIDTH);
-        }
-        
+        table= new JTable(18,5);
         centerPanel.add(table);
         
         
@@ -111,8 +65,9 @@ public class GameView extends JPanel{
         northPanel.add(label, BorderLayout.WEST);
         northPanel.add(northGridPanel, BorderLayout.CENTER);
         label.setForeground(Color.white);
-        label.setPreferredSize(size);
+        label.setPreferredSize(combinationLabelSize);
         
+        JPanel southPanel = new JPanel();
         southPanel.setLayout(new BorderLayout());
         JPanel southCenter = new JPanel();
         JPanel southEast = new JPanel();
@@ -139,9 +94,81 @@ public class GameView extends JPanel{
         this.add(southPanel, BorderLayout.SOUTH);
         
     }
+    
     public void setPlayerNames(String[] names){
         for(int i=0; i<names.length; i++){
-            playerNames.add(names[i]);
+            
+            JLabel label = new JLabel(names[i]);
+            
+            //label.setPreferredSize(new Dimension(200,100/10));
+            label.setBackground(Color.GREEN);
+            label.setOpaque(true);
+            label.setHorizontalAlignment(JLabel.CENTER);
+            playerNames.add(label);
+            label.setPreferredSize(new Dimension(COLUMN_WIDTH, 20));
+            northGridPanel.add(label);
+            
+        
         }
+    }
+    
+    public void setTable(Integer[][] data, String[] playerNames){
+        //Källa på följande kodstycke taget från https://www.youtube.com/watch?v=iMBfneE2Ztg
+         table = new JTable(data, playerNames){
+            @Override
+            public boolean isCellEditable(int row, int column){
+                return false;
+            }
+            
+            @Override
+            public Component prepareRenderer(TableCellRenderer renderer, int row, int column){
+                Component c = super.prepareRenderer(renderer, row, column);
+                if(row % 2 == 0)
+                    c.setBackground(Color.LIGHT_GRAY);
+                else
+                    c.setBackground(Color.WHITE);
+                return c;
+            }
+        };
+         //Slut på lånad kod
+          TableColumnModel columnModel = table.getColumnModel();
+        for(int i=0; i<columnModel.getColumnCount();i++){
+            columnModel.getColumn(i).setPreferredWidth(COLUMN_WIDTH);
+        }
+        table.revalidate();
+        table.repaint();
+        
+    }
+    
+    public void setDiceButtons(Dice[] dices){
+        
+        for(int i=0; i<diceButtons.length; i++){
+            
+            diceButtons[i].setText(""+(dices[i].getValue()));
+            
+        }
+    }
+    
+    public JButton getRollButton(){
+        return rollButton;
+    }
+    
+    public JButton getDoneButton(){
+        return doneButton;
+    }
+    
+    public void setCombinations(String[] combinations){
+        for(int i=0; i<combinations.length; i++){
+            JLabel label = new JLabel(combinations[i]);
+            
+            label.setPreferredSize(combinationLabelSize);
+            label.setSize(combinationLabelSize);
+            label.setBackground(Color.PINK);
+            label.setOpaque(true);
+            label.setHorizontalAlignment(JLabel.CENTER);
+            westPanel.add(label);
+             
+        }
+        
     }
 }
