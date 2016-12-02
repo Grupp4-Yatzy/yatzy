@@ -28,6 +28,11 @@ public class Window extends JFrame {
 		this.repaint();
 		this.pack();
 	}
+        /*
+        public void update(){
+            this.repaint();
+            this.pack();
+        }*/
 	
 	public JPanel getCurrentPanel() {
 		return currentPanel;
