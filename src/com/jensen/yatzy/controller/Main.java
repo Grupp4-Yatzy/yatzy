@@ -6,8 +6,10 @@ import com.jensen.yatzy.view.Window;
 public class Main {
 
     public static final String[] combinations = {"Ettor", "Tvåor","Treor","Fyror","Femmor","Sexor",
-                            "Summa","Bonus","Ett par","Två par","Tretal","Fyrtal",
-                             "L.Stege","S.Stege","Kåk","Chans","¨Yatzy","Totalt"};
+                            					"Summa","Bonus","Ett par","Två par","Tretal","Fyrtal",
+                            					"L.Stege","S.Stege","Kåk","Chans","¨Yatzy","Totalt"};
+    
+    
 	public static void main(String[] args) {
 		Window window = new Window();
                 GameView game = new GameView();
@@ -20,7 +22,7 @@ public class Main {
                 game.setCombinations(combinations);
                 Integer[][] data = new Integer[combinations.length][names.length];
                 game.setTable(data, names);
-                window.update();
+                window.pack();
 	}
 
 }
