@@ -15,6 +15,7 @@ public class Window extends JFrame {
 		super();
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setTitle("Yatzy");
+                this.setResizable(false);
 		
 	}
 	
@@ -27,6 +28,11 @@ public class Window extends JFrame {
 		this.repaint();
 		this.pack();
 	}
+        /*
+        public void update(){
+            this.repaint();
+            this.pack();
+        }*/
 	
 	public JPanel getCurrentPanel() {
 		return currentPanel;
