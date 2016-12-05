@@ -9,7 +9,15 @@ import com.jensen.yatzy.util.MyRandom;
  */
 public class Dice {
 	
+	private static final int DEFUALT_DICE_VALUE = 6;
+	
 	private int value;
+	private boolean isLocked;
+	
+	public Dice() {
+		value = DEFUALT_DICE_VALUE;
+		isLocked = false;
+	}
 	
 	/**
 	 * Gets the value of the upward facing side
@@ -24,6 +32,14 @@ public class Dice {
 	 */
 	public void roll() {
 		value = MyRandom.getInt(1, 6);
+	}
+
+	/**
+	 * 
+	 * @return
+	 */
+	public boolean isLocked() {
+		return isLocked;
 	}
 
 }
