@@ -95,8 +95,11 @@ public class Controller {
 		gamePanel.setDiceButtons(dices);
 	}
 
+	/**
+	 * 
+	 */
 	public void doneButton() {
-		// TODO Auto-generated method stub
+		// TODO Implement doneButton()
 		
 	}
 	
