@@ -15,20 +15,21 @@ import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumnModel;
 
 public class GameView extends JPanel{
+	
     //JPanel eastPanel = new JPanel();
-    JPanel westPanel;
+    private JPanel westPanel;
     //JPanel northPanel = new JPanel();
     //JPanel southPanel = new JPanel();
-    JPanel centerPanel;
-    JButton rollButton = new JButton("Roll");
-    JButton doneButton = new JButton("Done");
-    JButton[] diceButtons = new JButton[5];
-    ArrayList<JLabel> playerNames = new ArrayList<>();
-    String[] combinations;
-    JTable table;
+    private JPanel centerPanel;
+    private JButton rollButton = new JButton("Roll");
+    private JButton doneButton = new JButton("Done");
+    private JButton[] diceButtons = new JButton[5];
+    private ArrayList<JLabel> playerNames = new ArrayList<>();
+    private String[] combinations;
+    private JTable table;
     private static final int COLUMN_WIDTH = 100;
-    JPanel northGridPanel = new JPanel();
-    Dimension combinationLabelSize = new Dimension(100,100/10);
+    private JPanel northGridPanel = new JPanel();
+    private Dimension combinationLabelSize = new Dimension(100,100/10);
     
     
     public GameView (){
