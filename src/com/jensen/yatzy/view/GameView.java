@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import javax.swing.*;
 import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
 public class GameView extends JPanel{
@@ -149,7 +150,8 @@ public class GameView extends JPanel{
     		}
     		
     		while(numberOfColumns < numberOfPlayers) {
-    			
+    			colModel.addColumn(new TableColumn(numberOfColumns, COLUMN_WIDTH));
+    			numberOfColumns++;
     		}
     	}
     }
