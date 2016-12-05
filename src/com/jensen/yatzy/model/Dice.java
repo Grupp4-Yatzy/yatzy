@@ -36,7 +36,7 @@ public class Dice {
 
 	/**
 	 * 
-	 * @return
+	 * @return whether a dice is locked or not
 	 */
 	public boolean isLocked() {
 		return isLocked;

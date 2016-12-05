@@ -23,12 +23,14 @@ public class Controller {
 	public Controller(Window w, Yatzy g) {
 		this.window = w;
 		this.game = g;
+		
+		// Creates defualt start-up panel
 		gamePanel = new GameView();
 		window.setCurrentPanel(gamePanel);
 		gamePanel.addPlayListener(new PlayListener());
 		gamePanel.addDiceListener(new DiceListener());
 		
-		// tester
+		// tests
 		String[] names = {"Benjamin", "Robin", "Roberto", "Kami"};
 		gamePanel.setPlayerNames(names);
 		gamePanel.setCombinations(combinations);
@@ -56,6 +58,7 @@ public class Controller {
 			switch (ac) {
 			case "roll":
 				rollButton();
+				// TODO disable roll button if numberOfRolls left is equal to 0
 				break;
 			case "done":
 				doneButton();
@@ -78,6 +81,10 @@ public class Controller {
 
 	}
 
+	/**
+	 * Rolls all unlocked dices
+	 * TODO unlock locked dices
+	 */
 	public void rollButton() {
 		Dice[] dices = game.getDices();
 		for (Dice dice: dices) {
