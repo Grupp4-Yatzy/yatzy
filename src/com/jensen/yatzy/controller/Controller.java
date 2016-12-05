@@ -29,6 +29,7 @@ public class Controller {
 		window.setCurrentPanel(gamePanel);
 		gamePanel.addPlayListener(new PlayListener());
 		gamePanel.addDiceListener(new DiceListener());
+		gamePanel.setDiceButtons(game.getDices());
 		
 		// tests
 		String[] names = {"Benjamin", "Robin", "Roberto", "Kami"};
@@ -36,15 +37,6 @@ public class Controller {
 		gamePanel.setCombinations(combinations);
 		Integer[][] data = new Integer[combinations.length][names.length];
 		gamePanel.setTable(data, names);
-
-		/*
-		Dice[] dices = new Dice[5];
-		for (int i = 0; i < dices.length; i++) {
-			Dice dice = new Dice();
-			dice.roll();
-			dices[i] = dice;
-		}*/
-		gamePanel.setDiceButtons(game.getDices());
 	}
 	
 

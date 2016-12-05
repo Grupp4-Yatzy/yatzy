@@ -155,11 +155,8 @@ public class GameView extends JPanel{
     }
     
     public void setDiceButtons(Dice[] dices){
-        
         for(int i=0; i<diceButtons.length; i++){
-            
             diceButtons[i].setText(""+(dices[i].getValue()));
-            
         }
     }
     
@@ -187,7 +184,8 @@ public class GameView extends JPanel{
     }
     
     public void addDiceListener(ActionListener listener) {
-		
+		// TODO Implement addDiceListener(ActionListener)
+    	
 	}
     
     public void addPlayListener(ActionListener listener) {
