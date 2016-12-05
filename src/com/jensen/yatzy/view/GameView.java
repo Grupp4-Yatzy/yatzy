@@ -7,6 +7,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Arrays;
 import javax.swing.*;
@@ -18,7 +19,7 @@ public class GameView extends JPanel{
     JPanel westPanel;
     //JPanel northPanel = new JPanel();
     //JPanel southPanel = new JPanel();
-    //JPanel centerPanel = new JPanel();
+    JPanel centerPanel;
     JButton rollButton = new JButton("Roll");
     JButton doneButton = new JButton("Done");
     JButton[] diceButtons = new JButton[5];
@@ -53,11 +54,35 @@ public class GameView extends JPanel{
         
         
         
-        JPanel centerPanel = new JPanel();
+        centerPanel = new JPanel();
         centerPanel.setBackground(Color.yellow);
         //centerPanel.setPreferredSize(new Dimension(200,200));
-        table= new JTable(18,5);
-        centerPanel.add(table);
+        //table= new JTable(18,5);
+        //centerPanel.add(table);
+
+        //Källa på följande kodstycke taget från https://www.youtube.com/watch?v=iMBfneE2Ztg
+         table = new JTable(18, 6){
+            @Override
+            public boolean isCellEditable(int row, int column){
+                return false;
+            }
+            
+            @Override
+            public Component prepareRenderer(TableCellRenderer renderer, int row, int column){
+                Component c = super.prepareRenderer(renderer, row, column);
+                if(row % 2 == 0)
+                    c.setBackground(Color.LIGHT_GRAY);
+                else
+                    c.setBackground(Color.WHITE);
+                return c;
+            }
+        };
+         //Slut på lånad kod
+          TableColumnModel columnModel = table.getColumnModel();
+        for(int i=0; i<columnModel.getColumnCount();i++){
+            columnModel.getColumn(i).setPreferredWidth(COLUMN_WIDTH);
+        }
+        this.add(table, BorderLayout.CENTER);
         
         
         JLabel label = new JLabel("Yatzy");
@@ -84,10 +109,9 @@ public class GameView extends JPanel{
             JButton dice = new JButton(""+(i+1));
             diceButtons[i]= dice;
             southCenter.add(dice);
-            
         }
         
-        this.add(table);       
+        //this.add(centerPanel, BorderLayout.CENTER);       
         //this.add(centerPanel, BorderLayout.CENTER);
         this.add(westPanel, BorderLayout.WEST);
         this.add(northPanel, BorderLayout.NORTH);
@@ -113,31 +137,20 @@ public class GameView extends JPanel{
     }
     
     public void setTable(Integer[][] data, String[] playerNames){
-        //Källa på följande kodstycke taget från https://www.youtube.com/watch?v=iMBfneE2Ztg
-         table = new JTable(data, playerNames){
-            @Override
-            public boolean isCellEditable(int row, int column){
-                return false;
-            }
-            
-            @Override
-            public Component prepareRenderer(TableCellRenderer renderer, int row, int column){
-                Component c = super.prepareRenderer(renderer, row, column);
-                if(row % 2 == 0)
-                    c.setBackground(Color.LIGHT_GRAY);
-                else
-                    c.setBackground(Color.WHITE);
-                return c;
-            }
-        };
-         //Slut på lånad kod
-          TableColumnModel columnModel = table.getColumnModel();
-        for(int i=0; i<columnModel.getColumnCount();i++){
-            columnModel.getColumn(i).setPreferredWidth(COLUMN_WIDTH);
-        }
-        table.revalidate();
-        table.repaint();
-        
+    	int numberOfColumns = table.getColumnCount();
+    	int numberOfPlayers = playerNames.length;
+    	TableColumnModel colModel = table.getColumnModel();
+    	if (numberOfColumns != numberOfPlayers) {
+    		
+    		while(numberOfColumns  > numberOfPlayers) {
+    			colModel.removeColumn(colModel.getColumn(numberOfColumns - 1));
+    			numberOfColumns--;
+    		}
+    		
+    		while(numberOfColumns < numberOfPlayers) {
+    			
+    		}
+    	}
     }
     
     public void setDiceButtons(Dice[] dices){
@@ -171,4 +184,14 @@ public class GameView extends JPanel{
         }
         
     }
+    
+    public void addDiceListener(ActionListener listener) {
+		
+	}
+    
+    public void addPlayListener(ActionListener listener) {
+		rollButton.addActionListener(listener);
+		doneButton.addActionListener(listener);
+	}
+    
 }
