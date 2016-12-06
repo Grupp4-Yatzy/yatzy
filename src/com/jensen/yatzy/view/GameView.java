@@ -52,6 +52,7 @@ public class GameView extends JPanel{
         northGridPanel.setLayout(northGrid);
         northGrid.setHgap(2);
         northGridPanel.setBackground(Color.CYAN);
+        
         ArrayList<JLabel> labels = new ArrayList<>();
         
         
