@@ -16,7 +16,7 @@ import com.jensen.yatzy.view.Window;
  *
  */
 public class Controller {
-	
+
 	/**
 	 * 
 	 * @author benjamin
@@ -27,7 +27,7 @@ public class Controller {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			String ac = e.getActionCommand().toLowerCase();
-			
+
 			switch (ac) {
 			case "roll":
 				rollButton();
@@ -55,19 +55,32 @@ public class Controller {
 		public void actionPerformed(ActionEvent e) {
 			// TODO figure out which button was clicked
 			// toggle lock of said dice & set button to selected
+			String ac = e.getActionCommand();
+
+			System.out.println(ac);
+			Dice[] dices = game.getDices();
+			
+		
+			
+			String value = ac.substring(ac.length()-1);
+			Integer index = Integer.parseInt(value);
+			dices[index].toggleLock();
+
+
+			gamePanel.setDiceButtons(dices);
 
 		}
 
 	}
-	
+
 	public static final String[] combinations = {"Ettor", "Tvåor","Treor","Fyror","Femmor","Sexor",
-												"Summa","Bonus","Ett par","Två par","Tretal","Fyrtal",
-												"L.Stege","S.Stege","Kåk","Chans","Yatzy","Totalt"};
+			"Summa","Bonus","Ett par","Två par","Tretal","Fyrtal",
+			"L.Stege","S.Stege","Kåk","Chans","Yatzy","Totalt"};
 
 	private Window window;
 	private GameView gamePanel;
 	private Yatzy game;
-	
+
 	/**
 	 * 
 	 * @param window
@@ -76,14 +89,14 @@ public class Controller {
 	public Controller(Window window, Yatzy game) {
 		this.window = window;
 		this.game = game;
-		
+
 		// Creates defualt start-up panel
 		gamePanel = new GameView();
 		this.window.setCurrentPanel(gamePanel);
 		gamePanel.addPlayListener(new PlayListener());
 		gamePanel.addDiceListener(new DiceListener());
 		gamePanel.setDiceButtons(this.game.getDices());
-		
+
 		// tests
 		String[] names = {"Benjamin", "Robin", "Roberto", "Kami"};
 		gamePanel.setPlayerNames(names);
@@ -111,7 +124,7 @@ public class Controller {
 	 */
 	void doneButton() {
 		// TODO Implement doneButton()
-		
+
 	}
-	
+
 }

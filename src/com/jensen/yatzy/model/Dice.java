@@ -41,5 +41,15 @@ public class Dice {
 	public boolean isLocked() {
 		return isLocked;
 	}
+	public void toggleLock(){
+		if(isLocked)
+        {
+            isLocked = false;
+        }
+        else
+        {
+            isLocked = true;
+        }
+	} 
 
 }

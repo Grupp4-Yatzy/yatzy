@@ -52,7 +52,6 @@ public class GameView extends JPanel{
         northGridPanel.setLayout(northGrid);
         northGrid.setHgap(2);
         northGridPanel.setBackground(Color.CYAN);
-        
         ArrayList<JLabel> labels = new ArrayList<>();
         
         
@@ -113,6 +112,7 @@ public class GameView extends JPanel{
             diceButtons[i]= dice;
             southCenter.add(dice);
         }
+        
         
         //this.add(centerPanel, BorderLayout.CENTER);       
         //this.add(centerPanel, BorderLayout.CENTER);
@@ -187,7 +187,14 @@ public class GameView extends JPanel{
     }
     
     public void addDiceListener(ActionListener listener) {
-		// TODO Implement addDiceListener(ActionListener)
+   
+    	for(int i = 0; i<diceButtons.length; i++)
+        {
+          diceButtons[i].addActionListener(listener);
+          diceButtons[i].setActionCommand("Dice"+i);
+         
+        }
+		
     	
 	}
     

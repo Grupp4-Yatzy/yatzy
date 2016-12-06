@@ -2,7 +2,7 @@ package com.jensen.yatzy.model;
 
 public class Yatzy {
 	
-	private static final int DEFUALT_NUMBER_OF_DICES = 5;
+	private static final int DEFUALT_NUMBER_OF_DICES = 6;
 	
 	private Dice[] dices;
 	
