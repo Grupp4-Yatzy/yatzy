@@ -109,13 +109,14 @@ public class Controller {
 	 * TODO unlock all dices
 	 */
 	void rollButton() {
-		Dice[] dices = game.getDices();
-		for (Dice dice: dices) {
-			if (!dice.isLocked()) {
-				dice.roll();
-			}
+            Dice[] dices = game.getDices();
+            for (Dice dice: dices) {
+		if (!dice.isLocked()) {
+                    dice.roll();
 		}
-		gamePanel.setDiceButtons(dices);
+                dice.setLock(false);
+            }
+            gamePanel.setDiceButtons(dices);
 	}
 
 	/**
