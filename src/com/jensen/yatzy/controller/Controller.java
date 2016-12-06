@@ -57,8 +57,18 @@ public class Controller {
 		public void actionPerformed(ActionEvent e) {
 			// TODO figure out which button was clicked
 			// toggle lock of said dice & set button to selected
-
-		}
+                        String ac = e.getActionCommand();
+                        
+                        System.out.println(ac);
+                        Dice[] dices = game.getDices();
+                        String value = ac.substring(ac.length()-1);
+                        Integer index = Integer.parseInt(value);
+                        dices[index].toggleLock();
+                        
+		
+		gamePanel.setDiceButtons(dices);
+                }
+                    
 
 	}
 	
