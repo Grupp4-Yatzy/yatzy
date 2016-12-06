@@ -160,7 +160,7 @@ public class GameView extends JPanel{
     public void setDiceButtons(Dice[] dices){
         for(int i=0; i<diceButtons.length; i++){
             diceButtons[i].setText(""+(dices[i].getValue()));
-            diceButtons[i].setPreferredSize(new Dimension(40,40));    
+            diceButtons[i].setPreferredSize(new Dimension(50,50));    
         }
     }
     
