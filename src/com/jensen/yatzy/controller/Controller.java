@@ -9,6 +9,8 @@ import com.jensen.yatzy.model.Dice;
 import com.jensen.yatzy.model.Yatzy;
 import com.jensen.yatzy.view.GameView;
 import com.jensen.yatzy.view.Window;
+import java.awt.Color;
+import javax.swing.JButton;
 
 /**
  * 
@@ -56,14 +58,23 @@ public class Controller {
 			// TODO figure out which button was clicked
 			// toggle lock of said dice & set button to selected
                         String ac = e.getActionCommand();
-                        
                         System.out.println(ac);
                         Dice[] dices = game.getDices();
                         String value = ac.substring(ac.length()-1);
                         Integer index = Integer.parseInt(value);
                         dices[index].toggleLock();
                         
-		
+                        JButton button = (JButton) e.getSource();
+                        if(dices[index].isLocked())
+                        {
+                            
+                            button.setOpaque(true);
+                            button.setBackground(Color.GREEN);
+                        }
+                        else
+                        {
+                            button.setOpaque(false);
+                        }    
 		gamePanel.setDiceButtons(dices);
                 }
                     
