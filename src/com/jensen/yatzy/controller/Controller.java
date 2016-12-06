@@ -10,7 +10,55 @@ import com.jensen.yatzy.model.Yatzy;
 import com.jensen.yatzy.view.GameView;
 import com.jensen.yatzy.view.Window;
 
+/**
+ * 
+ * @author benjamin
+ *
+ */
 public class Controller {
+	
+	/**
+	 * 
+	 * @author benjamin
+	 *
+	 */
+	class PlayListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			String ac = e.getActionCommand().toLowerCase();
+			
+			switch (ac) {
+			case "roll":
+				rollButton();
+				// TODO disable roll button if numberOfRolls left is equal to 0
+				break;
+			case "done":
+				doneButton();
+				break;
+			default:
+				System.out.println("No Command for: " + ac);
+				break;
+			}
+		}
+
+	}
+
+	/**
+	 * 
+	 * @author benjamin
+	 *
+	 */
+	class DiceListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO figure out which button was clicked
+			// toggle lock of said dice & set button to selected
+
+		}
+
+	}
 	
 	public static final String[] combinations = {"Ettor", "Tvåor","Treor","Fyror","Femmor","Sexor",
 												"Summa","Bonus","Ett par","Två par","Tretal","Fyrtal",
@@ -38,46 +86,12 @@ public class Controller {
 		Integer[][] data = new Integer[combinations.length][names.length];
 		gamePanel.setTable(data, names);
 	}
-	
-
-
-	public class PlayListener implements ActionListener {
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			String ac = e.getActionCommand().toLowerCase();
-			
-			switch (ac) {
-			case "roll":
-				rollButton();
-				// TODO disable roll button if numberOfRolls left is equal to 0
-				break;
-			case "done":
-				doneButton();
-				break;
-			default:
-				System.out.println("No Command for: " + ac);
-				break;
-			}
-		}
-
-	}
-
-	public class DiceListener implements ActionListener {
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
-
-		}
-
-	}
 
 	/**
 	 * Rolls all unlocked dices
-	 * TODO unlock locked dices
+	 * TODO unlock all dices
 	 */
-	public void rollButton() {
+	void rollButton() {
 		Dice[] dices = game.getDices();
 		for (Dice dice: dices) {
 			if (!dice.isLocked()) {
@@ -90,7 +104,7 @@ public class Controller {
 	/**
 	 * 
 	 */
-	public void doneButton() {
+	void doneButton() {
 		// TODO Implement doneButton()
 		
 	}
