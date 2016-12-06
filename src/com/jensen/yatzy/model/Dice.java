@@ -42,4 +42,8 @@ public class Dice {
 		return isLocked;
 	}
 
+    public void setLock(boolean b) {
+        isLocked = b;
+    }
+
 }
