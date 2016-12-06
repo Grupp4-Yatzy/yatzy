@@ -7,9 +7,14 @@ import com.jensen.yatzy.view.Window;
 
 public class Main {
 
-    
-    
+
     //test kami
+
+    /**
+     * 
+     * @param args
+     */
+
 	public static void main(String[] args) {
 		Window window = new Window();
 		Yatzy yatzy = new Yatzy();
