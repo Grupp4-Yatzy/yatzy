@@ -68,16 +68,21 @@ public class Controller {
 	private GameView gamePanel;
 	private Yatzy game;
 	
-	public Controller(Window w, Yatzy g) {
-		this.window = w;
-		this.game = g;
+	/**
+	 * 
+	 * @param window
+	 * @param game
+	 */
+	public Controller(Window window, Yatzy game) {
+		this.window = window;
+		this.game = game;
 		
 		// Creates defualt start-up panel
 		gamePanel = new GameView();
-		window.setCurrentPanel(gamePanel);
+		this.window.setCurrentPanel(gamePanel);
 		gamePanel.addPlayListener(new PlayListener());
 		gamePanel.addDiceListener(new DiceListener());
-		gamePanel.setDiceButtons(game.getDices());
+		gamePanel.setDiceButtons(this.game.getDices());
 		
 		// tests
 		String[] names = {"Benjamin", "Robin", "Roberto", "Kami"};
