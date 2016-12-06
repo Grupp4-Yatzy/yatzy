@@ -10,44 +10,19 @@ import com.jensen.yatzy.model.Yatzy;
 import com.jensen.yatzy.view.GameView;
 import com.jensen.yatzy.view.Window;
 
+/**
+ * 
+ * @author benjamin
+ *
+ */
 public class Controller {
 	
-	public static final String[] combinations = {"Ettor", "Tvåor","Treor","Fyror","Femmor","Sexor",
-												"Summa","Bonus","Ett par","Två par","Tretal","Fyrtal",
-												"L.Stege","S.Stege","Kåk","Chans","Yatzy","Totalt"};
-
-	private Window window;
-	private GameView gamePanel;
-	private Yatzy game;
-	
-	public Controller(Window w, Yatzy g) {
-		this.window = w;
-		this.game = g;
-		gamePanel = new GameView();
-		window.setCurrentPanel(gamePanel);
-		gamePanel.addPlayListener(new PlayListener());
-		gamePanel.addDiceListener(new DiceListener());
-		
-		// tester
-		String[] names = {"Benjamin", "Robin", "Roberto", "Kami"};
-		gamePanel.setPlayerNames(names);
-		gamePanel.setCombinations(combinations);
-		Integer[][] data = new Integer[combinations.length][names.length];
-		gamePanel.setTable(data, names);
-
-		/*
-		Dice[] dices = new Dice[5];
-		for (int i = 0; i < dices.length; i++) {
-			Dice dice = new Dice();
-			dice.roll();
-			dices[i] = dice;
-		}*/
-		gamePanel.setDiceButtons(game.getDices());
-	}
-	
-
-
-	public class PlayListener implements ActionListener {
+	/**
+	 * 
+	 * @author benjamin
+	 *
+	 */
+	class PlayListener implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -56,6 +31,7 @@ public class Controller {
 			switch (ac) {
 			case "roll":
 				rollButton();
+				// TODO disable roll button if numberOfRolls left is equal to 0
 				break;
 			case "done":
 				doneButton();
@@ -68,17 +44,59 @@ public class Controller {
 
 	}
 
-	public class DiceListener implements ActionListener {
+	/**
+	 * 
+	 * @author benjamin
+	 *
+	 */
+	class DiceListener implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
+			// TODO figure out which button was clicked
+			// toggle lock of said dice & set button to selected
 
 		}
 
 	}
+	
+	public static final String[] combinations = {"Ettor", "Tvåor","Treor","Fyror","Femmor","Sexor",
+												"Summa","Bonus","Ett par","Två par","Tretal","Fyrtal",
+												"L.Stege","S.Stege","Kåk","Chans","Yatzy","Totalt"};
 
-	public void rollButton() {
+	private Window window;
+	private GameView gamePanel;
+	private Yatzy game;
+	
+	/**
+	 * 
+	 * @param window
+	 * @param game
+	 */
+	public Controller(Window window, Yatzy game) {
+		this.window = window;
+		this.game = game;
+		
+		// Creates defualt start-up panel
+		gamePanel = new GameView();
+		this.window.setCurrentPanel(gamePanel);
+		gamePanel.addPlayListener(new PlayListener());
+		gamePanel.addDiceListener(new DiceListener());
+		gamePanel.setDiceButtons(this.game.getDices());
+		
+		// tests
+		String[] names = {"Benjamin", "Robin", "Roberto", "Kami"};
+		gamePanel.setPlayerNames(names);
+		gamePanel.setCombinations(combinations);
+		Integer[][] data = new Integer[combinations.length][names.length];
+		gamePanel.setTable(data, names);
+	}
+
+	/**
+	 * Rolls all unlocked dices
+	 * TODO unlock all dices
+	 */
+	void rollButton() {
 		Dice[] dices = game.getDices();
 		for (Dice dice: dices) {
 			if (!dice.isLocked()) {
@@ -88,8 +106,11 @@ public class Controller {
 		gamePanel.setDiceButtons(dices);
 	}
 
-	public void doneButton() {
-		// TODO Auto-generated method stub
+	/**
+	 * 
+	 */
+	void doneButton() {
+		// TODO Implement doneButton()
 		
 	}
 	

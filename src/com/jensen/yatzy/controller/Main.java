@@ -14,15 +14,7 @@ public class Main {
 		Window window = new Window();
 		Yatzy yatzy = new Yatzy();
 		Controller controller = new Controller(window, yatzy);
-		
-		
-		/*
-		GameView game = new GameView();
-		window.setCurrentPanel(game);
-		System.out.println(game.getHeight());
-
-		
-	*/
+		//test
 		window.pack();
 		window.setVisible(true);
 	}

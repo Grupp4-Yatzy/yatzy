@@ -13,9 +13,9 @@ public class Window extends JFrame {
 	
 	public Window() {
 		super();
-		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setTitle("Yatzy");
-                this.setResizable(false);
+        this.setResizable(false);
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 	}
 	
