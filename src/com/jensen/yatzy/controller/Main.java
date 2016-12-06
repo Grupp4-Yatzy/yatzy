@@ -9,7 +9,7 @@ public class Main {
 
     
     
-    
+    //test kami
 	public static void main(String[] args) {
 		Window window = new Window();
 		Yatzy yatzy = new Yatzy();
