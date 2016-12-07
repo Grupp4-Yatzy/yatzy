@@ -192,7 +192,7 @@ public class GameView extends JPanel{
                 for(int i = 0; i<diceButtons.length; i++)
                 {
                   diceButtons[i].addActionListener(listener);
-                  diceButtons[i].setActionCommand("Dice"+i);
+                  diceButtons[i].setActionCommand("Dice "+i);
                  
                 }
 	}
