@@ -41,9 +41,7 @@ public class Controller {
 				break;
 			}
 		}
-
 	}
-
 	/**
 	 * 
 	 * @author benjamin
@@ -59,18 +57,13 @@ public class Controller {
 
 			System.out.println(ac);
 			Dice[] dices = game.getDices();
-			
-		
-			
+
 			String value = ac.substring(ac.length()-1);
 			Integer index = Integer.parseInt(value);
 			dices[index].toggleLock();
-
-
-			gamePanel.setDiceButtons(dices);
+			
 
 		}
-
 	}
 
 	public static final String[] combinations = {"Ettor", "Tvåor","Treor","Fyror","Femmor","Sexor",
