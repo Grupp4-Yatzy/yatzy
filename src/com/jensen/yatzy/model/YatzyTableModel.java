@@ -2,7 +2,7 @@ package com.jensen.yatzy.model;
 
 import javax.swing.table.AbstractTableModel;
 
-public class tableModel extends AbstractTableModel {
+public class YatzyTableModel extends AbstractTableModel {
 
 	@Override
 	public int getRowCount() {
