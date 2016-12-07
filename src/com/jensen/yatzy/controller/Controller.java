@@ -114,6 +114,18 @@ public class Controller {
             
         }
         gamePanel.setDiceButtons(dices);
+        System.out.println("ettor: "+ game.sum(1));
+        System.out.println("tvåor: "+ game.sum(2));
+        System.out.println("treor: "+ game.sum(3));
+        System.out.println("fyror: "+ game.sum(4));
+        System.out.println("femmor: "+ game.sum(5));
+        System.out.println("sexor: "+ game.sum(6));
+        System.out.println("par: "+ game.onePair());
+        System.out.println("sum of dices: "+ game.sum());
+        System.out.println("tvåpar: "+ game.twoPair());
+        System.out.println("tretal: "+ game.numberOfAKind(3));
+        System.out.println("fyrtal: "+ game.numberOfAKind(4));
+        System.out.println("Yatzy: "+ game.numberOfAKind(5));
     }
 
     /**
