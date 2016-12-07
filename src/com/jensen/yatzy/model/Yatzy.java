@@ -2,13 +2,12 @@ package com.jensen.yatzy.model;
 
 public class Yatzy {
 	
-	private static final int DEFUALT_NUMBER_OF_DICES = 5;
 	
 	private Dice[] dices;
 	
 	
 	public Yatzy() {
-		dices = new Dice[DEFUALT_NUMBER_OF_DICES];
+		dices = new Dice[Constant.DEFUALT_NUMBER_OF_DICES];
 		for (int i = 0; i < dices.length; i++) {
 			dices[i] = new Dice();
 		}

@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import com.jensen.yatzy.controller.Controller.DiceListener;
 import com.jensen.yatzy.controller.Controller.PlayListener;
+import com.jensen.yatzy.model.Constant;
 import com.jensen.yatzy.model.Dice;
 import com.jensen.yatzy.model.Yatzy;
 
@@ -70,9 +71,7 @@ public class Controller {
         
     }
     
-    public static final String[] combinations = {"Ettor", "Tvåor", "Treor", "Fyror", "Femmor", "Sexor",
-                                                "Summa", "Bonus", "Ett par", "Två par", "Tretal", "Fyrtal",
-                                                "L.Stege", "S.Stege", "Kåk", "Chans", "Yatzy", "Totalt"};
+    
     
     private Window window;
     private GameView gamePanel;
@@ -97,8 +96,8 @@ public class Controller {
         // tests
         String[] names = {"Benjamin", "Robin", "Roberto", "Kami"};
         gamePanel.setPlayerNames(names);
-        gamePanel.setCombinations(combinations);
-        Integer[][] data = new Integer[combinations.length][names.length];
+        gamePanel.setCombinations(Constant.combinations);
+        Integer[][] data = new Integer[Constant.combinations.length][names.length];
         gamePanel.setTable(data, names);
     }
 
