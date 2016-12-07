@@ -65,6 +65,7 @@ public class Controller {
             dices[index].toggleLock();
             
             gamePanel.setDiceButtons(dices);
+            
         }
         
     }
