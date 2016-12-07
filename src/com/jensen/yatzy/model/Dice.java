@@ -54,4 +54,8 @@ public class Dice {
             }
         }
 
+    public void setLock(boolean b) {
+        isLocked = b;
+    }
+
 }

@@ -1,6 +1,7 @@
 package com.jensen.yatzy.view;
 
 
+import com.jensen.yatzy.model.Constant;
 import com.jensen.yatzy.model.Dice;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -28,7 +29,6 @@ public class GameView extends JPanel{
     private ArrayList<JLabel> playerNames = new ArrayList<>();
     private String[] combinations;
     private JTable table;
-    private static final int COLUMN_WIDTH = 100;
     private JPanel northGridPanel = new JPanel();
     private Dimension combinationLabelSize = new Dimension(100,100/10);
     
@@ -83,7 +83,7 @@ public class GameView extends JPanel{
          //Slut på lånad kod
           TableColumnModel columnModel = table.getColumnModel();
         for(int i=0; i<columnModel.getColumnCount();i++){
-            columnModel.getColumn(i).setPreferredWidth(COLUMN_WIDTH);
+            columnModel.getColumn(i).setPreferredWidth(Constant.COLUMN_WIDTH);
         }
         this.add(table, BorderLayout.CENTER);
         
@@ -104,12 +104,13 @@ public class GameView extends JPanel{
         southCenter.setBackground(Color.GRAY);
         southEast.setBackground(Color.BLUE);
         southEast.add(rollButton);
+        rollButton.setActionCommand("Roll");
         southEast.add(doneButton);
         southPanel.add(southCenter, BorderLayout.CENTER);
         southPanel.add(southEast, BorderLayout.EAST);
         
         for(int i=0; i<diceButtons.length; i++){
-            JButton dice = new JButton(""+(i+1));
+            JButton dice = new DiceButton(""+(i+1));
             diceButtons[i]= dice;
             southCenter.add(dice);
         }
@@ -132,7 +133,7 @@ public class GameView extends JPanel{
             label.setOpaque(true);
             label.setHorizontalAlignment(JLabel.CENTER);
             playerNames.add(label);
-            label.setPreferredSize(new Dimension(COLUMN_WIDTH, 20));
+            label.setPreferredSize(new Dimension(Constant.COLUMN_WIDTH, 20));
             northGridPanel.add(label);
             
         
@@ -151,7 +152,7 @@ public class GameView extends JPanel{
     		}
     		
     		while(numberOfColumns < numberOfPlayers) {
-    			colModel.addColumn(new TableColumn(numberOfColumns, COLUMN_WIDTH));
+    			colModel.addColumn(new TableColumn(numberOfColumns, Constant.COLUMN_WIDTH));
     			numberOfColumns++;
     		}
     	}
@@ -159,18 +160,19 @@ public class GameView extends JPanel{
     
     public void setDiceButtons(Dice[] dices){
         for(int i=0; i<diceButtons.length; i++){
-            diceButtons[i].setText(""+(dices[i].getValue()));
-            diceButtons[i].setPreferredSize(new Dimension(40,40));    
+            diceButtons[i].setText(""+(dices[i].getValue()));   
         }
     }
     
     public JButton getRollButton(){
-        return rollButton;
+        return this.rollButton;
     }
     
     public JButton getDoneButton(){
-        return doneButton;
+        return this.doneButton;
     }
+    
+  
     
     public void setCombinations(String[] combinations){
         for(int i=0; i<combinations.length; i++){
