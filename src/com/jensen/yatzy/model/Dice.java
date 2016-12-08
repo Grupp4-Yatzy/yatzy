@@ -2,6 +2,7 @@ package com.jensen.yatzy.model;
 
 import com.jensen.yatzy.util.MyRandom;
 
+
 /**
  * 
  * @author benjamin
@@ -9,13 +10,13 @@ import com.jensen.yatzy.util.MyRandom;
  */
 public class Dice {
 
-	//private static final int DEFUALT_DICE_VALUE = 6;
+	
 
 	private int value;
 	private boolean isLocked;
 
 	public Dice() {
-		value = MyRandom.getInt(1, 6);
+		value = Constant.DEFUALT_DICE_VALUE;
 		isLocked = false;
 	}
 

@@ -35,18 +35,13 @@ public class Controller {
 			case "roll":
 
 				rollButton();
-				game.decreasNumberOfRollsLeft();
-				if(game.getNumberOfRollsLeft()==0){
-
-					gamePanel.getRollButton().setEnabled(false);
-				}
-				gamePanel.getRollButton().setText("Roll ("+game.getNumberOfRollsLeft()+")");
-
 
 				// TODO disable roll button if numberOfRolls left is equal to 0
 				break;
 			case "done":
+
 				doneButton();
+
 				break;
 			default:
 				System.out.println("No Command for: " + ac);
@@ -75,19 +70,27 @@ public class Controller {
 
 			String value = ac.substring(ac.length() - 1);
 			Integer index = Integer.parseInt(value);
-			dices[index].toggleLock();
 
+			dices[index].toggleLock();
+			
+			
+			
 			JButton button = (JButton) e.getSource();
 
 			if(dices[index].isLocked())
 			{
 				button.setOpaque(true);
-				button.setBackground(Color.GREEN);
+				//button.setBackground(Color.GREEN);
+				button.setContentAreaFilled(true);
 			}
 			else
 			{
 				button.setOpaque(false);
 			} 
+			
+			
+			
+			
 			gamePanel.setDiceButtons(dices);
 		}
 
@@ -121,6 +124,7 @@ public class Controller {
 		gamePanel.setCombinations(Constant.combinations);
 		Integer[][] data = new Integer[Constant.combinations.length][names.length];
 		gamePanel.setTable(data, names);
+		gamePanel.setEnableDice(false);
 
 	}
 
@@ -128,18 +132,30 @@ public class Controller {
 	 * Rolls all unlocked dices TODO unlock all dices
 	 */
 	void rollButton() {
+		gamePanel.setEnableDice(true);
 		Dice[] dices = game.getDices();
 		for (Dice dice : dices) {
 
 			if (!dice.isLocked()) {
 				dice.roll();
-
 			}
 			//dice.setLock(false);
-
 		}
+
+
+
 		gamePanel.setDiceButtons(dices);
-		
+
+
+		game.decreasNumberOfRollsLeft();
+
+		if(game.getNumberOfRollsLeft()==0){
+
+			gamePanel.getRollButton().setEnabled(false);
+		}
+		gamePanel.getRollButton().setText("Roll ("+game.getNumberOfRollsLeft()+")");
+
+
 		System.out.println("ettor: "+ game.sum(1));
 		System.out.println("tvåor: "+ game.sum(2));
 		System.out.println("treor: "+ game.sum(3));
@@ -161,8 +177,32 @@ public class Controller {
 	 *
 	 */
 	void doneButton() {
+		
+
 		// TODO Implement doneButton()
-		new GameView();
+		Dice[] dices = game.getDices();
+		for (Dice dice : dices) {
+
+			if (!dice.isLocked()||dice.isLocked()) {
+				dice.setLock(false);
+
+				//gamePanel.getRollButton().setContentAreaFilled(true);
+				gamePanel.getRollButton().setContentAreaFilled(false);
+				//button.setBackground(Color.black);
+				//button.setOpaque(false);
+
+
+			}
+
+		}
+
+		gamePanel.setEnableDice(false);
+
+		game.nextPlayer();
+		gamePanel.getRollButton().setEnabled(true);
+		gamePanel.getRollButton().setText("Roll ("+game.getNumberOfRollsLeft()+")");
+
+
 
 	}
 

@@ -29,7 +29,9 @@ public class Yatzy {
 	public void decreasNumberOfRollsLeft(){
 		this.numberOfRollsLeft--;
 	}
-
+	public void nextPlayer(){
+		this.numberOfRollsLeft=3;
+	}
 
 	public int sum(){
 		int sum=0;
@@ -45,7 +47,6 @@ public class Yatzy {
 		for(Dice dice: dices){
 			if(dice.getValue()==value)
 				sum += dice.getValue();
-
 		}
 		return sum;
 	}
@@ -73,29 +74,35 @@ public class Yatzy {
 		int sum=0;
 		for(int i=0; i<dices.length; i++){
 			int diceValue=dices[i].getValue();
-			for(int nextDice=i+1; nextDice<dices.length; nextDice++){
-				if(diceValue == dices[nextDice].getValue()){
+			for(int nextDice=i+1; nextDice<dices.length; nextDice++)
+			{
+				if(diceValue == dices[nextDice].getValue())
+				{
 					sum = diceValue*2;
-					if(sum != highestPair){
+					if(sum != highestPair)
+					{
 						return sum+ highestPair;
 					}
 				}
 			}
 		}
 		return 0;
-
 	}
 
 	public int numberOfAKind(int number){
 		int numberOfEqualDices=0;
-		for(int s=0; s<dices.length; s++){
-			int diceValue=dices[s].getValue();
-			for(int nextDice=s+1; nextDice<dices.length; nextDice++){
-				if(diceValue == dices[nextDice].getValue()){
+		for(int i=0; i<dices.length; i++)
+		{
+			int diceValue=dices[i].getValue();
+			for(int nextDice=i+1; nextDice<dices.length; nextDice++)
+			{
+				if(diceValue == dices[nextDice].getValue())
+				{
 					numberOfEqualDices++;
 				}
 			}
-			if(numberOfEqualDices >= number){
+			if(numberOfEqualDices >= number)
+			{
 				return number*diceValue;
 			}
 			numberOfEqualDices = 0;
@@ -105,9 +112,11 @@ public class Yatzy {
 
 	public int fullHouse(){
 		Set set = new HashSet();
-		for(Dice dice: dices){
+		for(Dice dice: dices)
+		{
 			set.add(dice.getValue());
-			if(set.size()==2){
+			if(set.size()==2)
+			{
 				Integer[] values = (Integer[]) set.toArray();
 				int value = values[0];
 				int numberOf = sum(value) / value;
@@ -117,9 +126,4 @@ public class Yatzy {
 		}
 		return 0;
 	}
-
-
-
 }
-
-
