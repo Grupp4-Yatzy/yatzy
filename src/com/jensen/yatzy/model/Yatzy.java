@@ -76,8 +76,9 @@ public class Yatzy {
         }
         
         public int numberOfAKind(int number){
-            int numberOfEqualDices=0;
+            
             for(int s=0; s<dices.length; s++){
+                int numberOfEqualDices=1;
                 int diceValue=dices[s].getValue();
                 for(int nextDice=s+1; nextDice<dices.length; nextDice++){
                     if(diceValue == dices[nextDice].getValue()){
@@ -87,12 +88,12 @@ public class Yatzy {
                 if(numberOfEqualDices >= number){
                     return number*diceValue;
                 }
-                numberOfEqualDices = 0;
+                
             }
             return 0;
         }
         
-        public int fullHouse(){
+        /*public int fullHouse(){
             Set set = new HashSet();
             for(Dice dice: dices){
                 set.add(dice.getValue());
@@ -105,7 +106,7 @@ public class Yatzy {
                 }
             }
             return 0;
-        }
+        }*/
         
         
 
