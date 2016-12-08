@@ -93,21 +93,20 @@ public class Yatzy {
             return 0;
         }
         
-        /*public int fullHouse(){
+        public int fullHouse(){
             Set set = new HashSet();
             for(Dice dice: dices){
                 set.add(dice.getValue());
-                if(set.size()==2){
-                    Integer[] values = (Integer[]) set.toArray();
-                    int value = values[0];
+                
+            }
+            if(set.size()==2){
+                    Object[] values = set.toArray();
+                    int value = (Integer)values[0];
                     int numberOf = sum(value) / value;
                     if (numberOf == 2 || numberOf == 3)
                         return sum();
                 }
-            }
             return 0;
-        }*/
+        }
         
-        
-
 }

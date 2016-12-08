@@ -126,7 +126,7 @@ public class Controller {
         System.out.println("tretal: "+ game.numberOfAKind(3));
         System.out.println("fyrtal: "+ game.numberOfAKind(4));
         System.out.println("Yatzy: "+ game.numberOfAKind(5));
-        //System.out.println("kåk: "+ game.fullHouse());
+        System.out.println("kåk: "+ game.fullHouse());
     }
 
     /**
