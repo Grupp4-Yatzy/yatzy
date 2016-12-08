@@ -35,7 +35,6 @@ public class Controller {
             switch (ac) {
                 case "roll":
                     rollButton();
-                    int count = 3;
                     game.decreaseRolls();
                     if(game.getNumbersOfRollsLeft()==0)
                     {
@@ -132,7 +131,7 @@ public class Controller {
             if (!dice.isLocked()) {
                 dice.roll();
             }
-            dice.setLock(false);
+            //dice.setLock(false);
             
         }
         gamePanel.setDiceButtons(dices);
@@ -144,6 +143,6 @@ public class Controller {
     void doneButton() {
         // TODO Implement doneButton()
         
-    }
-    
+        
+    }   
 }
