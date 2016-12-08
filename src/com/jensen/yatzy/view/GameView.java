@@ -31,7 +31,7 @@ public class GameView extends JPanel{
     private JTable table;
     private JPanel northGridPanel = new JPanel();
     private Dimension combinationLabelSize = new Dimension(100,100/10);
-    
+	
     
     public GameView (){
         
@@ -104,7 +104,10 @@ public class GameView extends JPanel{
         southCenter.setBackground(Color.GRAY);
         southEast.setBackground(Color.BLUE);
         southEast.add(rollButton);
+        rollButton.setActionCommand("Roll");
         southEast.add(doneButton);
+        
+        
         southPanel.add(southCenter, BorderLayout.CENTER);
         southPanel.add(southEast, BorderLayout.EAST);
         
@@ -134,8 +137,6 @@ public class GameView extends JPanel{
             playerNames.add(label);
             label.setPreferredSize(new Dimension(Constant.COLUMN_WIDTH, 20));
             northGridPanel.add(label);
-            
-        
         }
     }
     
@@ -170,6 +171,7 @@ public class GameView extends JPanel{
     public JButton getDoneButton(){
         return doneButton;
     }
+
     
     public void setCombinations(String[] combinations){
         for(int i=0; i<combinations.length; i++){

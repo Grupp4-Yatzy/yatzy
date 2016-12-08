@@ -8,17 +8,17 @@ import com.jensen.yatzy.util.MyRandom;
  *
  */
 public class Dice {
-	
-	private static final int DEFUALT_DICE_VALUE = 6;
-	
+
+	//private static final int DEFUALT_DICE_VALUE = 6;
+
 	private int value;
 	private boolean isLocked;
-	
-            public Dice() {
-		value = DEFUALT_DICE_VALUE;
+
+	public Dice() {
+		value = MyRandom.getInt(1, 6);
 		isLocked = false;
 	}
-	
+
 	/**
 	 * Gets the value of the upward facing side
 	 * @return value of the dice
@@ -26,7 +26,7 @@ public class Dice {
 	public int getValue() {
 		return value;
 	}
-	
+
 	/**
 	 * Set value to a random number 1-6
 	 */
@@ -41,21 +41,21 @@ public class Dice {
 	public boolean isLocked() {
 		return isLocked;
 	}
-        
-        public void toggleLock(){
-           
-            if(isLocked)
-            {
-                isLocked = false;
-            }
-            else
-            {
-                isLocked = true;
-            }
-        }
 
-    public void setLock(boolean b) {
-        isLocked = b;
-    }
+	public void toggleLock(){
+
+		if(isLocked)
+		{
+			isLocked = false;
+		}
+		else
+		{
+			isLocked = true;
+		}
+	}
+
+	public void setLock(boolean b) {
+		isLocked = b;
+	}
 
 }
