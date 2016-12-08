@@ -11,6 +11,8 @@ import com.jensen.yatzy.model.Yatzy;
 
 import com.jensen.yatzy.view.GameView;
 import com.jensen.yatzy.view.Window;
+import java.awt.Color;
+import javax.swing.JButton;
 
 /**
  *
@@ -25,14 +27,20 @@ public class Controller {
      *
      */
     class PlayListener implements ActionListener {
-        
+
         @Override
         public void actionPerformed(ActionEvent e) {
             String ac = e.getActionCommand().toLowerCase();
-            
+
             switch (ac) {
                 case "roll":
                     rollButton();
+                    int count = 3;
+                    game.decreaseRolls();
+                    if (game.getNumbersOfRollsLeft() == 0) {
+                        gamePanel.getRollButton().setEnabled(false);
+                    }
+                    gamePanel.getRollButton().setText("Roll (" + game.getNumbersOfRollsLeft() + ")");
                     // TODO disable roll button if numberOfRolls left is equal to 0
                     break;
                 case "done":
@@ -43,36 +51,38 @@ public class Controller {
                     break;
             }
         }
-        
+
     }
 
-    /**
-     *
-     * @author benjamin
-     *
-     */
     class DiceListener implements ActionListener {
-        
+
         @Override
         public void actionPerformed(ActionEvent e) {
             // TODO figure out which button was clicked
             // toggle lock of said dice & set button to selected
             String ac = e.getActionCommand();
-            
+
             System.out.println(ac);
             Dice[] dices = game.getDices();
             String value = ac.substring(ac.length() - 1);
             Integer index = Integer.parseInt(value);
             dices[index].toggleLock();
-            
+
+            JButton buttonColor = (JButton) e.getSource();
+            if (dices[index].isLocked()) {
+                buttonColor.setOpaque(true);
+                buttonColor.setBackground(Color.GREEN);
+
+            } else {
+                buttonColor.setOpaque(false);
+            }
+
             gamePanel.setDiceButtons(dices);
-            
+
         }
-        
+
     }
-    
-    
-    
+
     private Window window;
     private GameView gamePanel;
     private Yatzy game;
@@ -110,10 +120,11 @@ public class Controller {
             if (!dice.isLocked()) {
                 dice.roll();
             }
-            dice.setLock(false);
-            
+
         }
+        
         gamePanel.setDiceButtons(dices);
+
         System.out.println("ettor: "+ game.sum(1));
         System.out.println("tvåor: "+ game.sum(2));
         System.out.println("treor: "+ game.sum(3));
@@ -127,6 +138,7 @@ public class Controller {
         System.out.println("fyrtal: "+ game.numberOfAKind(4));
         System.out.println("Yatzy: "+ game.numberOfAKind(5));
         System.out.println("kåk: "+ game.fullHouse());
+
     }
 
     /**
@@ -134,7 +146,7 @@ public class Controller {
      */
     void doneButton() {
         // TODO Implement doneButton()
-        
+
     }
-    
+
 }

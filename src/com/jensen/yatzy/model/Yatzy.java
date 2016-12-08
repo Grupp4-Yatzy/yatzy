@@ -5,6 +5,7 @@ import java.util.Set;
 
 public class Yatzy {
 	
+	private int numberOfRollsLeft = 3;
 	
 	private Dice[] dices;
 	
@@ -108,5 +109,13 @@ public class Yatzy {
                 }
             return 0;
         }
-        
+
+	public int getNumbersOfRollsLeft() {
+		return this.numberOfRollsLeft;
+	}
+
+	public void decreaseRolls() {
+		this.numberOfRollsLeft -= 1;
+	}
+
 }
