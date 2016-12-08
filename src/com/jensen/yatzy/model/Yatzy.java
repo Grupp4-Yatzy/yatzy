@@ -106,8 +106,7 @@ public class Yatzy {
             return 0;
         }*/
         
-        
-
+   
 	public int getNumbersOfRollsLeft() {
 		return this.numberOfRollsLeft;
 	}
@@ -115,5 +114,10 @@ public class Yatzy {
 	public void decreaseRolls() {
 		this.numberOfRollsLeft -= 1;
 	}
+        
+        public void nextPlayer()
+        {
+           this.numberOfRollsLeft = 3;
+        }
 
 }

@@ -164,6 +164,13 @@ public class GameView extends JPanel{
         }
     }
     
+    public void setEnableDice(boolean enableDice)
+    {
+            for(int i=0; i<diceButtons.length; i++){
+            diceButtons[i].setEnabled(enableDice);
+        }
+    }
+    
     public JButton getRollButton(){
         return this.rollButton;
     }
