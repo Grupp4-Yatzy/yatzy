@@ -8,6 +8,7 @@ import com.jensen.yatzy.controller.Controller.PlayListener;
 import com.jensen.yatzy.model.Constant;
 import com.jensen.yatzy.model.Dice;
 import com.jensen.yatzy.model.Yatzy;
+import com.jensen.yatzy.model.YatzyTableModel;
 
 import com.jensen.yatzy.view.GameView;
 import com.jensen.yatzy.view.Window;
@@ -107,8 +108,12 @@ public class Controller {
         String[] names = {"Benjamin", "Robin", "Roberto", "Kami"};
         gamePanel.setPlayerNames(names);
         gamePanel.setCombinations(Constant.combinations);
-        Integer[][] data = new Integer[Constant.combinations.length][names.length];
-        gamePanel.setTable(data, names);
+       // Integer[][] data = new Integer[Constant.combinations.length][names.length];
+       Integer[][] data = {{1,2,3},{4,5,6},{7,8,9}};
+        YatzyTableModel model = new YatzyTableModel();
+        gamePanel.setTable(model);
+        model.update(data);
+        
     }
 
     /**

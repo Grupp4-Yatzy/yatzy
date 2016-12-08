@@ -3,6 +3,7 @@ package com.jensen.yatzy.view;
 
 import com.jensen.yatzy.model.Constant;
 import com.jensen.yatzy.model.Dice;
+import com.jensen.yatzy.model.YatzyTableModel;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -63,24 +64,9 @@ public class GameView extends JPanel{
         //table= new JTable(18,5);
         //centerPanel.add(table);
 
-        //Källa på följande kodstycke taget från https://www.youtube.com/watch?v=iMBfneE2Ztg
-         table = new JTable(18, 6){
-            @Override
-            public boolean isCellEditable(int row, int column){
-                return false;
-            }
-            
-            @Override
-            public Component prepareRenderer(TableCellRenderer renderer, int row, int column){
-                Component c = super.prepareRenderer(renderer, row, column);
-                if(row % 2 == 0)
-                    c.setBackground(Color.LIGHT_GRAY);
-                else
-                    c.setBackground(Color.WHITE);
-                return c;
-            }
-        };
-         //Slut på lånad kod
+        
+         table = new JTable(new YatzyTableModel());
+        
           TableColumnModel columnModel = table.getColumnModel();
         for(int i=0; i<columnModel.getColumnCount();i++){
             columnModel.getColumn(i).setPreferredWidth(Constant.COLUMN_WIDTH);
@@ -140,22 +126,8 @@ public class GameView extends JPanel{
         }
     }
     
-    public void setTable(Integer[][] data, String[] playerNames){
-    	int numberOfColumns = table.getColumnCount();
-    	int numberOfPlayers = playerNames.length;
-    	TableColumnModel colModel = table.getColumnModel();
-    	if (numberOfColumns != numberOfPlayers) {
-    		
-    		while(numberOfColumns  > numberOfPlayers) {
-    			colModel.removeColumn(colModel.getColumn(numberOfColumns - 1));
-    			numberOfColumns--;
-    		}
-    		
-    		while(numberOfColumns < numberOfPlayers) {
-    			colModel.addColumn(new TableColumn(numberOfColumns, Constant.COLUMN_WIDTH));
-    			numberOfColumns++;
-    		}
-    	}
+    public void setTable(YatzyTableModel model){
+        this.table = new JTable(model);
     }
     
     public void setDiceButtons(Dice[] dices){
