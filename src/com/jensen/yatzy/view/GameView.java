@@ -104,6 +104,7 @@ public class GameView extends JPanel{
         southCenter.setBackground(Color.GRAY);
         southEast.setBackground(Color.BLUE);
         southEast.add(rollButton);
+        rollButton.setActionCommand("Roll");
         southEast.add(doneButton);
         southPanel.add(southCenter, BorderLayout.CENTER);
         southPanel.add(southEast, BorderLayout.EAST);
@@ -164,12 +165,14 @@ public class GameView extends JPanel{
     }
     
     public JButton getRollButton(){
-        return rollButton;
+        return this.rollButton;
     }
     
     public JButton getDoneButton(){
-        return doneButton;
+        return this.doneButton;
     }
+    
+  
     
     public void setCombinations(String[] combinations){
         for(int i=0; i<combinations.length; i++){
@@ -191,7 +194,7 @@ public class GameView extends JPanel{
                 for(int i = 0; i<diceButtons.length; i++)
                 {
                   diceButtons[i].addActionListener(listener);
-                  diceButtons[i].setActionCommand("Dice"+i);
+                  diceButtons[i].setActionCommand("Dice "+i);
                  
                 }
 	}

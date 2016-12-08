@@ -2,6 +2,7 @@ package com.jensen.yatzy.model;
 
 public class Yatzy {
 	
+	private int numberOfRollsLeft = 3;
 	
 	private Dice[] dices;
 	
@@ -16,6 +17,14 @@ public class Yatzy {
 	
 	public Dice[] getDices() {
 		return dices;
+	}
+
+	public int getNumbersOfRollsLeft() {
+		return this.numberOfRollsLeft;
+	}
+
+	public void decreaseRolls() {
+		this.numberOfRollsLeft -= 1;
 	}
 
 }
