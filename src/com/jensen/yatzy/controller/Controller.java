@@ -37,9 +37,9 @@ public class Controller {
                     rollButton();
                     int count = 3;
                     game.decreaseRolls();
-                    if (game.getNumbersOfRollsLeft() == 0) {
+                    /*if (game.getNumbersOfRollsLeft() == 0) {
                         gamePanel.getRollButton().setEnabled(false);
-                    }
+                    }*/
                     gamePanel.getRollButton().setText("Roll (" + game.getNumbersOfRollsLeft() + ")");
                     // TODO disable roll button if numberOfRolls left is equal to 0
                     break;
@@ -132,12 +132,14 @@ public class Controller {
         System.out.println("femmor: "+ game.sum(5));
         System.out.println("sexor: "+ game.sum(6));
         System.out.println("par: "+ game.onePair());
-        System.out.println("sum of dices: "+ game.sum());
         System.out.println("tvåpar: "+ game.twoPair());
         System.out.println("tretal: "+ game.numberOfAKind(3));
-        System.out.println("fyrtal: "+ game.numberOfAKind(4));
-        System.out.println("Yatzy: "+ game.numberOfAKind(5));
+        System.out.println("fyrtal: "+ game.numberOfAKind(4)); 
+        System.out.println("Liten stege: "+ game.straight(6));
+        System.out.println("Stor stege: "+ game.straight(1));
         System.out.println("kåk: "+ game.fullHouse());
+        System.out.println("chans: "+ game.sum());
+        System.out.println("Yatzy: "+ game.yatzy());
 
     }
 
@@ -146,6 +148,8 @@ public class Controller {
      */
     void doneButton() {
         // TODO Implement doneButton()
+        
+        
 
     }
 

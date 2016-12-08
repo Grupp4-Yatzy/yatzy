@@ -97,8 +97,7 @@ public class Yatzy {
         public int fullHouse(){
             Set set = new HashSet();
             for(Dice dice: dices){
-                set.add(dice.getValue());
-                
+                set.add(dice.getValue());    
             }
             if(set.size()==2){
                     Object[] values = set.toArray();
@@ -109,7 +108,24 @@ public class Yatzy {
                 }
             return 0;
         }
-
+        
+        public int yatzy(){
+            if(numberOfAKind(Constant.DEFUALT_NUMBER_OF_DICES)>0)
+                return Constant.YATZY;
+            return 0;
+        }
+        
+        public int straight(int number){
+            Set set = new HashSet();
+            for(Dice dice: dices){
+                set.add(dice.getValue());    
+            }
+            if(set.size()==5 && !set.contains(number)){
+                return sum();
+            }
+            return 0;
+        }
+        
 	public int getNumbersOfRollsLeft() {
 		return this.numberOfRollsLeft;
 	}
