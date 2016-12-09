@@ -14,6 +14,7 @@ public class Main {
 		Window window = new Window();
 		Yatzy yatzy = new Yatzy();
 		Controller controller = new Controller(window, yatzy);
+                
 		window.pack();
 		window.setVisible(true);
 	}
