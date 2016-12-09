@@ -1,5 +1,6 @@
 package com.jensen.yatzy.model;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -7,6 +8,8 @@ public class Yatzy {
 	
         private int numberOfRollsLeft = 3;
 	private Dice[] dices;
+        private ArrayList<Player> players = new ArrayList<>();
+               
 	
 	public Yatzy() {
 		dices = new Dice[Constant.DEFUALT_NUMBER_OF_DICES];
@@ -135,5 +138,20 @@ public class Yatzy {
         {
            this.numberOfRollsLeft = 3;
         }
+        
+        public Integer[][] createTable(){
+            Integer[][] table= new Integer[Constant.COMBINATIONS.length][players.size()];
+            for(int scoreIndex=0; scoreIndex<table.length; scoreIndex++){
+                for(int playerIndex=0; playerIndex<table[0].length; playerIndex++){
+                Integer score= players.get(playerIndex).getScore(scoreIndex);
+                   table[scoreIndex][playerIndex]= score; 
+                }
+            }
+            return table;
+        }
+
+    public void addPlayer(String name) {
+        players.add(new Player(name));
+    }
 
 }

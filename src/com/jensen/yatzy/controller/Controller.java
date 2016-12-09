@@ -95,15 +95,18 @@ public class Controller {
         gamePanel.addPlayListener(new PlayListener());
         gamePanel.addDiceListener(new DiceListener());
         gamePanel.setDiceButtons(this.game.getDices());
+        
+        game.addPlayer("playerOne");
 
         // tests
         String[] names = {"Benjamin", "Robin", "Roberto", "Kami"};
         gamePanel.setPlayerNames(names);
         gamePanel.setCombinations(Constant.COMBINATIONS);
         
-       // Integer[][] data = new Integer[Constant.combinations.length][names.length];
-        Integer[][] data = {{1,2,3},{4,5,6},{7,8,9}};
+        //Integer[][] data = new Integer[Constant.COMBINATIONS.length][names.length];
+        Integer[][] data= game.createTable();
         YatzyTableModel model = new YatzyTableModel();
+        model.initTable(data.length, data[0].length);
         gamePanel.initTable(model);
         for(int row=0; row<model.getRowCount(); row++){
             for(int col=0; col<model.getColumnCount(); col++){
@@ -111,6 +114,8 @@ public class Controller {
                 model.fireTableCellUpdated(row, col);
             }
         }
+        
+        
         
         gamePanel.setEnableDice(false);
     }
@@ -147,7 +152,7 @@ public class Controller {
         System.out.println("par: "+ game.onePair());
         System.out.println("tvåpar: "+ game.twoPair());
         System.out.println("tretal: "+ game.numberOfAKind(3));
-        System.out.println("fyrtal: "+ game.numberOfAKind(4)); 
+        System.out.println("fyrtal: "+ game.numberOfAKind(4));
         System.out.println("Liten stege: "+ game.straight(6));
         System.out.println("Stor stege: "+ game.straight(1));
         System.out.println("kåk: "+ game.fullHouse());

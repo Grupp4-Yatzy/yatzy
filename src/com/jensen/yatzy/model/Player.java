@@ -9,12 +9,17 @@ public class Player {
 	private Integer[] lowerScore;
 	private Integer[] scoreList;
         
-	public Player() {
+	public Player(String name) {
+            this.name = name;
             scoreList = new Integer[Constant.COMBINATIONS.length];
 	}
         
         public Integer[] getScore(){
             return scoreList;
+        }
+        
+        public Integer getScore(int index){
+            return scoreList[index];
         }
         
         public void addScore(int score, int index){

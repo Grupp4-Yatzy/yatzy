@@ -6,8 +6,12 @@ import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableCellRenderer;
 
 public class YatzyTableModel extends AbstractTableModel {
-    private Object[][] data = new Object[3][3];
-
+    
+    private Object[][] data;
+    
+    public void initTable(int rowCount, int colCount){
+        data = new Object[rowCount][colCount];
+    }
     //Källa på följande kodstycke taget från https://www.youtube.com/watch?v=iMBfneE2Ztg
     @Override
     public boolean isCellEditable(int row, int column) {
