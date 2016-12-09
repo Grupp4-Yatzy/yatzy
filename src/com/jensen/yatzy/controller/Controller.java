@@ -99,13 +99,19 @@ public class Controller {
         // tests
         String[] names = {"Benjamin", "Robin", "Roberto", "Kami"};
         gamePanel.setPlayerNames(names);
-        gamePanel.setCombinations(Constant.combinations);
+        gamePanel.setCombinations(Constant.COMBINATIONS);
         
        // Integer[][] data = new Integer[Constant.combinations.length][names.length];
         Integer[][] data = {{1,2,3},{4,5,6},{7,8,9}};
         YatzyTableModel model = new YatzyTableModel();
-        gamePanel.setTable(model);
-        model.update(data);
+        gamePanel.initTable(model);
+        for(int row=0; row<model.getRowCount(); row++){
+            for(int col=0; col<model.getColumnCount(); col++){
+                model.setValueAt(data[row][col], row, col);
+                model.fireTableCellUpdated(row, col);
+            }
+        }
+        
         gamePanel.setEnableDice(false);
     }
 
