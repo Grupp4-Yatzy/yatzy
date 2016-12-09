@@ -10,7 +10,7 @@ import com.jensen.yatzy.util.MyRandom;
  */
 public class Dice {
 
-	
+
 
 	private int value;
 	private boolean isLocked;
@@ -44,18 +44,6 @@ public class Dice {
 	}
 	public void toggleLock(){
 		if(isLocked)
-        {
-            isLocked = false;
-        }
-        else
-        {
-            isLocked = true;
-        }
-	} 
-
-	public void toggleLock(){
-
-		if(isLocked)
 		{
 			isLocked = false;
 		}
@@ -63,7 +51,7 @@ public class Dice {
 		{
 			isLocked = true;
 		}
-	}
+	} 
 
 	public void setLock(boolean b) {
 		isLocked = b;

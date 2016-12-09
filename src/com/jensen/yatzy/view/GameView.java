@@ -113,11 +113,13 @@ public class GameView extends JPanel{
 
 		for(int i=0; i<diceButtons.length; i++){
 
+
 			DiceButton dice = new DiceButton(""+(i+1));
 			diceButtons[i]= dice;
 			southCenter.add(dice);
 			//diceButtons[i].setEnabled(false);
 		}
+
 
 		//this.add(centerPanel, BorderLayout.CENTER);       
 		//this.add(centerPanel, BorderLayout.CENTER);
@@ -175,6 +177,7 @@ public class GameView extends JPanel{
 
 	}
 
+
 	public DiceButton[] getDiceButtons() {
 		return diceButtons;
 	}
@@ -187,6 +190,7 @@ public class GameView extends JPanel{
 	public JButton getDoneButton(){
 		return doneButton;
 	}
+
 
 	public void setCombinations(String[] combinations){
 		for(int i=0; i<combinations.length; i++){
