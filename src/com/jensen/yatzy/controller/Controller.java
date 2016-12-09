@@ -7,6 +7,7 @@ import com.jensen.yatzy.model.Dice;
 import com.jensen.yatzy.model.Yatzy;
 import com.jensen.yatzy.view.DiceButton;
 import com.jensen.yatzy.model.YatzyTableModel;
+import com.jensen.yatzy.util.MyRandom;
 import com.jensen.yatzy.view.GameView;
 import com.jensen.yatzy.view.Window;
 
@@ -84,10 +85,11 @@ public class Controller {
         gamePanel.addDiceListener(new DiceListener());
         gamePanel.setDiceButtons(this.game.getDices());
 
-        game.addPlayer("playerOne");
+        
 
         // tests
-        String[] names = {"Benjamin", "Robin", "Roberto", "Kami"};
+        String[] names = {"playerOne", "playerTwo", "playerThree", "playerFour"};
+        game.addPlayers(names);
         gamePanel.setPlayerNames(names);
         gamePanel.setCombinations(Constant.COMBINATIONS);
 
@@ -98,7 +100,7 @@ public class Controller {
         gamePanel.initTable(model);
         for (int row = 0; row < model.getRowCount(); row++) {
             for (int col = 0; col < model.getColumnCount(); col++) {
-                model.setValueAt(data[row][col], row, col);
+                model.setValueAt(MyRandom.getInt(50), row, col);
                 model.fireTableCellUpdated(row, col);
             }
         }
