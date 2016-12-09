@@ -134,8 +134,6 @@ public class Controller {
 		System.out.println("sexor: "+ game.sum(6));
 		System.out.println("---------------------");
 		System.out.println("par: "+ game.onePair());
-		
-		System.out.println("---------------------");
 		System.out.println("tvåpar: "+ game.twoPair());
 		System.out.println("tretal: "+ game.numberOfAKind(3));
 		System.out.println("fyrtal: "+ game.numberOfAKind(4));
