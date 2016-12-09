@@ -43,10 +43,9 @@ public class YatzyTableModel extends AbstractTableModel {
         return data[rowIndex][columnIndex];
     }
     
-    public void update(Object[][] data){
-        this.data = data;
-        
-        this.fireTableDataChanged();
+    @Override
+    public void setValueAt(Object value, int rowIndex, int columnIndex){
+        data[rowIndex][columnIndex] = value;
     }
 
 }
