@@ -3,6 +3,8 @@ package com.jensen.yatzy.view;
 
 import com.jensen.yatzy.model.Constant;
 import com.jensen.yatzy.model.Dice;
+import com.jensen.yatzy.model.Yatzy;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -26,14 +28,11 @@ public class GameView extends JPanel{
 	private JButton rollButton = new JButton("Roll");
 	private JButton doneButton = new JButton("Done");
 	private DiceButton[] diceButtons = new DiceButton[5];
-
-
 	private ArrayList<JLabel> playerNames = new ArrayList<>();
 	private String[] combinations;
 	private JTable table;
 	private JPanel northGridPanel = new JPanel();
 	private Dimension combinationLabelSize = new Dimension(100,100/10);
-
 
 	public GameView (){
 
@@ -56,8 +55,6 @@ public class GameView extends JPanel{
 		northGridPanel.setBackground(Color.CYAN);
 
 		ArrayList<JLabel> labels = new ArrayList<>();
-
-
 
 		centerPanel = new JPanel();
 		centerPanel.setBackground(Color.yellow);
@@ -85,7 +82,9 @@ public class GameView extends JPanel{
 		//Slut på lånad kod
 		TableColumnModel columnModel = table.getColumnModel();
 		for(int i=0; i<columnModel.getColumnCount();i++){
+
 			columnModel.getColumn(i).setPreferredWidth(Constant.COLUMN_WIDTH);
+
 		}
 		this.add(table, BorderLayout.CENTER);
 
@@ -106,15 +105,14 @@ public class GameView extends JPanel{
 		southCenter.setBackground(Color.GRAY);
 		southEast.setBackground(Color.BLUE);
 		southEast.add(rollButton);
+
 		rollButton.setActionCommand("Roll");
 		southEast.add(doneButton);
-
-
 		southPanel.add(southCenter, BorderLayout.CENTER);
 		southPanel.add(southEast, BorderLayout.EAST);
 
 		for(int i=0; i<diceButtons.length; i++){
-			
+
 			DiceButton dice = new DiceButton(""+(i+1));
 			diceButtons[i]= dice;
 			southCenter.add(dice);
@@ -126,7 +124,6 @@ public class GameView extends JPanel{
 		this.add(westPanel, BorderLayout.WEST);
 		this.add(northPanel, BorderLayout.NORTH);
 		this.add(southPanel, BorderLayout.SOUTH);
-
 	}
 
 	public void setPlayerNames(String[] names){
@@ -168,16 +165,15 @@ public class GameView extends JPanel{
 
 		}
 	}
-	
+
 	public void setEnableDice(boolean Enable){
 		for(int i=0; i<diceButtons.length; i++)
 		{
 
-		diceButtons[i].setEnabled(Enable);
+			diceButtons[i].setEnabled(Enable);
 		}
 
 	}
-
 
 	public DiceButton[] getDiceButtons() {
 		return diceButtons;
@@ -191,7 +187,6 @@ public class GameView extends JPanel{
 	public JButton getDoneButton(){
 		return doneButton;
 	}
-
 
 	public void setCombinations(String[] combinations){
 		for(int i=0; i<combinations.length; i++){
@@ -212,16 +207,14 @@ public class GameView extends JPanel{
 		// TODO Implement addDiceListener(ActionListener)
 		for(int i = 0; i<diceButtons.length; i++)
 		{
-			
+
 			diceButtons[i].addActionListener(listener);
 			diceButtons[i].setActionCommand("Dice"+i);
 
 		}
 	}
-
 	public void addPlayListener(ActionListener listener) {
 		rollButton.addActionListener(listener);
 		doneButton.addActionListener(listener);
 	}
-
 }

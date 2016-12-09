@@ -1,11 +1,7 @@
 package com.jensen.yatzy.controller;
 
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-
-
 import com.jensen.yatzy.model.Constant;
 import com.jensen.yatzy.model.Dice;
 import com.jensen.yatzy.model.Yatzy;
@@ -19,7 +15,6 @@ import com.jensen.yatzy.view.Window;
  *
  */
 public class Controller {
-
 
 	/**
 	 *
@@ -41,19 +36,15 @@ public class Controller {
 				break;
 			case "done":
 
-
 				doneButton();
-
-
+				
 				break;
 			default:
 				System.out.println("No Command for: " + ac);
 				break;
 			}
 		}
-
 	}
-
 	/**
 	 *
 	 * @author benjamin
@@ -65,7 +56,6 @@ public class Controller {
 		public void actionPerformed(ActionEvent e) {
 			// TODO figure out which button was clicked
 			// toggle lock of said dice & set button to selected
-
 			String ac = e.getActionCommand();
 
 			System.out.println(ac);
@@ -77,17 +67,11 @@ public class Controller {
 			dices[index].toggleLock();
 
 			DiceButton button = (DiceButton) e.getSource();
-
 			button.DiceToggleLock();
-
-
 			gamePanel.setDiceButtons(dices);
+
 		}
-
 	}
-
-
-
 	private Window window;
 	private GameView gamePanel;
 	private Yatzy game;
@@ -117,7 +101,6 @@ public class Controller {
 		gamePanel.setEnableDice(false);
 
 	}
-
 	/**
 	 * Rolls all unlocked dices TODO unlock all dices
 	 */
@@ -129,14 +112,8 @@ public class Controller {
 			if (!dice.isLocked()) {
 				dice.roll();
 			}
-			//dice.setLock(false);
 		}
-
-
-
 		gamePanel.setDiceButtons(dices);
-
-
 		game.decreasNumberOfRollsLeft();
 
 		if(game.getNumberOfRollsLeft()==0){
@@ -144,7 +121,6 @@ public class Controller {
 			gamePanel.getRollButton().setEnabled(false);
 		}
 		gamePanel.getRollButton().setText("Roll ("+game.getNumberOfRollsLeft()+")");
-
 
 		System.out.println("ettor: "+ game.sum(1));
 		System.out.println("tvåor: "+ game.sum(2));
@@ -162,12 +138,10 @@ public class Controller {
 		System.out.println("Yatzy: "+ game.numberOfAKind(5));
 		System.out.println("---------------------");
 	}
-
 	/**
 	 *
 	 */
 	void doneButton() {
-
 
 		// TODO Implement doneButton()
 
@@ -175,25 +149,18 @@ public class Controller {
 		for (Dice dice : dices) {
 
 			if (!dice.isLocked()||dice.isLocked()) {
-				
+
 				dice.setLock(false);
 			}
-
 		}
 		DiceButton[]button=gamePanel.getDiceButtons();
 		for(DiceButton but :button){
 			but.setOpaque(false);
-			
+
 		}
-
 		gamePanel.setEnableDice(false);
-
 		game.nextPlayer();
 		gamePanel.getRollButton().setEnabled(true);
 		gamePanel.getRollButton().setText("Roll ("+game.getNumberOfRollsLeft()+")");
-
-
-
 	}
-
 }
