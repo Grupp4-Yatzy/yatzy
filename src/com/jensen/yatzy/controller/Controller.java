@@ -1,14 +1,15 @@
 package com.jensen.yatzy.controller;
 
-import java.awt.Color;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
+
 
 import com.jensen.yatzy.model.Constant;
 import com.jensen.yatzy.model.Dice;
 import com.jensen.yatzy.model.Yatzy;
+import com.jensen.yatzy.view.DiceButton;
 import com.jensen.yatzy.view.GameView;
 import com.jensen.yatzy.view.Window;
 
@@ -40,7 +41,9 @@ public class Controller {
 				break;
 			case "done":
 
+
 				doneButton();
+
 
 				break;
 			default:
@@ -72,25 +75,12 @@ public class Controller {
 			Integer index = Integer.parseInt(value);
 
 			dices[index].toggleLock();
-			
-			
-			
-			JButton button = (JButton) e.getSource();
 
-			if(dices[index].isLocked())
-			{
-				button.setOpaque(true);
-				//button.setBackground(Color.GREEN);
-				button.setContentAreaFilled(true);
-			}
-			else
-			{
-				button.setOpaque(false);
-			} 
-			
-			
-			
-			
+			DiceButton button = (DiceButton) e.getSource();
+
+			button.DiceToggleLock();
+
+
 			gamePanel.setDiceButtons(dices);
 		}
 
@@ -177,23 +167,23 @@ public class Controller {
 	 *
 	 */
 	void doneButton() {
-		
+
 
 		// TODO Implement doneButton()
+
 		Dice[] dices = game.getDices();
 		for (Dice dice : dices) {
 
 			if (!dice.isLocked()||dice.isLocked()) {
+				
 				dice.setLock(false);
-
-				//gamePanel.getRollButton().setContentAreaFilled(true);
-				gamePanel.getRollButton().setContentAreaFilled(false);
-				//button.setBackground(Color.black);
-				//button.setOpaque(false);
-
-
 			}
 
+		}
+		DiceButton[]button=gamePanel.getDiceButtons();
+		for(DiceButton but :button){
+			but.setOpaque(false);
+			
 		}
 
 		gamePanel.setEnableDice(false);

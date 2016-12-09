@@ -25,7 +25,7 @@ public class GameView extends JPanel{
 	private JPanel centerPanel;
 	private JButton rollButton = new JButton("Roll");
 	private JButton doneButton = new JButton("Done");
-	private JButton[] diceButtons = new JButton[5];
+	private DiceButton[] diceButtons = new DiceButton[5];
 
 
 	private ArrayList<JLabel> playerNames = new ArrayList<>();
@@ -115,7 +115,7 @@ public class GameView extends JPanel{
 
 		for(int i=0; i<diceButtons.length; i++){
 			
-			JButton dice = new DiceButton(""+(i+1));
+			DiceButton dice = new DiceButton(""+(i+1));
 			diceButtons[i]= dice;
 			southCenter.add(dice);
 			//diceButtons[i].setEnabled(false);
@@ -179,7 +179,7 @@ public class GameView extends JPanel{
 	}
 
 
-	public JButton[] getDiceButtons() {
+	public DiceButton[] getDiceButtons() {
 		return diceButtons;
 	}
 
