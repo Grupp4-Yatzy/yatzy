@@ -60,19 +60,6 @@ public class GameView extends JPanel{
         
         centerPanel = new JPanel();
         centerPanel.setBackground(Color.yellow);
-        //centerPanel.setPreferredSize(new Dimension(200,200));
-        //table= new JTable(18,5);
-        //centerPanel.add(table);
-
-        
-         table = new JTable(new YatzyTableModel());
-        
-          TableColumnModel columnModel = table.getColumnModel();
-        for(int i=0; i<columnModel.getColumnCount();i++){
-            columnModel.getColumn(i).setPreferredWidth(Constant.COLUMN_WIDTH);
-        }
-        this.add(table, BorderLayout.CENTER);
-        
         
         JLabel label = new JLabel("Yatzy");
         //label.setPreferredSize(new Dimension(westPanel.getWidth(), 20));
@@ -126,8 +113,9 @@ public class GameView extends JPanel{
         }
     }
     
-    public void setTable(YatzyTableModel model){
+    public void initTable(YatzyTableModel model){
         this.table = new JTable(model);
+        this.add(table, BorderLayout.CENTER);
     }
     
     public void setDiceButtons(Dice[] dices){
