@@ -8,27 +8,27 @@ public class Player {
 	private boolean bonus;
 	private Integer[] lowerScore;
 	private Integer[] scoreList;
-        
+
 	public Player() {
-            scoreList = new Integer[Constant.COMBINATIONS.length];
+		scoreList = new Integer[Constant.COMBINATIONS.length];
 	}
-        
-        public Integer[] getScore(){
-            return scoreList;
-        }
-        
-        public void addScore(int score, int index){
-            scoreList[index] = score;
-        }
-            
-        public String getName(){
-            return name;
-        } 
-        
-        public boolean isEmpty(int index){
-            if(scoreList[index]==null)
-                return true;
-            return false;
-        }
-	
+
+	public Integer[] getScore(){
+		return scoreList;
+	}
+
+	public void addScore(int score, int index){
+		scoreList[index] = score;
+	}
+
+	public String getName(){
+		return name;
+	} 
+
+	public boolean isEmpty(int index){
+		if(scoreList[index]==null)
+			return true;
+		return false;
+	}
+
 }

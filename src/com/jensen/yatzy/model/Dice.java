@@ -1,8 +1,6 @@
 package com.jensen.yatzy.model;
 
 import com.jensen.yatzy.util.MyRandom;
-
-
 /**
  * 
  * @author benjamin
@@ -10,12 +8,11 @@ import com.jensen.yatzy.util.MyRandom;
  */
 public class Dice {
 
-
-private static final int DEFUALT_DICE_VALUE=6;
+	private static final int DEFUALT_DICE_VALUE=6;
 	private int value;
 	private boolean isLocked;
 
-        public Dice() {
+	public Dice() {
 		value = DEFUALT_DICE_VALUE;
 
 		isLocked = false;
@@ -57,5 +54,4 @@ private static final int DEFUALT_DICE_VALUE=6;
 	public void setLock(boolean b) {
 		isLocked = b;
 	}
-
 }

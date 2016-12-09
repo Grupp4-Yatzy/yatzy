@@ -9,9 +9,6 @@ import com.jensen.yatzy.view.DiceButton;
 import com.jensen.yatzy.model.YatzyTableModel;
 import com.jensen.yatzy.view.GameView;
 import com.jensen.yatzy.view.Window;
-import java.awt.Color;
-import javax.swing.JButton;
-
 /**
  *
  * @author benjamin
@@ -32,7 +29,6 @@ public class Controller {
 			switch (ac) {
 			case "roll":
 				rollButton();
-				// TODO disable roll button if numberOfRolls left is equal to 0
 				break;
 			case "done":
 				doneButton();
@@ -52,10 +48,7 @@ public class Controller {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// TODO figure out which button was clicked
-			// toggle lock of said dice & set button to selected
 			String ac = e.getActionCommand();
-			//System.out.println(ac);
 			Dice[] dices = game.getDices();
 
 			String value = ac.substring(ac.length() - 1);
@@ -80,29 +73,27 @@ public class Controller {
 		this.window = window;
 		this.game = game;
 
-		// Creates defualt start-up panel
 		gamePanel = new GameView();
 		this.window.setCurrentPanel(gamePanel);
 		gamePanel.addPlayListener(new PlayListener());
 		gamePanel.addDiceListener(new DiceListener());
 		gamePanel.setDiceButtons(this.game.getDices());
 
-		// tests
 		String[] names = {"Benjamin", "Robin", "Roberto", "Kami"};
 		gamePanel.setPlayerNames(names);
 		gamePanel.setCombinations(Constant.COMBINATIONS);
-        Integer[][] data = {{1,2,3},{4,5,6},{7,8,9}};
-        YatzyTableModel model = new YatzyTableModel();
-        gamePanel.initTable(model);
-        for(int row=0; row<model.getRowCount(); row++){
-            for(int col=0; col<model.getColumnCount(); col++){
-                model.setValueAt(data[row][col], row, col);
-                model.fireTableCellUpdated(row, col);
-            }
-        }
-        
-        gamePanel.setEnableDice(false);
-    }
+		Integer[][] data = {{1,2,3},{4,5,6},{7,8,9}};
+		YatzyTableModel model = new YatzyTableModel();
+		gamePanel.initTable(model);
+		for(int row=0; row<model.getRowCount(); row++){
+			for(int col=0; col<model.getColumnCount(); col++){
+				model.setValueAt(data[row][col], row, col);
+				model.fireTableCellUpdated(row, col);
+			}
+		}
+
+		gamePanel.setEnableDice(false);
+	}
 
 	/**
 	 * Rolls all unlocked dices TODO unlock all dices
@@ -118,7 +109,7 @@ public class Controller {
 		}
 		gamePanel.setDiceButtons(dices);
 		game.getNumbersOfRollsLeft();
-		
+
 		game.decreaseRolls();
 		if(game.getNumbersOfRollsLeft()==0){
 
@@ -149,8 +140,6 @@ public class Controller {
 	 */
 	void doneButton() {
 
-		// TODO Implement doneButton()
-
 		Dice[] dices = game.getDices();
 		for (Dice dice : dices) {
 
@@ -160,7 +149,7 @@ public class Controller {
 			}
 		}
 		DiceButton[]button=gamePanel.getDiceButtons();
-		
+
 		for(DiceButton but :button){
 			but.setOpaque(false);
 

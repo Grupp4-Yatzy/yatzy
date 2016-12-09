@@ -1,35 +1,24 @@
 package com.jensen.yatzy.view;
 
-
 import com.jensen.yatzy.model.Constant;
 import com.jensen.yatzy.model.Dice;
-import com.jensen.yatzy.model.Yatzy;
 import com.jensen.yatzy.model.YatzyTableModel;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Arrays;
 import javax.swing.*;
-import javax.swing.table.TableCellRenderer;
-import javax.swing.table.TableColumn;
-import javax.swing.table.TableColumnModel;
 
 public class GameView extends JPanel{
 
-	//JPanel eastPanel = new JPanel();
 	private JPanel westPanel;
-	//JPanel northPanel = new JPanel();
-	//JPanel southPanel = new JPanel();
 	private JPanel centerPanel;
 	private JButton rollButton = new JButton("Roll");
 	private JButton doneButton = new JButton("Done");
 	private DiceButton[] diceButtons = new DiceButton[5];
 	private ArrayList<JLabel> playerNames = new ArrayList<>();
-	private String[] combinations;
 	private JTable table;
 	private JPanel northGridPanel = new JPanel();
 	private Dimension combinationLabelSize = new Dimension(100,100/10);
@@ -43,10 +32,8 @@ public class GameView extends JPanel{
 		westGrid.setVgap(5);
 		westPanel.setLayout(westGrid);
 		westPanel.setBackground(Color.blue);
-		//westPanel.setPreferredSize(new Dimension(100,100));
 
 		JPanel northPanel = new JPanel();
-
 		GridLayout northGrid = new GridLayout(1,0);       
 		northPanel.setLayout(new BorderLayout());
 		northPanel.setBackground(Color.BLACK);
@@ -54,14 +41,10 @@ public class GameView extends JPanel{
 		northGrid.setHgap(2);
 		northGridPanel.setBackground(Color.CYAN);
 
-		ArrayList<JLabel> labels = new ArrayList<>();
-
-
 		centerPanel = new JPanel();
 		centerPanel.setBackground(Color.yellow);
-		
+
 		JLabel label = new JLabel("Yatzy");
-		//label.setPreferredSize(new Dimension(westPanel.getWidth(), 20));
 		northPanel.add(label, BorderLayout.WEST);
 		northPanel.add(northGridPanel, BorderLayout.CENTER);
 		label.setForeground(Color.white);
@@ -83,16 +66,12 @@ public class GameView extends JPanel{
 		southPanel.add(southEast, BorderLayout.EAST);
 
 		for(int i=0; i<diceButtons.length; i++){
-			
+
 			DiceButton dice = new DiceButton(""+(i+1));
 			diceButtons[i]= dice;
 			southCenter.add(dice);
-			//diceButtons[i].setEnabled(false);
 		}
 
-
-		//this.add(centerPanel, BorderLayout.CENTER);       
-		//this.add(centerPanel, BorderLayout.CENTER);
 		this.add(westPanel, BorderLayout.WEST);
 		this.add(northPanel, BorderLayout.NORTH);
 		this.add(southPanel, BorderLayout.SOUTH);
@@ -102,8 +81,6 @@ public class GameView extends JPanel{
 		for(int i=0; i<names.length; i++){
 
 			JLabel label = new JLabel(names[i]);
-
-			//label.setPreferredSize(new Dimension(200,100/10));
 			label.setBackground(Color.GREEN);
 			label.setOpaque(true);
 			label.setHorizontalAlignment(JLabel.CENTER);
@@ -145,7 +122,6 @@ public class GameView extends JPanel{
 		return doneButton;
 	}
 
-
 	public void setCombinations(String[] combinations){
 		for(int i=0; i<combinations.length; i++){
 			JLabel label = new JLabel(combinations[i]);
@@ -156,19 +132,15 @@ public class GameView extends JPanel{
 			label.setOpaque(true);
 			label.setHorizontalAlignment(JLabel.CENTER);
 			westPanel.add(label);
-
 		}
-
 	}
 
 	public void addDiceListener(ActionListener listener) {
-		// TODO Implement addDiceListener(ActionListener)
 		for(int i = 0; i<diceButtons.length; i++)
 		{
 			diceButtons[i].addActionListener(listener);
 			diceButtons[i].setActionCommand("Dice"+i);
 		}
-
 	}
 	public void addPlayListener(ActionListener listener) {
 		rollButton.addActionListener(listener);
