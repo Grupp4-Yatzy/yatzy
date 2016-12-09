@@ -148,8 +148,10 @@ public class Yatzy {
         return table;
     }
 
-    public void addPlayer(String name) {
-        players.add(new Player(name));
+    public void addPlayers(String[] names) {
+    	for (String name : names) {
+    		players.add(new Player(name));
+		}
     }
 
 }
