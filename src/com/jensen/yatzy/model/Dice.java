@@ -14,7 +14,7 @@ public class Dice {
 	private int value;
 	private boolean isLocked;
 	
-            public Dice() {
+        public Dice() {
 		value = DEFUALT_DICE_VALUE;
 		isLocked = false;
 	}

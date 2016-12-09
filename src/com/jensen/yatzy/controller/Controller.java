@@ -36,13 +36,6 @@ public class Controller {
             switch (ac) {
                 case "roll":
                     rollButton();
-                    int count = 3;
-                    game.decreaseRolls();
-                    /*if (game.getNumbersOfRollsLeft() == 0) {
-                        gamePanel.getRollButton().setEnabled(false);
-                    }*/
-                    gamePanel.getRollButton().setText("Roll (" + game.getNumbersOfRollsLeft() + ")");
-                    // TODO disable roll button if numberOfRolls left is equal to 0
                     break;
                 case "done":
                     doneButton();
@@ -62,22 +55,21 @@ public class Controller {
             // TODO figure out which button was clicked
             // toggle lock of said dice & set button to selected
             String ac = e.getActionCommand();
-
             System.out.println(ac);
             Dice[] dices = game.getDices();
             String value = ac.substring(ac.length() - 1);
             Integer index = Integer.parseInt(value);
+            dices[index].isLocked();
             dices[index].toggleLock();
-
             JButton buttonColor = (JButton) e.getSource();
             if (dices[index].isLocked()) {
                 buttonColor.setOpaque(true);
                 buttonColor.setBackground(Color.GREEN);
-
+      
             } else {
                 buttonColor.setOpaque(false);
             }
-
+            
             gamePanel.setDiceButtons(dices);
 
         }
@@ -108,18 +100,28 @@ public class Controller {
         String[] names = {"Benjamin", "Robin", "Roberto", "Kami"};
         gamePanel.setPlayerNames(names);
         gamePanel.setCombinations(Constant.combinations);
+        
        // Integer[][] data = new Integer[Constant.combinations.length][names.length];
-       Integer[][] data = {{1,2,3},{4,5,6},{7,8,9}};
+        Integer[][] data = {{1,2,3},{4,5,6},{7,8,9}};
         YatzyTableModel model = new YatzyTableModel();
         gamePanel.setTable(model);
         model.update(data);
-        
+        gamePanel.setEnableDice(false);
     }
 
     /**
      * Rolls all unlocked dices TODO unlock all dices
      */
     void rollButton() {
+        
+        gamePanel.setEnableDice(true);
+        game.decreaseRolls();
+       
+        if (game.getNumbersOfRollsLeft() == 0) {
+            gamePanel.getRollButton().setEnabled(false);
+        }
+        gamePanel.getRollButton().setText("Roll (" + game.getNumbersOfRollsLeft() + ")");
+       
         Dice[] dices = game.getDices();
         for (Dice dice : dices) {
             if (!dice.isLocked()) {
@@ -149,13 +151,32 @@ public class Controller {
     }
 
     /**
-     *
+     * När spelaren trycker på doneButton skall rollbutton återställas till tre
+     * kast
      */
-    void doneButton() {
+    void doneButton() { 
         // TODO Implement doneButton()
-        
-        
+
+          Dice[] dices = game.getDices();
+          
+          for(Dice dice : dices)
+          {    
+          if(!dice.isLocked() || dice.isLocked())
+              dice.setLock(false);
+               Dice d = new Dice();
+               d.toggleLock();
+          }
+          
+          //Dice d = new Dice();
+         // d.toggleLock();
+          //d.setLock(false);
+          
+          gamePanel.setEnableDice(false);
+          game.nextPlayer();
+          gamePanel.getRollButton().setEnabled(true);
+          gamePanel.getRollButton().setText("Roll (" + game.getNumbersOfRollsLeft() + ")");
+       
 
     }
-
+    
 }

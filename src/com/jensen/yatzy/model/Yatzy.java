@@ -5,10 +5,8 @@ import java.util.Set;
 
 public class Yatzy {
 	
-	private int numberOfRollsLeft = 3;
-	
+        private int numberOfRollsLeft = 3;
 	private Dice[] dices;
-	
 	
 	public Yatzy() {
 		dices = new Dice[Constant.DEFUALT_NUMBER_OF_DICES];
@@ -17,7 +15,6 @@ public class Yatzy {
 		}
 	}
 
-	
 	public Dice[] getDices() {
 		return dices;
 	}
@@ -133,5 +130,10 @@ public class Yatzy {
 	public void decreaseRolls() {
 		this.numberOfRollsLeft -= 1;
 	}
+        
+        public void nextPlayer()
+        {
+           this.numberOfRollsLeft = 3;
+        }
 
 }
