@@ -4,7 +4,7 @@ package com.jensen.yatzy.view;
 import com.jensen.yatzy.model.Constant;
 import com.jensen.yatzy.model.Dice;
 import com.jensen.yatzy.model.Yatzy;
-
+import com.jensen.yatzy.model.YatzyTableModel;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -34,10 +34,10 @@ public class GameView extends JPanel{
 	private JPanel northGridPanel = new JPanel();
 	private Dimension combinationLabelSize = new Dimension(100,100/10);
 
+
 	public GameView (){
 
 		this.setLayout(new BorderLayout());
-
 		westPanel = new JPanel();
 		GridLayout westGrid = new GridLayout(0,1);
 		westGrid.setVgap(5);
@@ -56,39 +56,10 @@ public class GameView extends JPanel{
 
 		ArrayList<JLabel> labels = new ArrayList<>();
 
+
 		centerPanel = new JPanel();
 		centerPanel.setBackground(Color.yellow);
-		//centerPanel.setPreferredSize(new Dimension(200,200));
-		//table= new JTable(18,5);
-		//centerPanel.add(table);
-
-		//Källa på följande kodstycke taget från https://www.youtube.com/watch?v=iMBfneE2Ztg
-		table = new JTable(18, 6){
-			@Override
-			public boolean isCellEditable(int row, int column){
-				return false;
-			}
-
-			@Override
-			public Component prepareRenderer(TableCellRenderer renderer, int row, int column){
-				Component c = super.prepareRenderer(renderer, row, column);
-				if(row % 2 == 0)
-					c.setBackground(Color.LIGHT_GRAY);
-				else
-					c.setBackground(Color.WHITE);
-				return c;
-			}
-		};
-		//Slut på lånad kod
-		TableColumnModel columnModel = table.getColumnModel();
-		for(int i=0; i<columnModel.getColumnCount();i++){
-
-			columnModel.getColumn(i).setPreferredWidth(Constant.COLUMN_WIDTH);
-
-		}
-		this.add(table, BorderLayout.CENTER);
-
-
+		
 		JLabel label = new JLabel("Yatzy");
 		//label.setPreferredSize(new Dimension(westPanel.getWidth(), 20));
 		northPanel.add(label, BorderLayout.WEST);
@@ -112,8 +83,7 @@ public class GameView extends JPanel{
 		southPanel.add(southEast, BorderLayout.EAST);
 
 		for(int i=0; i<diceButtons.length; i++){
-
-
+			
 			DiceButton dice = new DiceButton(""+(i+1));
 			diceButtons[i]= dice;
 			southCenter.add(dice);
@@ -143,22 +113,9 @@ public class GameView extends JPanel{
 		}
 	}
 
-	public void setTable(Integer[][] data, String[] playerNames){
-		int numberOfColumns = table.getColumnCount();
-		int numberOfPlayers = playerNames.length;
-		TableColumnModel colModel = table.getColumnModel();
-		if (numberOfColumns != numberOfPlayers) {
-
-			while(numberOfColumns  > numberOfPlayers) {
-				colModel.removeColumn(colModel.getColumn(numberOfColumns - 1));
-				numberOfColumns--;
-			}
-
-			while(numberOfColumns < numberOfPlayers) {
-				colModel.addColumn(new TableColumn(numberOfColumns, Constant.COLUMN_WIDTH));
-				numberOfColumns++;
-			}
-		}
+	public void initTable(YatzyTableModel model){
+		this.table = new JTable(model);
+		this.add(table, BorderLayout.CENTER);
 	}
 
 	public void setDiceButtons(Dice[] dices){
@@ -168,15 +125,12 @@ public class GameView extends JPanel{
 		}
 	}
 
-	public void setEnableDice(boolean Enable){
-		for(int i=0; i<diceButtons.length; i++)
-		{
-
-			diceButtons[i].setEnabled(Enable);
+	public void setEnableDice(boolean enableDice)
+	{
+		for(int i=0; i<diceButtons.length; i++){
+			diceButtons[i].setEnabled(enableDice);
 		}
-
 	}
-
 
 	public DiceButton[] getDiceButtons() {
 		return diceButtons;
@@ -211,11 +165,10 @@ public class GameView extends JPanel{
 		// TODO Implement addDiceListener(ActionListener)
 		for(int i = 0; i<diceButtons.length; i++)
 		{
-
 			diceButtons[i].addActionListener(listener);
 			diceButtons[i].setActionCommand("Dice"+i);
-
 		}
+
 	}
 	public void addPlayListener(ActionListener listener) {
 		rollButton.addActionListener(listener);

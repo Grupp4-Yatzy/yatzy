@@ -6,8 +6,11 @@ import com.jensen.yatzy.model.Constant;
 import com.jensen.yatzy.model.Dice;
 import com.jensen.yatzy.model.Yatzy;
 import com.jensen.yatzy.view.DiceButton;
+import com.jensen.yatzy.model.YatzyTableModel;
 import com.jensen.yatzy.view.GameView;
 import com.jensen.yatzy.view.Window;
+import java.awt.Color;
+import javax.swing.JButton;
 
 /**
  *
@@ -15,7 +18,6 @@ import com.jensen.yatzy.view.Window;
  *
  */
 public class Controller {
-
 	/**
 	 *
 	 * @author benjamin
@@ -29,15 +31,11 @@ public class Controller {
 
 			switch (ac) {
 			case "roll":
-
 				rollButton();
-
 				// TODO disable roll button if numberOfRolls left is equal to 0
 				break;
 			case "done":
-
 				doneButton();
-				
 				break;
 			default:
 				System.out.println("No Command for: " + ac);
@@ -57,19 +55,16 @@ public class Controller {
 			// TODO figure out which button was clicked
 			// toggle lock of said dice & set button to selected
 			String ac = e.getActionCommand();
-
-			System.out.println(ac);
+			//System.out.println(ac);
 			Dice[] dices = game.getDices();
 
 			String value = ac.substring(ac.length() - 1);
 			Integer index = Integer.parseInt(value);
 
 			dices[index].toggleLock();
-
 			DiceButton button = (DiceButton) e.getSource();
 			button.DiceToggleLock();
 			gamePanel.setDiceButtons(dices);
-
 		}
 	}
 	private Window window;
@@ -95,12 +90,20 @@ public class Controller {
 		// tests
 		String[] names = {"Benjamin", "Robin", "Roberto", "Kami"};
 		gamePanel.setPlayerNames(names);
-		gamePanel.setCombinations(Constant.combinations);
-		Integer[][] data = new Integer[Constant.combinations.length][names.length];
-		gamePanel.setTable(data, names);
-		gamePanel.setEnableDice(false);
+		gamePanel.setCombinations(Constant.COMBINATIONS);
+        Integer[][] data = {{1,2,3},{4,5,6},{7,8,9}};
+        YatzyTableModel model = new YatzyTableModel();
+        gamePanel.initTable(model);
+        for(int row=0; row<model.getRowCount(); row++){
+            for(int col=0; col<model.getColumnCount(); col++){
+                model.setValueAt(data[row][col], row, col);
+                model.fireTableCellUpdated(row, col);
+            }
+        }
+        
+        gamePanel.setEnableDice(false);
+    }
 
-	}
 	/**
 	 * Rolls all unlocked dices TODO unlock all dices
 	 */
@@ -114,13 +117,14 @@ public class Controller {
 			}
 		}
 		gamePanel.setDiceButtons(dices);
-		game.decreasNumberOfRollsLeft();
-
-		if(game.getNumberOfRollsLeft()==0){
+		game.getNumbersOfRollsLeft();
+		
+		game.decreaseRolls();
+		if(game.getNumbersOfRollsLeft()==0){
 
 			gamePanel.getRollButton().setEnabled(false);
 		}
-		gamePanel.getRollButton().setText("Roll ("+game.getNumberOfRollsLeft()+")");
+		gamePanel.getRollButton().setText("Roll ("+game.getNumbersOfRollsLeft()+")");
 
 		System.out.println("ettor: "+ game.sum(1));
 		System.out.println("tvåor: "+ game.sum(2));
@@ -130,12 +134,16 @@ public class Controller {
 		System.out.println("sexor: "+ game.sum(6));
 		System.out.println("---------------------");
 		System.out.println("par: "+ game.onePair());
-		System.out.println("sum of dices: "+ game.sum());
+		
 		System.out.println("---------------------");
 		System.out.println("tvåpar: "+ game.twoPair());
 		System.out.println("tretal: "+ game.numberOfAKind(3));
 		System.out.println("fyrtal: "+ game.numberOfAKind(4));
-		System.out.println("Yatzy: "+ game.numberOfAKind(5));
+		System.out.println("Liten stege: "+ game.straight(6));
+		System.out.println("Stor stege: "+ game.straight(1));
+		System.out.println("Kåk: "+game.fullHouse());
+		System.out.println("Chans: "+game.sum());
+		System.out.println("Yatzy: "+ game.yatzy());
 		System.out.println("---------------------");
 	}
 	/**
@@ -154,6 +162,7 @@ public class Controller {
 			}
 		}
 		DiceButton[]button=gamePanel.getDiceButtons();
+		
 		for(DiceButton but :button){
 			but.setOpaque(false);
 
@@ -161,6 +170,6 @@ public class Controller {
 		gamePanel.setEnableDice(false);
 		game.nextPlayer();
 		gamePanel.getRollButton().setEnabled(true);
-		gamePanel.getRollButton().setText("Roll ("+game.getNumberOfRollsLeft()+")");
+		gamePanel.getRollButton().setText("Roll ("+game.getNumbersOfRollsLeft()+")");
 	}
 }
