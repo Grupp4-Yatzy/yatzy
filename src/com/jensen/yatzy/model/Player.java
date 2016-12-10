@@ -29,7 +29,7 @@ public class Player {
     public void addSum() {
 		int sum = 0;
 		for (int i = 0; i < Constant.INDEX_OF_SUM; i++) {
-			sum += scoreList[i];
+			sum += getScore(i);
 		}
 		addScore(sum, Constant.INDEX_OF_SUM);
 	}
