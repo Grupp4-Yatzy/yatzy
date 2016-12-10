@@ -170,5 +170,9 @@ public class Controller {
         gamePanel.getRollButton().setEnabled(true);
         gamePanel.getRollButton().setText("Roll (" + game.getNumbersOfRollsLeft() + ")");
     }
+    
+    private int getScore(int combinationIndex) {
+		return 0;
+	}
 
 }
