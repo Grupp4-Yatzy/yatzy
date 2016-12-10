@@ -171,10 +171,15 @@ public class Controller {
         tableModel.fireTableCellUpdated(index, col);
         
         if (index + 1 == Constant.INDEX_OF_SUM) {
+        	int sumIndex = Constant.INDEX_OF_SUM;
+        	int bonusIndex = Constant.INDEX_OF_BONUS;
+        	Integer[] playerScore = player.getScoreList();
         	player.addSum();
-	        tableModel.fireTableCellUpdated(Constant.INDEX_OF_SUM, col);
+        	tableModel.setValueAt(playerScore[sumIndex], sumIndex, col);
+	        tableModel.fireTableCellUpdated(sumIndex, col);
 	        player.addBonus();
-	        tableModel.fireTableCellUpdated(Constant.INDEX_OF_BONUS, col);
+        	tableModel.setValueAt(playerScore[bonusIndex], bonusIndex, col);
+	        tableModel.fireTableCellUpdated(bonusIndex, col);
 		}
 
         Dice[] dices = game.getDices();
