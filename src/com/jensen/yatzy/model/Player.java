@@ -43,7 +43,11 @@ public class Player {
 	}
     
     public void addTotal() {
-		
+		int total = getScore(Constant.INDEX_OF_SUM) + getScore(Constant.INDEX_OF_BONUS);
+		for (int i = Constant.INDEX_OF_BONUS + 1; i < scoreList.length - 1; i++) {
+			total += getScore(i);
+		}
+		addScore(total, scoreList[scoreList.length - 1]);
 	}
     
     public int getFirstEmptyScoreIndex() {
