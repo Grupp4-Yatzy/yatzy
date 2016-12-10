@@ -179,17 +179,43 @@ public class Controller {
 		case 2:
 		case 3:
 		case 4:
+		case 5:
+			// ones to sixes
 			score = game.sum(index + 1);
 			break;
-		case 5:
-			game.sum(index + 1);
-			// TODO count sum & bonus
-			break;
 		case 8:
-			game.onePair();
+			score = game.onePair();
 			break;
-
+		case 9:
+			score = game.twoPair();
+			break;
+		case 10:
+			// three of a kind
+			score = game.numberOfAKind(3);
+			break;
+		case 11:
+			// four of a kind
+			score = game.numberOfAKind(4);
+			break;
+		case 12:
+			// small straight
+			score = game.straight(6);
+			break;
+		case 13:
+			// big straight
+			score = game.straight(1);
+			break;
+		case 14:
+			score = game.fullHouse();
+			break;
+		case 15:
+			// chance
+			score = game.sum();
+		case 16:
+			// Yatzy
+			score = game.numberOfAKind(5);
 		default:
+			System.out.println("Missing case for given index: " + index);
 			break;
 		}
     	return score;
