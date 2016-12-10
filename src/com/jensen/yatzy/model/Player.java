@@ -25,6 +25,10 @@ public class Player {
     public void addScore(int score, int index) {
         scoreList[index] = score;
     }
+    
+    public void addSum() {
+		
+	}
 
     public boolean isEmpty(int index) {
         if (scoreList[index] == null) {
