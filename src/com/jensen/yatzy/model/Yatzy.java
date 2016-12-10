@@ -9,7 +9,7 @@ public class Yatzy {
     private int numberOfRollsLeft = 3;
     private Dice[] dices;
     private ArrayList<Player> players = new ArrayList<>();
-    private Player currentPLayer;
+    private Player currentPlayer;
 
     public Yatzy() {
         dices = new Dice[Constant.DEFUALT_NUMBER_OF_DICES];
