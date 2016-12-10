@@ -51,7 +51,12 @@ public class Player {
 	}
     
     public int getFirstEmptyScoreIndex() {
-		return 0;
+    	for (int i = 0; i < scoreList.length; i++) {
+			if (getScore(i) == null) {
+				return i;
+			}
+		}
+		return scoreList.length;
 	}
 
     public boolean isEmpty(int index) {
