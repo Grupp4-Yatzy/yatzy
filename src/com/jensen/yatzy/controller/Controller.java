@@ -100,12 +100,14 @@ public class Controller {
         tableModel = new YatzyTableModel();
         tableModel.initTable(data.length, data[0].length);
         gamePanel.initTable(tableModel);
+        /*
         for (int row = 0; row < tableModel.getRowCount(); row++) {
             for (int col = 0; col < tableModel.getColumnCount(); col++) {
                 tableModel.setValueAt(MyRandom.getInt(50), row, col);
                 tableModel.fireTableCellUpdated(row, col);
             }
         }
+        */
 
         gamePanel.setEnableDice(false);
     }
