@@ -22,12 +22,12 @@ public class Player {
         return scoreList[index];
     }
 
-    public void addScore(int score, int index) {
-        scoreList[index] = score;
-    }
-
     public String getName() {
         return name;
+    }
+
+    public void addScore(int score, int index) {
+        scoreList[index] = score;
     }
 
     public boolean isEmpty(int index) {
