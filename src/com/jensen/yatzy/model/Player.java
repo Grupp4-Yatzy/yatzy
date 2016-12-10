@@ -14,7 +14,7 @@ public class Player {
         scoreList = new Integer[Constant.COMBINATIONS.length];
     }
 
-    public Integer[] getScore() {
+    public Integer[] getScoreList() {
         return scoreList;
     }
 
