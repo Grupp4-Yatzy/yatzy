@@ -21,6 +21,10 @@ public class Yatzy {
     public Dice[] getDices() {
         return dices;
     }
+    
+    public Player getCurrentPlayer() {
+		return currentPLayer;
+	}
 
     public int sum() {
         int sum = 0;
