@@ -26,6 +26,10 @@ public class Yatzy {
 		return currentPLayer;
 	}
 
+	public int getPlayerIndex(Player player) {
+		return players.indexOf(player);
+	}
+
     public int getNumbersOfRollsLeft() {
         return this.numberOfRollsLeft;
     }
