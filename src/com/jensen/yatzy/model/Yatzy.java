@@ -23,6 +23,9 @@ public class Yatzy {
     }
     
     public Player getCurrentPlayer() {
+    	if (currentPLayer == null) {
+			currentPLayer = players.get(0);
+		}
 		return currentPLayer;
 	}
 
