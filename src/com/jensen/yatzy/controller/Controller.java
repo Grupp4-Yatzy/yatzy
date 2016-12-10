@@ -97,13 +97,13 @@ public class Controller {
 
         //Integer[][] data = new Integer[Constant.COMBINATIONS.length][names.length];
         Integer[][] data = game.createTable();
-        YatzyTableModel model = new YatzyTableModel();
-        model.initTable(data.length, data[0].length);
-        gamePanel.initTable(model);
-        for (int row = 0; row < model.getRowCount(); row++) {
-            for (int col = 0; col < model.getColumnCount(); col++) {
-                model.setValueAt(MyRandom.getInt(50), row, col);
-                model.fireTableCellUpdated(row, col);
+        tableModel = new YatzyTableModel();
+        tableModel.initTable(data.length, data[0].length);
+        gamePanel.initTable(tableModel);
+        for (int row = 0; row < tableModel.getRowCount(); row++) {
+            for (int col = 0; col < tableModel.getColumnCount(); col++) {
+                tableModel.setValueAt(MyRandom.getInt(50), row, col);
+                tableModel.fireTableCellUpdated(row, col);
             }
         }
 
