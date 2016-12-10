@@ -37,6 +37,10 @@ public class Player {
     public void addTotal() {
 		
 	}
+    
+    public int getFirstEmptyScoreIndex() {
+		return 0;
+	}
 
     public boolean isEmpty(int index) {
         if (scoreList[index] == null) {
