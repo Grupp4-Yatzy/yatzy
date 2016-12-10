@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import com.jensen.yatzy.model.Constant;
 import com.jensen.yatzy.model.Dice;
+import com.jensen.yatzy.model.Player;
 import com.jensen.yatzy.model.Yatzy;
 import com.jensen.yatzy.view.DiceButton;
 import com.jensen.yatzy.model.YatzyTableModel;
@@ -153,6 +154,15 @@ public class Controller {
      *
      */
     private void doneButton() {
+    	// TODO implement save and update functionality
+    	// get current player
+    	Player player = game.getCurrentPlayer();
+    	// get first empty index
+    	int index = player.getFirstEmptyScoreIndex();
+    	// get score for index
+    	int score = getScore(index);
+    	// add score to player & update table
+    	player.addScore(score, index);
 
         Dice[] dices = game.getDices();
         for (Dice dice : dices) {
@@ -165,6 +175,7 @@ public class Controller {
             but.setOpaque(false);
             but.setSelected(false);
         }
+        
         gamePanel.setEnableDice(false);
         game.nextPlayer();
         gamePanel.getRollButton().setEnabled(true);
