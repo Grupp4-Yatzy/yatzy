@@ -164,6 +164,7 @@ public class Controller {
     	int score = getScore(index);
     	// add score to player & update table
     	player.addScore(score, index);
+    	tableModel.setValueAt(score, index, game.getPlayerIndex(player));
 
         Dice[] dices = game.getDices();
         for (Dice dice : dices) {
