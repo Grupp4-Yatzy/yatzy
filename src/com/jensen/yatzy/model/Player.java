@@ -27,6 +27,20 @@ public class Player {
     }
     
     public void addSum() {
+		int sum = 0;
+		boolean finnished = true;
+		for (int i = 0; i < 6; i++) {
+			if (scoreList[i] != null) {
+				sum += scoreList[i];
+			} else {
+				finnished = false;
+				break;
+			}
+		}
+		
+		if (finnished) {
+			addScore(sum, 6);
+		}
 		
 	}
     
