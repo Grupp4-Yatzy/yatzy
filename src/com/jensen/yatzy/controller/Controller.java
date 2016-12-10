@@ -169,6 +169,13 @@ public class Controller {
     	int col = game.getPlayerIndex(player);
     	tableModel.setValueAt(score, index, col);
         tableModel.fireTableCellUpdated(index, col);
+        
+        if (index + 1 == Constant.INDEX_OF_SUM) {
+        	player.addSum();
+	        tableModel.fireTableCellUpdated(Constant.INDEX_OF_SUM, col);
+	        player.addBonus();
+	        tableModel.fireTableCellUpdated(Constant.INDEX_OF_BONUS, col);
+		}
 
         Dice[] dices = game.getDices();
         for (Dice dice : dices) {
