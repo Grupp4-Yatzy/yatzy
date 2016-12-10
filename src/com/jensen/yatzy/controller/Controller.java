@@ -191,7 +191,7 @@ public class Controller {
 
         for (DiceButton but : button) {
             but.setOpaque(false);
-            but.setSelected(false);
+            //but.setSelected(false);
         }
         
         gamePanel.setEnableDice(false);
