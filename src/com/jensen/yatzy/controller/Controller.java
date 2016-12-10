@@ -162,6 +162,7 @@ public class Controller {
     	Player player = game.getCurrentPlayer();
     	// get first empty index
     	int index = player.getFirstEmptyScoreIndex();
+    	// TODO if done add total and update table
     	// get score for index
     	int score = getScore(index);
     	// add score to player & update table
