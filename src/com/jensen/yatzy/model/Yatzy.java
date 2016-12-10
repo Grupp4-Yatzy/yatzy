@@ -38,6 +38,12 @@ public class Yatzy {
         this.numberOfRollsLeft = 3;
     }
 
+    public void addPlayers(String[] names) {
+    	for (String name : names) {
+    		players.add(new Player(name));
+		}
+    }
+
     public int sum() {
         int sum = 0;
         for (Dice dice : dices) {
@@ -151,12 +157,6 @@ public class Yatzy {
             }
         }
         return table;
-    }
-
-    public void addPlayers(String[] names) {
-    	for (String name : names) {
-    		players.add(new Player(name));
-		}
     }
 
 }
