@@ -26,6 +26,18 @@ public class Yatzy {
 		return currentPLayer;
 	}
 
+    public int getNumbersOfRollsLeft() {
+        return this.numberOfRollsLeft;
+    }
+
+    public void decreaseRolls() {
+        this.numberOfRollsLeft -= 1;
+    }
+
+    public void nextPlayer() {
+        this.numberOfRollsLeft = 3;
+    }
+
     public int sum() {
         int sum = 0;
         for (Dice dice : dices) {
@@ -128,18 +140,6 @@ public class Yatzy {
             return sum();
         }
         return 0;
-    }
-
-    public int getNumbersOfRollsLeft() {
-        return this.numberOfRollsLeft;
-    }
-
-    public void decreaseRolls() {
-        this.numberOfRollsLeft -= 1;
-    }
-
-    public void nextPlayer() {
-        this.numberOfRollsLeft = 3;
     }
 
     public Integer[][] createTable() {
