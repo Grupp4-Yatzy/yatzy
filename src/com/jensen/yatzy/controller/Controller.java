@@ -111,7 +111,7 @@ public class Controller {
     /**
      * Rolls all unlocked dices TODO unlock all dices
      */
-    void rollButton() {
+    private void rollButton() {
         gamePanel.setEnableDice(true);
         Dice[] dices = game.getDices();
         for (Dice dice : dices) {
@@ -152,7 +152,7 @@ public class Controller {
     /**
      *
      */
-    void doneButton() {
+    private void doneButton() {
 
         Dice[] dices = game.getDices();
         for (Dice dice : dices) {

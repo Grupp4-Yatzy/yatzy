@@ -9,6 +9,7 @@ public class Yatzy {
     private int numberOfRollsLeft = 3;
     private Dice[] dices;
     private ArrayList<Player> players = new ArrayList<>();
+    private Player currentPLayer;
 
     public Yatzy() {
         dices = new Dice[Constant.DEFUALT_NUMBER_OF_DICES];
@@ -19,6 +20,28 @@ public class Yatzy {
 
     public Dice[] getDices() {
         return dices;
+    }
+    
+    public Player getCurrentPlayer() {
+		return currentPLayer;
+	}
+
+    public int getNumbersOfRollsLeft() {
+        return this.numberOfRollsLeft;
+    }
+
+    public void decreaseRolls() {
+        this.numberOfRollsLeft -= 1;
+    }
+
+    public void nextPlayer() {
+        this.numberOfRollsLeft = 3;
+    }
+
+    public void addPlayers(String[] names) {
+    	for (String name : names) {
+    		players.add(new Player(name));
+		}
     }
 
     public int sum() {
@@ -125,18 +148,6 @@ public class Yatzy {
         return 0;
     }
 
-    public int getNumbersOfRollsLeft() {
-        return this.numberOfRollsLeft;
-    }
-
-    public void decreaseRolls() {
-        this.numberOfRollsLeft -= 1;
-    }
-
-    public void nextPlayer() {
-        this.numberOfRollsLeft = 3;
-    }
-
     public Integer[][] createTable() {
         Integer[][] table = new Integer[Constant.COMBINATIONS.length][players.size()];
         for (int scoreIndex = 0; scoreIndex < table.length; scoreIndex++) {
@@ -146,12 +157,6 @@ public class Yatzy {
             }
         }
         return table;
-    }
-
-    public void addPlayers(String[] names) {
-    	for (String name : names) {
-    		players.add(new Player(name));
-		}
     }
 
 }

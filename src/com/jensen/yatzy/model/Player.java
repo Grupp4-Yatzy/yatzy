@@ -3,10 +3,6 @@ package com.jensen.yatzy.model;
 public class Player {
 
     private String name;
-    private Integer[] upperScore;
-    private int upperSum;
-    private boolean bonus;
-    private Integer[] lowerScore;
     private Integer[] scoreList;
 
     public Player(String name) {
@@ -14,7 +10,7 @@ public class Player {
         scoreList = new Integer[Constant.COMBINATIONS.length];
     }
 
-    public Integer[] getScore() {
+    public Integer[] getScoreList() {
         return scoreList;
     }
 
@@ -22,13 +18,29 @@ public class Player {
         return scoreList[index];
     }
 
-    public void addScore(int score, int index) {
-        scoreList[index] = score;
-    }
-
     public String getName() {
         return name;
     }
+
+    public void addScore(int score, int index) {
+        scoreList[index] = score;
+    }
+    
+    public void addSum() {
+		
+	}
+    
+    public void addBonus() {
+		
+	}
+    
+    public void addTotal() {
+		
+	}
+    
+    public int getFirstEmptyScoreIndex() {
+		return 0;
+	}
 
     public boolean isEmpty(int index) {
         if (scoreList[index] == null) {
