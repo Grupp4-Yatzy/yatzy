@@ -33,6 +33,10 @@ public class Player {
     public void addBonus() {
 		
 	}
+    
+    public void addTotal() {
+		
+	}
 
     public boolean isEmpty(int index) {
         if (scoreList[index] == null) {
