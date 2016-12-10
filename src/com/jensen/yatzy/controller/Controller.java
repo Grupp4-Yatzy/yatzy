@@ -69,6 +69,7 @@ public class Controller {
     private Window window;
     private GameView gamePanel;
     private Yatzy game;
+    private YatzyTableModel tableModel;
 
     /**
      *
