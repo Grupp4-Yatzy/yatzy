@@ -240,9 +240,11 @@ public class Controller {
 		case 15:
 			// chance
 			score = game.sum();
+			break;
 		case 16:
 			// Yatzy
 			score = game.numberOfAKind(5);
+			break;
 		default:
 			System.out.println("Missing case for given index: " + index);
 			break;
