@@ -35,10 +35,10 @@ public class Player {
 	}
     
     public void addBonus() {
-		if (scoreList[6] >= Constant.REQUIRED_SCORE_FOR_BONUS) {
-			addScore(Constant.BONUS, 6);
+		if (scoreList[Constant.INDEX_OF_SUM] >= Constant.REQUIRED_SCORE_FOR_BONUS) {
+			addScore(Constant.BONUS, Constant.INDEX_OF_BONUS);
 		} else {
-			addScore(0, 6);
+			addScore(0, Constant.INDEX_OF_BONUS);
 		}
 	}
     
