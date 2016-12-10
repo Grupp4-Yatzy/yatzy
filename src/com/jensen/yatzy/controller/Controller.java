@@ -171,4 +171,28 @@ public class Controller {
         gamePanel.getRollButton().setText("Roll (" + game.getNumbersOfRollsLeft() + ")");
     }
 
+    private int getScore(int index) {
+    	int score = 0;
+    	switch (index) {
+		case 0:
+		case 1:
+		case 2:
+		case 3:
+		case 4:
+			score = game.sum(index + 1);
+			break;
+		case 5:
+			game.sum(index + 1);
+			// TODO count sum & bonus
+			break;
+		case 8:
+			game.onePair();
+			break;
+
+		default:
+			break;
+		}
+    	return score;
+	}
+    
 }
