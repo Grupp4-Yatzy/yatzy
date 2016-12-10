@@ -21,13 +21,13 @@ public class Yatzy {
     public Dice[] getDices() {
         return dices;
     }
-    
+
     public Player getCurrentPlayer() {
-    	if (currentPLayer == null) {
-			currentPLayer = players.get(0);
-		}
-		return currentPLayer;
-	}
+    	if (currentPlayer == null) {
+    		currentPlayer = players.get(0);
+    	}
+    	return currentPlayer;
+    }
 
 	public int getPlayerIndex(Player player) {
 		return players.indexOf(player);
