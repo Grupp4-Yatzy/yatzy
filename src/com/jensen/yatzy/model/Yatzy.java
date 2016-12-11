@@ -64,10 +64,10 @@ public class Yatzy {
         return sum;
     }
 
-    public int sum(int value) {
+    public int sumNumber(int number) {
         int sum = 0;
         for (Dice dice : dices) {
-            if (dice.getValue() == value) {
+            if (dice.getValue() == number) {
                 sum += dice.getValue();
             }
         }
@@ -134,7 +134,7 @@ public class Yatzy {
         if (set.size() == 2) {
             Object[] values = set.toArray();
             int value = (Integer) values[0];
-            int numberOf = sum(value) / value;
+            int numberOf = sumNumber(value) / value;
             if (numberOf == 2 || numberOf == 3) {
                 return sum();
             }
