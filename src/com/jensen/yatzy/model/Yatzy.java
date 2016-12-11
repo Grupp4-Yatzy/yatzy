@@ -42,6 +42,11 @@ public class Yatzy {
     }
 
     public void nextPlayer() {
+    	int nextPlayerIndex = getPlayerIndex(getCurrentPlayer()) + 1;
+    	if (nextPlayerIndex == players.size()) {
+			nextPlayerIndex = 0;
+		}
+    	currentPlayer = players.get(nextPlayerIndex);
         this.numberOfRollsLeft = 3;
     }
 
