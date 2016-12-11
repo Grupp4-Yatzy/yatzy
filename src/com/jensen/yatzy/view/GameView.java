@@ -91,7 +91,20 @@ public class GameView extends JPanel{
 	}
 
 	public void initTable(YatzyTableModel model){
-		this.table = new JTable(model);
+		this.table = new JTable(model){
+		    // Källa på följande kodstycke taget från https://www.youtube.com/watch?v=iMBfneE2Ztg
+			@Override
+		    public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
+		        Component c = super.prepareRenderer(renderer, row, column);
+		        if (row % 2 == 0) {
+		            c.setBackground(Color.LIGHT_GRAY);
+		        } else {
+		            c.setBackground(Color.WHITE);
+		        }
+		        return c;
+		    }
+		    // Slut på lånad kod
+		};
 		this.add(table, BorderLayout.CENTER);
 	}
 
