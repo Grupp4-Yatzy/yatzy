@@ -134,12 +134,12 @@ public class Controller {
         }
         gamePanel.getRollButton().setText("Roll (" + game.getNumbersOfRollsLeft() + ")");
 
-        System.out.println("ettor: " + game.sum(1));
-        System.out.println("tvåor: " + game.sum(2));
-        System.out.println("treor: " + game.sum(3));
-        System.out.println("fyror: " + game.sum(4));
-        System.out.println("femmor: " + game.sum(5));
-        System.out.println("sexor: " + game.sum(6));
+        System.out.println("ettor: " + game.sumNumber(1));
+        System.out.println("tvåor: " + game.sumNumber(2));
+        System.out.println("treor: " + game.sumNumber(3));
+        System.out.println("fyror: " + game.sumNumber(4));
+        System.out.println("femmor: " + game.sumNumber(5));
+        System.out.println("sexor: " + game.sumNumber(6));
         System.out.println("---------------------");
         System.out.println("par: " + game.onePair());
         System.out.println("tvåpar: " + game.twoPair());
@@ -221,7 +221,7 @@ public class Controller {
 		case 4:
 		case 5:
 			// ones to sixes
-			score = game.sum(index + 1);
+			score = game.sumNumber(index + 1);
 			break;
 		case 8:
 			score = game.onePair();
