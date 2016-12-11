@@ -57,7 +57,6 @@ public class GameView extends JPanel{
 		JPanel southCenter = new JPanel();
 		JPanel southEast = new JPanel();
 		southPanel.setBackground(Color.ORANGE);
-		southPanel.setPreferredSize(new Dimension(100,100));
 		southCenter.setBackground(Color.GRAY);
 		southEast.setBackground(Color.BLUE);
 		southEast.add(rollButton);
