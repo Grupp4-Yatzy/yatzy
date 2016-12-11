@@ -183,10 +183,12 @@ public class Controller {
     			tableModel.setValueAt(playerScore[bonusIndex], bonusIndex, col);
     			tableModel.fireTableCellUpdated(bonusIndex, col);
 			}
-    		if (index + 1 == playerScore.length - 1) {
-				player.addTotal();
-	        	tableModel.setValueAt(playerScore[index], index, col);
-		        tableModel.fireTableCellUpdated(index, col);
+    		
+    		final int totalIndex = playerScore.length - 1;
+    		if (index + 1 == totalIndex) {
+    			player.addTotal();
+	        	tableModel.setValueAt(playerScore[totalIndex], totalIndex, col);
+		        tableModel.fireTableCellUpdated(totalIndex, col);
 			} 
 		}
     	
