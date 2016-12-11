@@ -90,7 +90,7 @@ public class Controller {
         
 
         // tests
-        String[] names = {"playerOne", "playerTwo", "playerThree", "playerFour"};
+        String[] names = {"playerOne", "playerTwo"};
         game.addPlayers(names);
         gamePanel.setPlayerNames(names);
         gamePanel.setCombinations(Constant.COMBINATIONS);
