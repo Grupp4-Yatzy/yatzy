@@ -162,7 +162,15 @@ public class Controller {
     	Player player = game.getCurrentPlayer();
     	// get first empty index
     	int index = player.getFirstEmptyScoreIndex();
+    	Integer[] playerScore = player.getScoreList();
     	// TODO if done add total and update table
+    	if (index < playerScore.length) {
+			if (index == playerScore.length - 1) {
+				
+			} else {
+				
+			}
+		}
     	// get score for index
     	int score = getScore(index);
     	// add score to player & update table
@@ -174,7 +182,6 @@ public class Controller {
         if (index + 1 == Constant.INDEX_OF_SUM) {
         	int sumIndex = Constant.INDEX_OF_SUM;
         	int bonusIndex = Constant.INDEX_OF_BONUS;
-        	Integer[] playerScore = player.getScoreList();
         	player.addSum();
         	tableModel.setValueAt(playerScore[sumIndex], sumIndex, col);
 	        tableModel.fireTableCellUpdated(sumIndex, col);
