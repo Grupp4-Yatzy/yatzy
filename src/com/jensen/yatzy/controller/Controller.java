@@ -160,35 +160,36 @@ public class Controller {
     	// TODO implement save and update functionality
     	// get current player
     	Player player = game.getCurrentPlayer();
+    	int col = game.getPlayerIndex(player);
     	// get first empty index
     	int index = player.getFirstEmptyScoreIndex();
     	Integer[] playerScore = player.getScoreList();
     	// TODO if done add total and update table
-    	if (index < playerScore.length) {
-			if (index == playerScore.length - 1) {
-				
-			} else {
-				
+    	if (index < playerScore.length - 1) {
+    		// get score for index
+    		int score = getScore(index);
+    		// add score to player & update table
+    		player.addScore(score, index);
+    		tableModel.setValueAt(score, index, col);
+    		tableModel.fireTableCellUpdated(index, col);
+
+    		if (index + 1 == Constant.INDEX_OF_SUM) {
+    			int sumIndex = Constant.INDEX_OF_SUM;
+    			int bonusIndex = Constant.INDEX_OF_BONUS;
+    			player.addSum();
+    			tableModel.setValueAt(playerScore[sumIndex], sumIndex, col);
+    			tableModel.fireTableCellUpdated(sumIndex, col);
+    			player.addBonus();
+    			tableModel.setValueAt(playerScore[bonusIndex], bonusIndex, col);
+    			tableModel.fireTableCellUpdated(bonusIndex, col);
 			}
+    		if (index + 1 == playerScore.length - 1) {
+				player.addTotal();
+	        	tableModel.setValueAt(playerScore[index], index, col);
+		        tableModel.fireTableCellUpdated(index, col);
+			} 
 		}
-    	// get score for index
-    	int score = getScore(index);
-    	// add score to player & update table
-    	player.addScore(score, index);
-    	int col = game.getPlayerIndex(player);
-    	tableModel.setValueAt(score, index, col);
-        tableModel.fireTableCellUpdated(index, col);
-        
-        if (index + 1 == Constant.INDEX_OF_SUM) {
-        	int sumIndex = Constant.INDEX_OF_SUM;
-        	int bonusIndex = Constant.INDEX_OF_BONUS;
-        	player.addSum();
-        	tableModel.setValueAt(playerScore[sumIndex], sumIndex, col);
-	        tableModel.fireTableCellUpdated(sumIndex, col);
-	        player.addBonus();
-        	tableModel.setValueAt(playerScore[bonusIndex], bonusIndex, col);
-	        tableModel.fireTableCellUpdated(bonusIndex, col);
-		}
+    	
 
         Dice[] dices = game.getDices();
         for (Dice dice : dices) {
