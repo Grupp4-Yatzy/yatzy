@@ -5,11 +5,13 @@ import com.jensen.yatzy.model.Dice;
 import com.jensen.yatzy.model.YatzyTableModel;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.*;
+import javax.swing.table.TableCellRenderer;
 
 public class GameView extends JPanel{
 
