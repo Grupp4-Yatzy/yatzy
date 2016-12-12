@@ -33,6 +33,7 @@ public class Controller {
             switch (ac) {
                 case "roll":
                     rollButton();
+                    window.pack();
                     break;
                 case "done":
                     doneButton();
