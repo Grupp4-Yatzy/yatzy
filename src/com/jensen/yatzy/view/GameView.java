@@ -5,11 +5,13 @@ import com.jensen.yatzy.model.Dice;
 import com.jensen.yatzy.model.YatzyTableModel;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.*;
+import javax.swing.table.TableCellRenderer;
 
 public class GameView extends JPanel{
 
@@ -55,7 +57,6 @@ public class GameView extends JPanel{
 		JPanel southCenter = new JPanel();
 		JPanel southEast = new JPanel();
 		southPanel.setBackground(Color.ORANGE);
-		southPanel.setPreferredSize(new Dimension(100,100));
 		southCenter.setBackground(Color.GRAY);
 		southEast.setBackground(Color.BLUE);
 		southEast.add(rollButton);
@@ -91,7 +92,20 @@ public class GameView extends JPanel{
 	}
 
 	public void initTable(YatzyTableModel model){
-		this.table = new JTable(model);
+		this.table = new JTable(model){
+		    // Källa på följande kodstycke taget från https://www.youtube.com/watch?v=iMBfneE2Ztg
+			@Override
+		    public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
+		        Component c = super.prepareRenderer(renderer, row, column);
+		        if (row % 2 == 0) {
+		            c.setBackground(Color.LIGHT_GRAY);
+		        } else {
+		            c.setBackground(Color.WHITE);
+		        }
+		        return c;
+		    }
+		    // Slut på lånad kod
+		};
 		this.add(table, BorderLayout.CENTER);
 	}
 

@@ -9,7 +9,7 @@ public class Yatzy {
     private int numberOfRollsLeft = 3;
     private Dice[] dices;
     private ArrayList<Player> players = new ArrayList<>();
-    private Player currentPLayer;
+    private Player currentPlayer;
 
     public Yatzy() {
         dices = new Dice[Constant.DEFUALT_NUMBER_OF_DICES];
@@ -21,9 +21,16 @@ public class Yatzy {
     public Dice[] getDices() {
         return dices;
     }
-    
+
     public Player getCurrentPlayer() {
-		return currentPLayer;
+    	if (currentPlayer == null) {
+    		currentPlayer = players.get(0);
+    	}
+    	return currentPlayer;
+    }
+
+	public int getPlayerIndex(Player player) {
+		return players.indexOf(player);
 	}
 
     public int getNumbersOfRollsLeft() {
@@ -35,6 +42,11 @@ public class Yatzy {
     }
 
     public void nextPlayer() {
+    	int nextPlayerIndex = getPlayerIndex(getCurrentPlayer()) + 1;
+    	if (nextPlayerIndex == players.size()) {
+			nextPlayerIndex = 0;
+		}
+    	currentPlayer = players.get(nextPlayerIndex);
         this.numberOfRollsLeft = 3;
     }
 
@@ -52,10 +64,10 @@ public class Yatzy {
         return sum;
     }
 
-    public int sum(int value) {
+    public int sumNumber(int number) {
         int sum = 0;
         for (Dice dice : dices) {
-            if (dice.getValue() == value) {
+            if (dice.getValue() == number) {
                 sum += dice.getValue();
             }
         }
@@ -122,7 +134,7 @@ public class Yatzy {
         if (set.size() == 2) {
             Object[] values = set.toArray();
             int value = (Integer) values[0];
-            int numberOf = sum(value) / value;
+            int numberOf = sumNumber(value) / value;
             if (numberOf == 2 || numberOf == 3) {
                 return sum();
             }

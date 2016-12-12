@@ -27,19 +27,37 @@ public class Player {
     }
     
     public void addSum() {
-		
+		int sum = 0;
+		for (int i = 0; i < Constant.INDEX_OF_SUM; i++) {
+			sum += getScore(i);
+		}
+		addScore(sum, Constant.INDEX_OF_SUM);
 	}
     
     public void addBonus() {
-		
+		if (scoreList[Constant.INDEX_OF_SUM] >= Constant.REQUIRED_SCORE_FOR_BONUS) {
+			addScore(Constant.BONUS, Constant.INDEX_OF_BONUS);
+		} else {
+			addScore(0, Constant.INDEX_OF_BONUS);
+		}
 	}
     
     public void addTotal() {
-		
+    	int totalIndex = scoreList.length - 1;
+		int total = getScore(Constant.INDEX_OF_SUM) + getScore(Constant.INDEX_OF_BONUS);
+		for (int i = Constant.INDEX_OF_BONUS + 1; i < totalIndex; i++) {
+			total += getScore(i);
+		}
+		addScore(total, totalIndex);
 	}
     
     public int getFirstEmptyScoreIndex() {
-		return 0;
+    	for (int i = 0; i < scoreList.length; i++) {
+			if (getScore(i) == null) {
+				return i;
+			}
+		}
+		return scoreList.length;
 	}
 
     public boolean isEmpty(int index) {

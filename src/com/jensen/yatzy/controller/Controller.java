@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import com.jensen.yatzy.model.Constant;
 import com.jensen.yatzy.model.Dice;
+import com.jensen.yatzy.model.Player;
 import com.jensen.yatzy.model.Yatzy;
 import com.jensen.yatzy.view.DiceButton;
 import com.jensen.yatzy.model.YatzyTableModel;
@@ -32,6 +33,7 @@ public class Controller {
             switch (ac) {
                 case "roll":
                     rollButton();
+                    window.pack();
                     break;
                 case "done":
                     doneButton();
@@ -68,6 +70,7 @@ public class Controller {
     private Window window;
     private GameView gamePanel;
     private Yatzy game;
+    private YatzyTableModel tableModel;
 
     /**
      *
@@ -88,22 +91,24 @@ public class Controller {
         
 
         // tests
-        String[] names = {"playerOne", "playerTwo", "playerThree", "playerFour"};
+        String[] names = {"playerOne", "playerTwo"};
         game.addPlayers(names);
         gamePanel.setPlayerNames(names);
         gamePanel.setCombinations(Constant.COMBINATIONS);
 
         //Integer[][] data = new Integer[Constant.COMBINATIONS.length][names.length];
         Integer[][] data = game.createTable();
-        YatzyTableModel model = new YatzyTableModel();
-        model.initTable(data.length, data[0].length);
-        gamePanel.initTable(model);
-        for (int row = 0; row < model.getRowCount(); row++) {
-            for (int col = 0; col < model.getColumnCount(); col++) {
-                model.setValueAt(MyRandom.getInt(50), row, col);
-                model.fireTableCellUpdated(row, col);
+        tableModel = new YatzyTableModel();
+        tableModel.initTable(data.length, data[0].length);
+        gamePanel.initTable(tableModel);
+        /*
+        for (int row = 0; row < tableModel.getRowCount(); row++) {
+            for (int col = 0; col < tableModel.getColumnCount(); col++) {
+                tableModel.setValueAt(MyRandom.getInt(50), row, col);
+                tableModel.fireTableCellUpdated(row, col);
             }
         }
+        */
 
         gamePanel.setEnableDice(false);
     }
@@ -130,12 +135,12 @@ public class Controller {
         }
         gamePanel.getRollButton().setText("Roll (" + game.getNumbersOfRollsLeft() + ")");
 
-        System.out.println("ettor: " + game.sum(1));
-        System.out.println("tvåor: " + game.sum(2));
-        System.out.println("treor: " + game.sum(3));
-        System.out.println("fyror: " + game.sum(4));
-        System.out.println("femmor: " + game.sum(5));
-        System.out.println("sexor: " + game.sum(6));
+        System.out.println("ettor: " + game.sumNumber(1));
+        System.out.println("tvåor: " + game.sumNumber(2));
+        System.out.println("treor: " + game.sumNumber(3));
+        System.out.println("fyror: " + game.sumNumber(4));
+        System.out.println("femmor: " + game.sumNumber(5));
+        System.out.println("sexor: " + game.sumNumber(6));
         System.out.println("---------------------");
         System.out.println("par: " + game.onePair());
         System.out.println("tvåpar: " + game.twoPair());
@@ -153,6 +158,40 @@ public class Controller {
      *
      */
     private void doneButton() {
+    	// TODO implement save and update functionality
+    	// get current player
+    	Player player = game.getCurrentPlayer();
+    	int col = game.getPlayerIndex(player);
+    	// get first empty index
+    	int index = player.getFirstEmptyScoreIndex();
+    	Integer[] playerScore = player.getScoreList();
+    	// TODO if done add total and update table
+    	if (index < playerScore.length - 1) {
+    		// get score for index
+    		int score = getScore(index);
+    		// add score to player & update table
+    		player.addScore(score, index);
+    		tableModel.setValueAt(score, index, col);
+    		tableModel.fireTableCellUpdated(index, col);
+
+    		if (index + 1 == Constant.INDEX_OF_SUM) {
+    			int sumIndex = Constant.INDEX_OF_SUM;
+    			int bonusIndex = Constant.INDEX_OF_BONUS;
+    			player.addSum();
+    			tableModel.setValueAt(playerScore[sumIndex], sumIndex, col);
+    			tableModel.fireTableCellUpdated(sumIndex, col);
+    			player.addBonus();
+    			tableModel.setValueAt(playerScore[bonusIndex], bonusIndex, col);
+    			tableModel.fireTableCellUpdated(bonusIndex, col);
+			}
+    		
+    		final int totalIndex = playerScore.length - 1;
+    		if (index + 1 == totalIndex) {
+    			player.addTotal();
+	        	tableModel.setValueAt(playerScore[totalIndex], totalIndex, col);
+		        tableModel.fireTableCellUpdated(totalIndex, col);
+			} 
+		}
 
         Dice[] dices = game.getDices();
         for (Dice dice : dices) {
@@ -162,17 +201,66 @@ public class Controller {
         DiceButton[] button = gamePanel.getDiceButtons();
 
         for (DiceButton but : button) {
-            but.setOpaque(false);
-            but.setSelected(false);
+            //but.setOpaque(false);
+            //but.setSelected(false);
         }
+        
         gamePanel.setEnableDice(false);
         game.nextPlayer();
         gamePanel.getRollButton().setEnabled(true);
         gamePanel.getRollButton().setText("Roll (" + game.getNumbersOfRollsLeft() + ")");
     }
-    
-    private int getScore(int combinationIndex) {
-		return 0;
-	}
 
+    private int getScore(int index) {
+    	int score = 0;
+    	switch (index) {
+		case 0:
+		case 1:
+		case 2:
+		case 3:
+		case 4:
+		case 5:
+			// ones to sixes
+			score = game.sumNumber(index + 1);
+			break;
+		case 8:
+			score = game.onePair();
+			break;
+		case 9:
+			score = game.twoPair();
+			break;
+		case 10:
+			// three of a kind
+			score = game.numberOfAKind(3);
+			break;
+		case 11:
+			// four of a kind
+			score = game.numberOfAKind(4);
+			break;
+		case 12:
+			// small straight
+			score = game.straight(6);
+			break;
+		case 13:
+			// big straight
+			score = game.straight(1);
+			break;
+		case 14:
+			score = game.fullHouse();
+			break;
+		case 15:
+			// chance
+			score = game.sum();
+			break;
+		case 16:
+			// Yatzy
+			score = game.numberOfAKind(5);
+			break;
+		default:
+			System.out.println("Missing case for given index: " + index);
+			break;
+		}
+    	return score;
+	}
+    
 }
