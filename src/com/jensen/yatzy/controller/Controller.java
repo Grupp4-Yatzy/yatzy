@@ -177,7 +177,7 @@ public class Controller {
         DiceButton[] button = gamePanel.getDiceButtons();
 
         for (DiceButton but : button) {
-            but.setOpaque(true);
+            but.setOpaque(false);
             //but.setSelected(false);
         }
         
