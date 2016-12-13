@@ -3,6 +3,7 @@ package com.jensen.yatzy.model;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
+
 /**
  * Yatzy class holds the state of the game. Check the points so they get filled
  * in the right combination index
