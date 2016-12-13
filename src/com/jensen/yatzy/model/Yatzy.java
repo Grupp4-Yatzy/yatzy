@@ -7,7 +7,7 @@ import java.util.Set;
  * 
  * @author RobertoBlanco och Kami Hassanzadeh
  * Yatzy class holds the state of the game. Check the points so they get filled
- * in the right combination slot
+ * in the right combination index
  */
 public class Yatzy {
 
@@ -26,7 +26,7 @@ public class Yatzy {
         }
     }
     /**
-     * 
+     * Gets the array Dice
      * @return dices in the array Dice[]
      */
     public Dice[] getDices() {
@@ -53,7 +53,7 @@ public class Yatzy {
 		return players.indexOf(player);
 	}
     /**
-     * 
+     *
      * @return the number of rolls left
      */    
     public int getNumbersOfRollsLeft() {
@@ -133,7 +133,7 @@ public class Yatzy {
         return sum;
     }
     /**
-     * Checks after two pairs in the Dice arraysl
+     * Checks after two pairs in the Dice array
      * @return the sum of two pair
      * 
      */
