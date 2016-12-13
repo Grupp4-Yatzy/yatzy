@@ -1,31 +1,54 @@
 package com.jensen.yatzy.model;
-
+/**
+ * @author Benjamin Rosman
+ * Player class 
+ */
 public class Player {
 
     private String name;
     private Integer[] scoreList;
-
+    /**
+     * 
+     * @param name 
+     */
     public Player(String name) {
         this.name = name;
         scoreList = new Integer[Constant.COMBINATIONS.length];
     }
-
+    /**
+     * Gets the scoreList array (All the combinations).
+     * @return the scoreList
+     */
     public Integer[] getScoreList() {
         return scoreList;
     }
-
+    /**
+     * Gets the score of the specific index.
+     * @param index
+     * @return the index in scoreList
+     */
     public Integer getScore(int index) {
         return scoreList[index];
     }
-
+    /**
+     * Gets the name of the player.
+     * @return name of the player
+     */
     public String getName() {
         return name;
     }
-
+    /**
+     * Adds the score in the JTable in a specific index.
+     * @param score
+     * @param index 
+     */
     public void addScore(int score, int index) {
         scoreList[index] = score;
     }
-    
+    /**
+     * Adds all the combinations  from the upper scoreboard (1-6)
+     * and stores the value in index 6 (total).
+     */
     public void addSum() {
 		int sum = 0;
 		for (int i = 0; i < Constant.INDEX_OF_SUM; i++) {
@@ -33,7 +56,10 @@ public class Player {
 		}
 		addScore(sum, Constant.INDEX_OF_SUM);
 	}
-    
+    /**
+     * This methods checks if index 6 has a value of 42 or more, if so the bonus
+     * will be given (50 points), else no bonus will be given.
+     */
     public void addBonus() {
 		if (scoreList[Constant.INDEX_OF_SUM] >= Constant.REQUIRED_SCORE_FOR_BONUS) {
 			addScore(Constant.BONUS, Constant.INDEX_OF_BONUS);
@@ -41,7 +67,10 @@ public class Player {
 			addScore(0, Constant.INDEX_OF_BONUS);
 		}
 	}
-    
+    /**
+     * This method adds all the index and stores the value in
+     * the last index(Total)
+     */
     public void addTotal() {
     	int totalIndex = scoreList.length - 1;
 		int total = getScore(Constant.INDEX_OF_SUM) + getScore(Constant.INDEX_OF_BONUS);
@@ -50,7 +79,10 @@ public class Player {
 		}
 		addScore(total, totalIndex);
 	}
-    
+    /**
+     * Checks after the first empty index in the scoreList
+     * @return the first empty score index
+     */
     public int getFirstEmptyScoreIndex() {
     	for (int i = 0; i < scoreList.length; i++) {
 			if (getScore(i) == null) {
@@ -59,7 +91,11 @@ public class Player {
 		}
 		return scoreList.length;
 	}
-
+    /**
+     * Checks if index is empty or not
+     * @param index
+     * @return true if index is empty, false if its not empty
+     */
     public boolean isEmpty(int index) {
         if (scoreList[index] == null) {
             return true;

@@ -133,7 +133,7 @@ public class Yatzy {
         return sum;
     }
     /**
-     * Takes two pairs of the dices
+     * Checks after two pairs in the Dice arraysl
      * @return the sum of two pair
      * 
      */
@@ -176,7 +176,7 @@ public class Yatzy {
         return 0;
     }
     /**
-     * Checks after a fullhouse in the Dice array list
+     * Checks after a fullhouse in the array
      * @return the sum of a four dices(if its a Fullhouse)
      */
     public int fullHouse() {
@@ -195,8 +195,8 @@ public class Yatzy {
         return 0;
     }
     /**
-     * 
-     * @return the sum of five dices if they are all the same(Yatzy)
+     * Looks after Yatzy(five dices with the same value)
+     * @return the sum of five dices
      */
     public int yatzy() {
         if (numberOfAKind(Constant.DEFUALT_NUMBER_OF_DICES) > 0) {
