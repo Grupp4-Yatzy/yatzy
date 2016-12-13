@@ -1,6 +1,7 @@
 package com.jensen.yatzy.controller;
 
 import com.jensen.yatzy.model.Yatzy;
+import com.jensen.yatzy.view.NewGamePanel;
 import com.jensen.yatzy.view.Window;
 
 public class Main {
@@ -14,9 +15,13 @@ public class Main {
 		Window window = new Window();
 		Yatzy yatzy = new Yatzy();
 		Controller controller = new Controller(window, yatzy);
-                
-		window.pack();
+                window.pack();
 		window.setVisible(true);
+                
+                NewGamePanel panel = new NewGamePanel();
+                panel.setPlayerFields(4);
+                window.setCurrentPanel(panel);
+                
 	}
 
 }
