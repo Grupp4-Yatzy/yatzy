@@ -1,20 +1,24 @@
 package com.jensen.yatzy.model;
 /**
+ * Player class holds the player name and the score list
  * @author Benjamin Rosman
- * Player class 
+ * 
  */
 public class Player {
 
     private String name;
     private Integer[] scoreList;
+    
     /**
-     * 
+     * Initialze Player name and sets the scoreList to the 
+     * constant Combination list
      * @param name 
      */
     public Player(String name) {
         this.name = name;
         scoreList = new Integer[Constant.COMBINATIONS.length];
     }
+    
     /**
      * Gets the scoreList array (All the combinations).
      * @return the scoreList
@@ -22,6 +26,7 @@ public class Player {
     public Integer[] getScoreList() {
         return scoreList;
     }
+    
     /**
      * Gets the score of the specific index.
      * @param index
@@ -30,6 +35,7 @@ public class Player {
     public Integer getScore(int index) {
         return scoreList[index];
     }
+    
     /**
      * Gets the name of the player.
      * @return name of the player
@@ -37,6 +43,7 @@ public class Player {
     public String getName() {
         return name;
     }
+    
     /**
      * Adds the score in the JTable in a specific index.
      * @param score
@@ -45,6 +52,7 @@ public class Player {
     public void addScore(int score, int index) {
         scoreList[index] = score;
     }
+    
     /**
      * Adds all the combinations  from the upper scoreboard (1-6)
      * and stores the value in index 6 (total).
@@ -56,6 +64,7 @@ public class Player {
 		}
 		addScore(sum, Constant.INDEX_OF_SUM);
 	}
+    
     /**
      * This methods checks if index 6 has a value of 42 or more, if so the bonus
      * will be given (50 points), else no bonus will be given.
@@ -67,6 +76,7 @@ public class Player {
 			addScore(0, Constant.INDEX_OF_BONUS);
 		}
 	}
+    
     /**
      * This method adds all the index and stores the value in
      * the last index(Total)
@@ -79,6 +89,7 @@ public class Player {
 		}
 		addScore(total, totalIndex);
 	}
+    
     /**
      * Checks after the first empty index in the scoreList
      * @return the first empty score index
@@ -91,6 +102,7 @@ public class Player {
 		}
 		return scoreList.length;
 	}
+    
     /**
      * Checks if index is empty or not
      * @param index
