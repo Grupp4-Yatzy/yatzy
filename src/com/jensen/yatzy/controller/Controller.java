@@ -168,7 +168,6 @@ public class Controller {
 	        	tableModel.setValueAt(playerScore[totalIndex], totalIndex, col);
 			} 
 		}
-    	
 
         Dice[] dices = game.getDices();
         for (Dice dice : dices) {

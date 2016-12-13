@@ -3,44 +3,73 @@ package com.jensen.yatzy.model;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
-
+/**
+ * 
+ * @author RobertoBlanco och Kami Hassanzadeh
+ * Yatzy class holds the state of the game. Check the points so they get filled
+ * in the right combination index
+ */
 public class Yatzy {
 
     private int numberOfRollsLeft = 3;
     private Dice[] dices;
     private ArrayList<Player> players = new ArrayList<>();
     private Player currentPlayer;
-
+    /**
+     * The constructor loops through the dice array
+     * and sets the default value of the dices
+     */
     public Yatzy() {
         dices = new Dice[Constant.DEFUALT_NUMBER_OF_DICES];
         for (int i = 0; i < dices.length; i++) {
             dices[i] = new Dice();
         }
     }
-
+    /**
+     * Gets the array Dice
+     * @return dices in the array Dice[]
+     */
     public Dice[] getDices() {
         return dices;
     }
-
+    /**
+     * 
+     * If there are no currentPlayer the method returns the first
+     * player in the list
+     * @return currentPlayer
+     */
     public Player getCurrentPlayer() {
     	if (currentPlayer == null) {
     		currentPlayer = players.get(0);
     	}
     	return currentPlayer;
     }
-
+        /**
+         * 
+         * @param player
+         * @return an index of a player
+         */
 	public int getPlayerIndex(Player player) {
 		return players.indexOf(player);
 	}
-
+    /**
+     *
+     * @return the number of rolls left
+     */    
     public int getNumbersOfRollsLeft() {
         return this.numberOfRollsLeft;
     }
-
-    public void decreaseRolls() {
+    /**
+     * decreases number of rolls with one each
+     * time you push the roll button
+     */
+     public void decreaseRolls() {
         this.numberOfRollsLeft -= 1;
     }
-
+    /**
+     * Changes to next player and give him three rolls
+     * Livet är inte en dans på rosor
+     */ 
     public void nextPlayer() {
     	int nextPlayerIndex = getPlayerIndex(getCurrentPlayer()) + 1;
     	if (nextPlayerIndex == players.size()) {
@@ -49,13 +78,19 @@ public class Yatzy {
     	currentPlayer = players.get(nextPlayerIndex);
         this.numberOfRollsLeft = 3;
     }
-
+    /**
+     * Creates a list that stores names in it
+     * @param names 
+     */
     public void addPlayers(String[] names) {
     	for (String name : names) {
     		players.add(new Player(name));
 		}
     }
-
+    /**
+     * Adds value of 5 dices(Chance combination)
+     * @return 
+     */
     public int sum() {
         int sum = 0;
         for (Dice dice : dices) {
@@ -63,7 +98,11 @@ public class Yatzy {
         }
         return sum;
     }
-
+    /**
+     * 
+     * @param number, depends on which combination you choose
+     * @return the sum of value of the dices
+     */
     public int sumNumber(int number) {
         int sum = 0;
         for (Dice dice : dices) {
@@ -73,7 +112,10 @@ public class Yatzy {
         }
         return sum;
     }
-
+    /**
+     * Always takes the highest pair
+     * @return the sum of the highest pair
+     */
     public int onePair() {
         int sum = 0;
         for (int i = 0; i < dices.length; i++) {
@@ -90,7 +132,11 @@ public class Yatzy {
         }
         return sum;
     }
-
+    /**
+     * Checks after two pairs in the Dice array
+     * @return the sum of two pair
+     * 
+     */
     public int twoPair() {
         int highestPair = onePair();
         int sum = 0;
@@ -108,7 +154,11 @@ public class Yatzy {
         return 0;
 
     }
-
+    /**
+     * Checks after a three of a kind or four of a kind in the array
+     * @param number
+     * @return the sum of three of a kind and four of a kind
+     */
     public int numberOfAKind(int number) {
 
         for (int s = 0; s < dices.length; s++) {
@@ -125,7 +175,10 @@ public class Yatzy {
         }
         return 0;
     }
-
+    /**
+     * Checks after a fullhouse in the array
+     * @return the sum of a four dices(if its a Fullhouse)
+     */
     public int fullHouse() {
         Set set = new HashSet();
         for (Dice dice : dices) {
@@ -141,14 +194,21 @@ public class Yatzy {
         }
         return 0;
     }
-
+    /**
+     * Looks after Yatzy(five dices with the same value)
+     * @return the sum of five dices
+     */
     public int yatzy() {
         if (numberOfAKind(Constant.DEFUALT_NUMBER_OF_DICES) > 0) {
             return Constant.YATZY;
         }
         return 0;
     }
-
+    /**
+     * Checks after a small straight or a big straight(1-5, 2-6)
+     * @param number
+     * @return the sum of the two different straights
+     */
     public int straight(int number) {
         Set set = new HashSet();
         for (Dice dice : dices) {
@@ -159,7 +219,11 @@ public class Yatzy {
         }
         return 0;
     }
-
+    /**
+     * Creates a two dimensional array that contains all the values, combinations
+     * and the player names
+     * @return the table
+     */
     public Integer[][] createTable() {
         Integer[][] table = new Integer[Constant.COMBINATIONS.length][players.size()];
         for (int scoreIndex = 0; scoreIndex < table.length; scoreIndex++) {
