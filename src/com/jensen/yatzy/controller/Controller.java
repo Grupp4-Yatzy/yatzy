@@ -13,18 +13,13 @@ import com.jensen.yatzy.view.GameView;
 import com.jensen.yatzy.view.Window;
 
 /**
- *
+ * Controls how actions are performed throughout a game of Yatzy
  * @author benjamin
  *
  */
 public class Controller {
-
-    /**
-     *
-     * @author benjamin
-     *
-     */
-    class PlayListener implements ActionListener {
+	
+    private class PlayListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -33,7 +28,6 @@ public class Controller {
             switch (ac) {
                 case "roll":
                     rollButton();
-                    window.pack();
                     break;
                 case "done":
                     doneButton();
@@ -42,15 +36,11 @@ public class Controller {
                     System.out.println("No Command for: " + ac);
                     break;
             }
+            window.pack();
         }
     }
 
-    /**
-     *
-     * @author benjamin
-     *
-     */
-    class DiceListener implements ActionListener {
+    private class DiceListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -63,7 +53,6 @@ public class Controller {
             dices[index].toggleLock();
             DiceButton button = (DiceButton) e.getSource();
             button.DiceToggleLock();
-            gamePanel.setDiceButtons(dices);
         }
     }
 
@@ -73,9 +62,9 @@ public class Controller {
     private YatzyTableModel tableModel;
 
     /**
-     *
-     * @param window
-     * @param game
+     * Creates a controller and initiates the default view and sets the window to display it.
+     * @param window 
+     * @param game 
      */
     public Controller(Window window, Yatzy game) {
         this.window = window;
@@ -101,16 +90,9 @@ public class Controller {
         tableModel = new YatzyTableModel();
         tableModel.initTable(data.length, data[0].length);
         gamePanel.initTable(tableModel);
-        /*
-        for (int row = 0; row < tableModel.getRowCount(); row++) {
-            for (int col = 0; col < tableModel.getColumnCount(); col++) {
-                tableModel.setValueAt(MyRandom.getInt(50), row, col);
-                tableModel.fireTableCellUpdated(row, col);
-            }
-        }
-        */
 
         gamePanel.setEnableDice(false);
+        gamePanel.getDoneButton().setEnabled(false);
     }
 
     /**
@@ -134,6 +116,7 @@ public class Controller {
             gamePanel.getRollButton().setEnabled(false);
         }
         gamePanel.getRollButton().setText("Roll (" + game.getNumbersOfRollsLeft() + ")");
+        gamePanel.getDoneButton().setEnabled(true);
 
         System.out.println("ettor: " + game.sumNumber(1));
         System.out.println("tvåor: " + game.sumNumber(2));
@@ -154,9 +137,6 @@ public class Controller {
         System.out.println("---------------------");
     }
 
-    /**
-     *
-     */
     private void doneButton() {
     	// TODO implement save and update functionality
     	// get current player
@@ -172,24 +152,20 @@ public class Controller {
     		// add score to player & update table
     		player.addScore(score, index);
     		tableModel.setValueAt(score, index, col);
-    		tableModel.fireTableCellUpdated(index, col);
 
     		if (index + 1 == Constant.INDEX_OF_SUM) {
     			int sumIndex = Constant.INDEX_OF_SUM;
     			int bonusIndex = Constant.INDEX_OF_BONUS;
     			player.addSum();
     			tableModel.setValueAt(playerScore[sumIndex], sumIndex, col);
-    			tableModel.fireTableCellUpdated(sumIndex, col);
     			player.addBonus();
     			tableModel.setValueAt(playerScore[bonusIndex], bonusIndex, col);
-    			tableModel.fireTableCellUpdated(bonusIndex, col);
 			}
     		
     		final int totalIndex = playerScore.length - 1;
     		if (index + 1 == totalIndex) {
     			player.addTotal();
 	        	tableModel.setValueAt(playerScore[totalIndex], totalIndex, col);
-		        tableModel.fireTableCellUpdated(totalIndex, col);
 			} 
 		}
     	
@@ -202,7 +178,7 @@ public class Controller {
         DiceButton[] button = gamePanel.getDiceButtons();
 
         for (DiceButton but : button) {
-            //but.setOpaque(false);
+            but.setOpaque(true);
             //but.setSelected(false);
         }
         
@@ -210,6 +186,7 @@ public class Controller {
         game.nextPlayer();
         gamePanel.getRollButton().setEnabled(true);
         gamePanel.getRollButton().setText("Roll (" + game.getNumbersOfRollsLeft() + ")");
+        gamePanel.getDoneButton().setEnabled(false);
     }
 
     private int getScore(int index) {
