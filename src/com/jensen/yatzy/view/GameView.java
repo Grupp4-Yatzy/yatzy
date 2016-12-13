@@ -13,12 +13,17 @@ import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.table.TableCellRenderer;
 
-public class GameView extends JPanel{
+/**
+ * A JPanel for displaying an ongoing Yatzy game
+ * @author benjamin
+ *
+ */
+public class GameView extends JPanel {
 
 	private JPanel westPanel;
 	private JPanel centerPanel;
-	private JButton rollButton = new JButton("Roll");
-	private JButton doneButton = new JButton("Done");
+	private JButton rollButton;
+	private JButton doneButton;
 	private DiceButton[] diceButtons = new DiceButton[5];
 	private ArrayList<JLabel> playerNames = new ArrayList<>();
 	private JTable table;
@@ -26,7 +31,10 @@ public class GameView extends JPanel{
 	private Dimension combinationLabelSize = new Dimension(100,100/10);
 
 
-	public GameView (){
+	/**
+	 * Creates a GameView 
+	 */
+	public GameView () {
 
 		this.setLayout(new BorderLayout());
 		westPanel = new JPanel();
@@ -52,34 +60,40 @@ public class GameView extends JPanel{
 		label.setForeground(Color.white);
 		label.setPreferredSize(combinationLabelSize);
 
-		JPanel southPanel = new JPanel();
-		southPanel.setLayout(new BorderLayout());
 		JPanel southCenter = new JPanel();
-		JPanel southEast = new JPanel();
-		southPanel.setBackground(Color.ORANGE);
 		southCenter.setBackground(Color.GRAY);
-		southEast.setBackground(Color.BLUE);
-		southEast.add(rollButton);
-
-		rollButton.setActionCommand("Roll");
-		southEast.add(doneButton);
-		southPanel.add(southCenter, BorderLayout.CENTER);
-		southPanel.add(southEast, BorderLayout.EAST);
-
 		for(int i=0; i<diceButtons.length; i++){
-
 			DiceButton dice = new DiceButton(""+(i+1));
 			diceButtons[i]= dice;
+			dice.setActionCommand("Dice"+i);
 			southCenter.add(dice);
 		}
+		
+		JPanel southEast = new JPanel();
+		southEast.setBackground(Color.BLUE);
+		rollButton = new JButton("Roll");
+		rollButton.setActionCommand("Roll");
+		doneButton = new JButton("Done");
+		southEast.add(rollButton);
+		southEast.add(doneButton);
+		
+		JPanel southPanel = new JPanel();
+		southPanel.setLayout(new BorderLayout());
+		southPanel.setBackground(Color.ORANGE);
+		southPanel.add(southCenter, BorderLayout.CENTER);
+		southPanel.add(southEast, BorderLayout.EAST);
 
 		this.add(westPanel, BorderLayout.WEST);
 		this.add(northPanel, BorderLayout.NORTH);
 		this.add(southPanel, BorderLayout.SOUTH);
 	}
 
-	public void setPlayerNames(String[] names){
-		for(int i=0; i<names.length; i++){
+	/**
+	 * Creates and adds JLables to the panel with the names given
+	 * @param names The array of names you want displayed above the table
+	 */
+	public void setPlayerNames(String[] names) {
+		for(int i=0; i<names.length; i++) {
 
 			JLabel label = new JLabel(names[i]);
 			label.setBackground(Color.GREEN);
@@ -91,8 +105,13 @@ public class GameView extends JPanel{
 		}
 	}
 
-	public void initTable(YatzyTableModel model){
-		this.table = new JTable(model){
+	/**
+	 * Creates a new JTable with the given model and adds it to the panel
+	 * @param model 
+	 * @see AbstractTableModel
+	 */
+	public void initTable(YatzyTableModel model) {
+		this.table = new JTable(model) {
 		    // Källa på följande kodstycke taget från https://www.youtube.com/watch?v=iMBfneE2Ztg
 			@Override
 		    public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
@@ -109,37 +128,57 @@ public class GameView extends JPanel{
 		this.add(table, BorderLayout.CENTER);
 	}
 
-	public void setDiceButtons(Dice[] dices){
-		for(int i=0; i<diceButtons.length; i++){
-			diceButtons[i].setText(""+(dices[i].getValue()));
-
+	/**
+	 * Sets the text on the  dice buttons to display the values on the dices
+	 * @param dices Array of dices which values will be displayed on the buttons
+	 */
+	public void setDiceButtons(Dice[] dices) {
+		for(int i=0; i<diceButtons.length; i++) {
+			diceButtons[i].setText(Integer.toString(dices[i].getValue()));
 		}
 	}
 
-	public void setEnableDice(boolean enableDice)
-	{
+	/**
+	 * Sets each dice button to be enabled or disabled
+	 * @param enableDice given true all dice buttons will be enabled
+	 */
+	public void setEnableDice(boolean enableDice) {
 		for(int i=0; i<diceButtons.length; i++){
 			diceButtons[i].setEnabled(enableDice);
 		}
 	}
 
+	/**
+	 * Returns an array of all dice buttons
+	 * @return an array of all dice buttons
+	 */
 	public DiceButton[] getDiceButtons() {
 		return diceButtons;
 	}
 
-
-	public JButton getRollButton(){
+	/**
+	 * Returns the roll button
+	 * @return the roll button
+	 */
+	public JButton getRollButton() {
 		return rollButton;
 	}
 
-	public JButton getDoneButton(){
+	/**
+	 * Returns the done button
+	 * @return the dice button
+	 */
+	public JButton getDoneButton() {
 		return doneButton;
 	}
 
-	public void setCombinations(String[] combinations){
-		for(int i=0; i<combinations.length; i++){
+	/**
+	 * Creates and adds JLables to the GameView panel for each element in combinations
+	 * @param combinations An array of string containing the combinations in the order to be displayed
+	 */
+	public void setCombinations(String[] combinations) {
+		for(int i=0; i<combinations.length; i++) {
 			JLabel label = new JLabel(combinations[i]);
-
 			label.setPreferredSize(combinationLabelSize);
 			label.setSize(combinationLabelSize);
 			label.setBackground(Color.PINK);
@@ -149,13 +188,20 @@ public class GameView extends JPanel{
 		}
 	}
 
+	/**
+	 * Adds an ActionListener to all the dice buttons
+	 * @param listener A action listener to be notified when an action has occurred
+	 */
 	public void addDiceListener(ActionListener listener) {
-		for(int i = 0; i<diceButtons.length; i++)
-		{
+		for(int i = 0; i<diceButtons.length; i++) {
 			diceButtons[i].addActionListener(listener);
-			diceButtons[i].setActionCommand("Dice"+i);
 		}
 	}
+	
+	/**
+	 * Adds an ActionListener to the roll button and the done button
+	 * @param listener A action listener to be notified when an action has occurred
+	 */
 	public void addPlayListener(ActionListener listener) {
 		rollButton.addActionListener(listener);
 		doneButton.addActionListener(listener);
