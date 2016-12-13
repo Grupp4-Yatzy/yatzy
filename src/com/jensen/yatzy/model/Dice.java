@@ -2,15 +2,16 @@ package com.jensen.yatzy.model;
 
 import com.jensen.yatzy.util.MyRandom;
 /**
- * 
- * @author benjamin
  * Dice class is created to give the dices values and set the dices
  * different states.
+ * @author benjamin
+ * 
  */
 public class Dice {
  	private static final int DEFUALT_DICE_VALUE=6;
 	private int value;
 	private boolean isLocked;
+        
         /**
          * The constructor initializes the variabels value and isLocked
          * Sets the dice to unlocked and sets the dice value to 6
@@ -19,6 +20,7 @@ public class Dice {
 		value = DEFUALT_DICE_VALUE;
                 isLocked = false;
 	}
+        
         /**
 	 * Gets the value of the upward facing side
 	 * @return value of the dice
@@ -41,6 +43,7 @@ public class Dice {
 	public boolean isLocked() {
 		return isLocked;
 	}
+        
 	/**
          * Enables the user to lock and unlock dices
          *  
@@ -53,6 +56,7 @@ public class Dice {
 			isLocked = true;
 		}
 	} 
+        
         /**
          * Decides if dices are locked or not
          * @param b 
