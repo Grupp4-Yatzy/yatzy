@@ -8,9 +8,10 @@ import com.jensen.yatzy.model.Player;
 import com.jensen.yatzy.model.Yatzy;
 import com.jensen.yatzy.view.DiceButton;
 import com.jensen.yatzy.model.YatzyTableModel;
-import com.jensen.yatzy.util.MyRandom;
 import com.jensen.yatzy.view.GameView;
+import com.jensen.yatzy.view.NewGamePanel;
 import com.jensen.yatzy.view.Window;
+import javax.swing.JTextField;
 
 /**
  * Controls how actions are performed throughout a game of Yatzy
@@ -31,6 +32,9 @@ public class Controller {
                     break;
                 case "done":
                     doneButton();
+                    break;
+                case "new game":
+                    newGame();
                     break;
                 default:
                     System.out.println("No Command for: " + ac);
@@ -55,46 +59,84 @@ public class Controller {
             button.DiceToggleLock();
         }
     }
+    
+    private class MenuListener implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            
+            if(e.getSource() == newGamePanel.getOkButton()){     
+                initGame();
+            }
+            else if(e.getSource() == newGamePanel.getNumberOfPlayers()){
+                JTextField textField = newGamePanel.getNumberOfPlayers();
+                String text = textField.getText();
+                int numberOfPlayers = 1;
+                try{
+                    numberOfPlayers = Integer.parseInt(text);
+                }
+                catch(NumberFormatException ex){
+                    window.displayErrorMessage("You need to enter an integer.");
+                }
+                if(numberOfPlayers >= 1 && numberOfPlayers <= 6){
+                  newGamePanel.setPlayerFields(numberOfPlayers);
+                  newGamePanel.getOkButton().setEnabled(true);
+                }
+                else{
+                  window.displayErrorMessage("Number of players must be [1-6].");
+                }
+                window.pack();   
+              
+            }
+        }
+        
+    }
 
     private Window window;
     private GameView gamePanel;
     private Yatzy game;
     private YatzyTableModel tableModel;
-
+    private NewGamePanel newGamePanel;
     /**
      * Creates a controller and initiates the default view and sets the window to display it.
      * @param window 
-     * @param game 
+     * 
      */
-    public Controller(Window window, Yatzy game) {
+    public Controller(Window window) {
         this.window = window;
-        this.game = game;
-
-        // Creates defualt start-up panel
+        newGame(); 
+    }
+    
+    public void newGame(){
+        newGamePanel = new NewGamePanel();
+        newGamePanel.AddListener(new MenuListener());
+        window.setCurrentPanel(newGamePanel);
+        newGamePanel.getOkButton().setEnabled(false);
+    }
+    
+    public void initGame(){
         gamePanel = new GameView();
-        this.window.setCurrentPanel(gamePanel);
+        this.game = new Yatzy();
         gamePanel.addPlayListener(new PlayListener());
         gamePanel.addDiceListener(new DiceListener());
         gamePanel.setDiceButtons(this.game.getDices());
-
         
-
-        // tests
-        String[] names = {"playerOne", "playerTwo"};
+        String[] names = newGamePanel.getPlayerNames();
         game.addPlayers(names);
         gamePanel.setPlayerNames(names);
         gamePanel.setCombinations(Constant.COMBINATIONS);
-
-        //Integer[][] data = new Integer[Constant.COMBINATIONS.length][names.length];
+              
         Integer[][] data = game.createTable();
         tableModel = new YatzyTableModel();
         tableModel.initTable(data.length, data[0].length);
         gamePanel.initTable(tableModel);
-
+        
         gamePanel.setEnableDice(false);
         gamePanel.getDoneButton().setEnabled(false);
+        gamePanel.getNewGameButton();
+        this.window.setCurrentPanel(gamePanel);
     }
-
+    
     /**
      * Rolls all unlocked dices TODO unlock all dices
      */
@@ -136,6 +178,7 @@ public class Controller {
         System.out.println("Yatzy: " + game.yatzy());
         System.out.println("---------------------");
     }
+    
 
     private void doneButton() {
     	// TODO implement save and update functionality

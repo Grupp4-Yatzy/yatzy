@@ -13,14 +13,9 @@ public class Main {
 
 	public static void main(String[] args) {
 		Window window = new Window();
-		Yatzy yatzy = new Yatzy();
-		Controller controller = new Controller(window, yatzy);
+		Controller controller = new Controller(window);
                 window.pack();
 		window.setVisible(true);
-                
-                NewGamePanel panel = new NewGamePanel();
-                panel.setPlayerFields(4);
-                window.setCurrentPanel(panel);
                 
 	}
 
