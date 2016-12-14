@@ -24,6 +24,7 @@ public class GameView extends JPanel {
 	private JPanel centerPanel;
 	private JButton rollButton;
 	private JButton doneButton;
+        private JButton newGameButton;
 	private DiceButton[] diceButtons = new DiceButton[5];
 	private ArrayList<JLabel> playerNames = new ArrayList<>();
 	private JTable table;
@@ -54,13 +55,15 @@ public class GameView extends JPanel {
 		centerPanel = new JPanel();
 		centerPanel.setBackground(Color.yellow);
 
-		JLabel label = new JLabel("Yatzy");
-		northPanel.add(label, BorderLayout.WEST);
+		newGameButton = new JButton("New Game");
+                newGameButton.setPreferredSize(combinationLabelSize);
+                JLabel label = new JLabel("Yatzy");
+		northPanel.add(newGameButton, BorderLayout.WEST);
 		northPanel.add(northGridPanel, BorderLayout.CENTER);
-		label.setForeground(Color.white);
-		label.setPreferredSize(combinationLabelSize);
-
-		JPanel southCenter = new JPanel();
+                label.setForeground(Color.white);
+                label.setPreferredSize(combinationLabelSize);
+		
+                JPanel southCenter = new JPanel();
 		southCenter.setBackground(Color.GRAY);
 		for(int i=0; i<diceButtons.length; i++){
 			DiceButton dice = new DiceButton(""+(i+1));
@@ -171,6 +174,10 @@ public class GameView extends JPanel {
 	public JButton getDoneButton() {
 		return doneButton;
 	}
+        
+        public JButton getNewGameButton(){
+            return newGameButton;
+        }
 
 	/**
 	 * Creates and adds JLables to the GameView panel for each element in combinations
@@ -205,5 +212,6 @@ public class GameView extends JPanel {
 	public void addPlayListener(ActionListener listener) {
 		rollButton.addActionListener(listener);
 		doneButton.addActionListener(listener);
+                newGameButton.addActionListener(listener);
 	}
 }
