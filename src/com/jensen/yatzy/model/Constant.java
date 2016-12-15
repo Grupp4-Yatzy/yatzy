@@ -10,10 +10,12 @@ public class Constant {
 	public static final int BONUS = 50;
 	public static final int INDEX_OF_SUM = 6;
 	public static final int INDEX_OF_BONUS = 7;
-	public static final String[] COMBINATIONS = {"Ettor", "Tvåor", "Treor",
+        public static final String[] COMBINATIONS = {"Ettor", "Tvåor", "Treor",
 			"Fyror", "Femmor", "Sexor",
 			"Summa", "Bonus", "Ett par", "Två par", "Tretal", "Fyrtal",
 			"L.Stege", "S.Stege", "Kåk", "Chans", "Yatzy", "Totalt"};
+        public static final int INDEX_OF_TOTAL = COMBINATIONS.length-1;
+    
 
 
 }

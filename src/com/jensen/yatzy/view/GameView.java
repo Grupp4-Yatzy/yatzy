@@ -130,6 +130,10 @@ public class GameView extends JPanel {
 		};
 		this.add(table, BorderLayout.CENTER);
 	}
+        
+        public JTable getTable(){
+            return this.table;
+        }
 
 	/**
 	 * Sets the text on the  dice buttons to display the values on the dices
@@ -194,6 +198,7 @@ public class GameView extends JPanel {
 			westPanel.add(label);
 		}
 	}
+        
 
 	/**
 	 * Adds an ActionListener to all the dice buttons

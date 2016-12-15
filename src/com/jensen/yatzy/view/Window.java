@@ -25,6 +25,7 @@ public class Window extends JFrame {
 		this.setTitle("Yatzy");
                 this.setResizable(false);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+                //this.setLocationRelativeTo(null);
 		
 	}
         
