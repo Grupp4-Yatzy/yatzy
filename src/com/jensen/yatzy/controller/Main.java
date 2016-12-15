@@ -7,20 +7,16 @@ import com.jensen.yatzy.view.Window;
 public class Main {
 
     /**
-     * 
+     *
      * @param args
      */
+    public static void main(String[] args) {
+        Window window = new Window();
+        new Controller(window);
+        window.setLocationRelativeTo(null);
+        window.pack();
+        window.setVisible(true);
 
-	public static void main(String[] args) {
-		Window window = new Window();
-		new Controller(window);
-<<<<<<< HEAD
-=======
-                window.setLocationRelativeTo(null);
->>>>>>> Roberto
-                window.pack();
-		window.setVisible(true);
-                
-	}
+    }
 
 }
