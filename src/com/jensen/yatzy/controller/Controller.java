@@ -119,7 +119,7 @@ public class Controller {
         newGame();
     }
 
-    public void createPlayerFields() {
+    private void createPlayerFields() {
         String text = newGamePanel.getNumberOfPlayers().getText();
         int numberOfPlayers;
         try {
@@ -136,7 +136,7 @@ public class Controller {
         window.pack();
     }
 
-    public void newGame() {
+    private void newGame() {
         newGamePanel = new NewGamePanel();
         newGamePanel.setYatzyModeOptions(YatzyMode.values());
         newGamePanel.AddMenuListener(new MenuListener());
@@ -144,7 +144,7 @@ public class Controller {
         newGamePanel.getOkButton().setEnabled(false);
     }
 
-    public void initGame() {
+    private void initGame() {
         gamePanel = new GameView();
         this.game = new Yatzy();
         gamePanel.addPlayListener(new PlayListener());
