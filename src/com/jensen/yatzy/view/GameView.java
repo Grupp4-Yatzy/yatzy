@@ -2,6 +2,7 @@ package com.jensen.yatzy.view;
 
 import com.jensen.yatzy.model.Constant;
 import com.jensen.yatzy.model.Dice;
+import com.jensen.yatzy.model.DiceIcon;
 import com.jensen.yatzy.model.Player;
 import com.jensen.yatzy.model.YatzyTableModel;
 import java.awt.BorderLayout;
@@ -68,7 +69,7 @@ public class GameView extends JPanel {
         JPanel southCenter = new JPanel();
         southCenter.setBackground(Color.GRAY);
         for (int i = 0; i < diceButtons.length; i++) {
-            DiceButton dice = new DiceButton("" + (i + 1));
+            DiceButton dice = new DiceButton();
             diceButtons[i] = dice;
             dice.setActionCommand("Dice" + i);
             southCenter.add(dice);
@@ -149,9 +150,9 @@ public class GameView extends JPanel {
      *
      * @param dices Array of dices which values will be displayed on the buttons
      */
-    public void setDiceButtons(Dice[] dices) {
+    public void setDiceButtons(Dice[] dices, DiceIcon icons) {
         for (int i = 0; i < diceButtons.length; i++) {
-            diceButtons[i].setText(Integer.toString(dices[i].getValue()));
+            diceButtons[i].setIcons(icons.getDiceIcons(dices[i].getValue()));
         }
     }
 
