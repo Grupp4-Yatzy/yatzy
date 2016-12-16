@@ -220,11 +220,11 @@ public class Controller {
         try {
             modeController(player);
             saveScore(selectedRow, selectedCol, player);
-            if (player.getFirstEmptyScoreIndex() == Constant.INDEX_OF_TOTAL) {
-                calculateTotal(player);
-            }
             if (player.getFirstEmptyScoreIndex() == Constant.INDEX_OF_SUM) {
                 calculateSumBonus(player);
+            }
+            if (player.getFirstEmptyScoreIndex() == Constant.INDEX_OF_TOTAL) {
+                calculateTotal(player);
             }
 
             Dice[] dices = game.getDices();
