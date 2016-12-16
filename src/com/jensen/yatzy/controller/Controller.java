@@ -322,7 +322,7 @@ public class Controller {
                 break;
             case 16:
                 // Yatzy
-                score = game.numberOfAKind(5);
+                score = game.yatzy();
                 break;
             default:
                 System.out.println("Missing case for given index: " + index);
