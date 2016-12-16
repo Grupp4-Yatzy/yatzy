@@ -241,6 +241,7 @@ public class Controller {
             gamePanel.getRollButton().setEnabled(true);
             gamePanel.getRollButton().setText("Roll (" + game.getNumbersOfRollsLeft() + ")");
             gamePanel.getDoneButton().setEnabled(false);
+            gamePanel.getTable().clearSelection();
         } catch (InvalidSelectionException e) {
             window.displayErrorMessage(e.getMessage());
         }
