@@ -338,7 +338,7 @@ public class Controller {
         int bonusIndex = Constant.INDEX_OF_BONUS;
         player.addSum();
         tableModel.setValueAt(playerScore[sumIndex], sumIndex, playerIndex);
-        player.addBonus();
+        player.addBonus(getReqScoreForBonus());
         tableModel.setValueAt(playerScore[bonusIndex], bonusIndex, playerIndex);
 
     }
@@ -364,6 +364,16 @@ public class Controller {
             player.addScore(score, row);
             tableModel.setValueAt(score, row, col);
         }
+    }
+    
+    private int getReqScoreForBonus() {
+        switch(mode) {
+            case FORCED_YATZY:
+                return Constant.FORCED_REQUIRED_SCORE_FOR_BONUS;
+            default:
+                return Constant.DEFAULT_REQUIRED_SCORE_FOR_BONUS;
+        }
+                        
     }
 
 }
