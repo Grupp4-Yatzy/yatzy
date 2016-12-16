@@ -68,9 +68,11 @@ public class Player {
     /**
      * This methods checks if index 6 has a value of 42 or more, if so the bonus
      * will be given (50 points), else no bonus will be given.
+     * 
+     * @param reqScore
      */
-    public void addBonus() {
-		if (scoreList[Constant.INDEX_OF_SUM] >= Constant.REQUIRED_SCORE_FOR_BONUS) {
+    public void addBonus(int reqScore) {
+		if (scoreList[Constant.INDEX_OF_SUM] >= reqScore) {
 			addScore(Constant.BONUS, Constant.INDEX_OF_BONUS);
 		} else {
 			addScore(0, Constant.INDEX_OF_BONUS);
