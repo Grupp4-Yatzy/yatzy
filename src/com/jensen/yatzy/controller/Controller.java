@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import com.jensen.yatzy.model.Constant;
 import com.jensen.yatzy.model.Dice;
+import com.jensen.yatzy.model.DiceIcon;
 import com.jensen.yatzy.model.Player;
 import com.jensen.yatzy.model.Yatzy;
 import com.jensen.yatzy.model.YatzyMode;
@@ -148,7 +149,7 @@ public class Controller {
         this.game = new Yatzy();
         gamePanel.addPlayListener(new PlayListener());
         gamePanel.addDiceListener(new DiceListener());
-        gamePanel.setDiceButtons(this.game.getDices());
+        gamePanel.setDiceButtons(game.getDices(), DiceIcon.getInstance());
 
         String[] names = newGamePanel.getPlayerNames();
         game.addPlayers(names);
@@ -179,7 +180,7 @@ public class Controller {
                 dice.roll();
             }
         }
-        gamePanel.setDiceButtons(dices);
+        gamePanel.setDiceButtons(dices, DiceIcon.getInstance());
         game.getNumbersOfRollsLeft();
 
         game.decreaseRolls();
@@ -231,11 +232,10 @@ public class Controller {
                 dice.setLock(false);
             }
 
-            DiceButton[] button = gamePanel.getDiceButtons();
+            DiceButton[] buttons = gamePanel.getDiceButtons();
 
-            for (DiceButton but : button) {
-                but.setOpaque(false);
-                //but.setSelected(false);
+            for (DiceButton button : buttons) {
+            	button.setSelected(false);
             }
 
             gamePanel.setEnableDice(false);
