@@ -3,7 +3,6 @@ package com.jensen.yatzy.view;
 import com.jensen.yatzy.model.Constant;
 import com.jensen.yatzy.model.Dice;
 import com.jensen.yatzy.model.DiceIcon;
-import com.jensen.yatzy.model.Player;
 import com.jensen.yatzy.model.YatzyTableModel;
 import java.awt.BorderLayout;
 import java.awt.Color;

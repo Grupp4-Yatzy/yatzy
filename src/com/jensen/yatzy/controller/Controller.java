@@ -14,9 +14,6 @@ import com.jensen.yatzy.model.YatzyTableModel;
 import com.jensen.yatzy.view.GameView;
 import com.jensen.yatzy.view.NewGamePanel;
 import com.jensen.yatzy.view.Window;
-import java.awt.Font;
-import java.util.ArrayList;
-import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 /**

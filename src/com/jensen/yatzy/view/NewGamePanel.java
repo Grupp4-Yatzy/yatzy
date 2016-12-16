@@ -1,7 +1,6 @@
 package com.jensen.yatzy.view;
 
 import com.jensen.yatzy.model.YatzyMode;
-import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
