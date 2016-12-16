@@ -228,17 +228,14 @@ public class Controller {
             }
 
             Dice[] dices = game.getDices();
-            for (Dice dice : dices) {
-                dice.setLock(false);
-            }
-
             DiceButton[] buttons = gamePanel.getDiceButtons();
-
-            for (DiceButton button : buttons) {
-                button.setSelected(false);
+            for (int i = 0; i < dices.length; i++) {
+                dices[i].setLock(false);
+                buttons[i].setSelected(false);
+                buttons[i].setEnabled(false);
             }
 
-            gamePanel.setEnableDice(false);
+            //gamePanel.setEnableDice(false);
             game.nextPlayer();
             gamePanel.playerIndicator(game.getPlayerIndex(game.getCurrentPlayer()));
             gamePanel.getRollButton().setEnabled(true);
