@@ -99,9 +99,8 @@ public class GameView extends JPanel {
      * @param names The array of names you want displayed above the table
      */
     public void setPlayerNames(String[] names) {
-        for (int i = 0; i < names.length; i++) {
-
-            JLabel label = new JLabel(names[i]);
+        for (String name : names) {
+            JLabel label = new JLabel(name);
             label.setBackground(Color.GREEN);
             label.setOpaque(true);
             label.setHorizontalAlignment(JLabel.CENTER);

@@ -6,7 +6,7 @@ import javax.swing.ImageIcon;
 public class DiceIcon {
 	
 	private static DiceIcon instance;
-	private Icon[][] diceIcons;
+	private final Icon[][] diceIcons;
 	
 	private DiceIcon(){
 		diceIcons = new Icon[6][3];
