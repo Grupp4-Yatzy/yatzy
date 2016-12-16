@@ -13,6 +13,9 @@ import com.jensen.yatzy.model.YatzyTableModel;
 import com.jensen.yatzy.view.GameView;
 import com.jensen.yatzy.view.NewGamePanel;
 import com.jensen.yatzy.view.Window;
+import java.awt.Font;
+import java.util.ArrayList;
+import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 /**
@@ -160,6 +163,7 @@ public class Controller {
         gamePanel.setEnableDice(false);
         gamePanel.getDoneButton().setEnabled(false);
         gamePanel.getNewGameButton();
+        gamePanel.playerIndicator(game.getPlayerIndex(game.getCurrentPlayer()));
         this.window.setCurrentPanel(gamePanel);
     }
 
@@ -215,13 +219,13 @@ public class Controller {
         try {
             modeController(player);
             saveScore(selectedRow, selectedCol, player);
-            if (player.getFirstEmptyScoreIndex() == Constant.INDEX_OF_TOTAL){
+            if (player.getFirstEmptyScoreIndex() == Constant.INDEX_OF_TOTAL) {
                 calculateTotal(player);
             }
-            if(player.getFirstEmptyScoreIndex() == Constant.INDEX_OF_SUM){
+            if (player.getFirstEmptyScoreIndex() == Constant.INDEX_OF_SUM) {
                 calculateSumBonus(player);
             }
-                
+
             Dice[] dices = game.getDices();
             for (Dice dice : dices) {
                 dice.setLock(false);
@@ -236,6 +240,7 @@ public class Controller {
 
             gamePanel.setEnableDice(false);
             game.nextPlayer();
+            gamePanel.playerIndicator(game.getPlayerIndex(game.getCurrentPlayer()));
             gamePanel.getRollButton().setEnabled(true);
             gamePanel.getRollButton().setText("Roll (" + game.getNumbersOfRollsLeft() + ")");
             gamePanel.getDoneButton().setEnabled(false);
@@ -244,6 +249,8 @@ public class Controller {
         }
 
     }
+
+   
 
     private void modeController(Player player) throws InvalidSelectionException {
         switch (mode) {
@@ -256,6 +263,9 @@ public class Controller {
                     throw new InvalidSelectionException("You have to finish the upper section first.");
                 }
             case WILD_YATZY:
+                if (selectedCol == -1) {
+                    throw new InvalidSelectionException(player.getName() + ", you have to choose a combination");
+                }
                 if (selectedCol != game.getPlayerIndex(player)) {
                     throw new InvalidSelectionException("Wrong column. It is " + player.getName() + "'s turn.");
                 }
@@ -266,6 +276,7 @@ public class Controller {
                         || selectedRow == Constant.INDEX_OF_TOTAL) {
                     throw new InvalidSelectionException("Bonus, sum and total are invalid selections");
                 }
+
                 break;
             default:
                 break;
@@ -340,10 +351,10 @@ public class Controller {
         Integer[] playerScore = player.getScoreList();
         int playerIndex = game.getPlayerIndex(player);
         final int totalIndex = Constant.INDEX_OF_TOTAL;
-         
-            player.addTotal();
-            tableModel.setValueAt(playerScore[totalIndex], totalIndex, playerIndex);
-        
+
+        player.addTotal();
+        tableModel.setValueAt(playerScore[totalIndex], totalIndex, playerIndex);
+
     }
 
     private void saveScore(int row, int col, Player player) {
