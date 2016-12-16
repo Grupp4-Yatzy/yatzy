@@ -120,7 +120,7 @@ public class Controller {
     }
 
     public void createPlayerFields() {
-        String text = newGamePanel.getNumberOfPlayers();
+        String text = newGamePanel.getNumberOfPlayers().getText();
         int numberOfPlayers;
         try {
             numberOfPlayers = Integer.parseInt(text);
