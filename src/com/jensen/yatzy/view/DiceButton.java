@@ -13,7 +13,12 @@ public class DiceButton extends JButton {
         this.setPreferredSize(new Dimension(50, 50));
     }
 
-    public void DiceToggleLock() {
+    public DiceButton() {
+		super();
+        this.setPreferredSize(new Dimension(50, 50));
+	}
+
+	public void DiceToggleLock() {
         if (this.isSelected()) {
             this.setSelected(false);
         } else {
