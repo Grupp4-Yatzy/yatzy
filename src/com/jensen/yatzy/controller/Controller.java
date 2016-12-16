@@ -14,7 +14,6 @@ import com.jensen.yatzy.model.YatzyTableModel;
 import com.jensen.yatzy.view.GameView;
 import com.jensen.yatzy.view.NewGamePanel;
 import com.jensen.yatzy.view.Window;
-import javax.swing.JTextField;
 
 /**
  * Controls how actions are performed throughout a game of Yatzy
@@ -52,15 +51,20 @@ public class Controller {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            String ac = e.getActionCommand();
+            //String ac = e.getActionCommand();
             Dice[] dices = game.getDices();
 
-            String value = ac.substring(ac.length() - 1);
-            Integer index = Integer.parseInt(value);
-
-            dices[index].toggleLock();
-            DiceButton button = (DiceButton) e.getSource();
-            button.DiceToggleLock();
+            //String value = ac.substring(ac.length() - 1);
+            //Integer index = Integer.parseInt(value);
+            DiceButton[] buttons = gamePanel.getDiceButtons();
+            DiceButton button;
+            for (int index = 0; index < buttons.length; index++) {
+                button = buttons[index];
+                if (button.equals(e.getSource())) {
+                    dices[index].toggleLock();
+                    button.DiceToggleLock();
+                }
+            }
         }
     }
 
@@ -116,9 +120,8 @@ public class Controller {
     }
 
     public void createPlayerFields() {
-        JTextField textField = newGamePanel.getNumberOfPlayers();
-        String text = textField.getText();
-        int numberOfPlayers = 1;
+        String text = newGamePanel.getNumberOfPlayers();
+        int numberOfPlayers;
         try {
             numberOfPlayers = Integer.parseInt(text);
             if (numberOfPlayers >= 1 && numberOfPlayers <= 6) {
@@ -232,7 +235,7 @@ public class Controller {
             DiceButton[] buttons = gamePanel.getDiceButtons();
 
             for (DiceButton button : buttons) {
-            	button.setSelected(false);
+                button.setSelected(false);
             }
 
             gamePanel.setEnableDice(false);
@@ -246,8 +249,6 @@ public class Controller {
         }
 
     }
-
-   
 
     private void modeController(Player player) throws InvalidSelectionException {
         switch (mode) {
