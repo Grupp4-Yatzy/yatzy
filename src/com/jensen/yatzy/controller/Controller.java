@@ -191,23 +191,7 @@ public class Controller {
         gamePanel.getRollButton().setText("Roll (" + game.getNumbersOfRollsLeft() + ")");
         gamePanel.getDoneButton().setEnabled(true);
 
-        System.out.println("ettor: " + game.sumNumber(1));
-        System.out.println("tvåor: " + game.sumNumber(2));
-        System.out.println("treor: " + game.sumNumber(3));
-        System.out.println("fyror: " + game.sumNumber(4));
-        System.out.println("femmor: " + game.sumNumber(5));
-        System.out.println("sexor: " + game.sumNumber(6));
-        System.out.println("---------------------");
-        System.out.println("par: " + game.onePair());
-        System.out.println("tvåpar: " + game.twoPair());
-        System.out.println("tretal: " + game.numberOfAKind(3));
-        System.out.println("fyrtal: " + game.numberOfAKind(4));
-        System.out.println("Liten stege: " + game.straight(6));
-        System.out.println("Stor stege: " + game.straight(1));
-        System.out.println("Kåk: " + game.fullHouse());
-        System.out.println("Chans: " + game.sum());
-        System.out.println("Yatzy: " + game.yatzy());
-        System.out.println("---------------------");
+        System.out.println(game);
     }
 
     private void doneButton() {
