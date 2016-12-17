@@ -64,4 +64,9 @@ public class Dice {
 	public void setLock(boolean b) {
 		isLocked = b;
 	}
+        
+         @Override
+        public String toString() {
+            return "Value: " + getValue() + " locked: " + isLocked();
+        }
 }
