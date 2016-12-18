@@ -2,7 +2,8 @@
 package com.jensen.yatzy.exception;
 
 /**
- *
+ *This class inherits from the super class Exception and is created
+ * to take care of user input that is not valid.
  * @author RobertoBlanco
  */
 public class InvalidSelectionException extends Exception {

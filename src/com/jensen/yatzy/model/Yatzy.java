@@ -5,10 +5,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Yatzy class holds the state of the game. Check the points so they get filled
- * in the right combination index
- *
- * @author RobertoBlanco och Kami Hassanzadeh
+ * Yatzy class holds the state of the game and check the points so they get filled
+ * in the right combination index.
+ * @author Benjamin Rosman
  *
  */
 public class Yatzy {

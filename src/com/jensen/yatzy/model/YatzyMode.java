@@ -2,20 +2,27 @@
 package com.jensen.yatzy.model;
 
 /**
- *
+ * Enum class created for three different Yatzy modes.
  * @author RobertoBlanco
  */
 public enum YatzyMode {
     FORCED_YATZY("Forced"), NORMAL_YATZY("Normal"), WILD_YATZY("Wild");
     
     private String mode;
-   
+    
+    /**
+     * Intializes mode
+     * @param s 
+     */
     private YatzyMode(String s){
-            mode = s;
-   
+            this.mode = s; 
     }
     
+    /**
+     * 
+     * @return mode
+     */
     public String getMode(){
-        return mode;
+        return this.mode;
     }
 }

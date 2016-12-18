@@ -1,5 +1,10 @@
 package com.jensen.yatzy.model;
 
+/**
+ * This class is buildt for the constant in this program.
+ * This class only contains instance variables. 
+ * @author RobertoBlanco
+ */
 public class Constant {
 
 

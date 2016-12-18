@@ -15,8 +15,8 @@ import javax.swing.JTextField;
 
 /**
  * NewGamePanel class creates the first window where you can choose how many
- * players will participate in the game
- *
+ * players will participate in the game and choose which yatzy mode the user
+ * wants to play.
  * @author RobertoBlanco
  */
 public class NewGamePanel extends JPanel {
@@ -61,14 +61,18 @@ public class NewGamePanel extends JPanel {
         this.add(southPanel);
 
     }
-
+    
+    /**
+     * 
+     * @return okButton
+     */
     public JButton getOkButton() {
         return okButton;
     }
 
     /**
      *
-     * @return number of players
+     * @return numberOfPlayers
      */
     public JTextField getNumberOfPlayers() {
         return numberOfPlayers;
@@ -87,7 +91,12 @@ public class NewGamePanel extends JPanel {
         }
         return names;
     }
-
+    
+    /**
+     * Creates ButtonGroup for three different Yatzy modes
+     * and adds them to the headPanel.
+     * @param modes 
+     */
     public void setYatzyModeOptions(YatzyMode[] modes) {
         // headPanel = new JPanel();
         headPanel.removeAll();
@@ -124,7 +133,13 @@ public class NewGamePanel extends JPanel {
         //this.add(centerPanel);
         centerPanel.repaint();
     }
-
+    
+    /**
+     * Adds an ActionListener to the okButton and the numberOfPlayers JTextField
+     *
+     * @param listener A action listener to be notified when an action has
+     * occurred
+     */
     public void AddMenuListener(ActionListener listener) {
         okButton.addActionListener(listener);
         numberOfPlayers.addActionListener(listener);

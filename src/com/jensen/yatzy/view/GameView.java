@@ -111,7 +111,11 @@ public class GameView extends JPanel {
             northGridPanel.add(label);
         }
     }
-
+    
+    /**
+     * 
+     * @return playerNames
+     */
     public ArrayList<JLabel> getPlayerNames() {
 
         return playerNames;
@@ -186,14 +190,17 @@ public class GameView extends JPanel {
     }
 
     /**
-     * Returns the done button
-     *
-     * @return the dice button
+     * 
+     * @return doneButton
      */
     public JButton getDoneButton() {
         return doneButton;
     }
-
+    
+    /**
+     * 
+     * @return newGameButton
+     */
     public JButton getNewGameButton() {
         return newGameButton;
     }
@@ -216,7 +223,12 @@ public class GameView extends JPanel {
             westPanel.add(label);
         }
     }
-
+    
+    /**
+     * This metod marks the current player with bold font and bigger size and
+     * the non current player with a plain font and a smaller size.
+     * @param playerIndex 
+     */
     public void playerIndicator(int playerIndex) {
 
         for (int i = 0; i < playerNames.size(); i++) {
