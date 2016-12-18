@@ -69,10 +69,13 @@ public class MenuView extends JPanel {
             bigButton.setDisabledIcon(disabledFrame);
             bigButton.setRolloverIcon(rollOverFrame);
             bigButton.setPressedIcon(pressedFrame);
+            
             bigButton.setPreferredSize(bigButtonD);
             bigButton.setMaximumSize(bigButtonD);
+            
             bigButton.setHorizontalTextPosition(JButton.CENTER);
             bigButton.setAlignmentX(CENTER_ALIGNMENT);
+            
             bigButton.setBorderPainted(false);
             bigButton.setContentAreaFilled(false);
             
