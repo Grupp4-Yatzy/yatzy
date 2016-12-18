@@ -1,6 +1,5 @@
 package com.jensen.yatzy.view;
 
-import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.Icon;
@@ -15,10 +14,10 @@ public class DiceButton extends JButton {
     }
 
     public DiceButton() {
-		super();
+        super();
         this.setPreferredSize(new Dimension(50, 50));
-        setBackground(Color.red);
-        setOpaque(false);
+        setContentAreaFilled(false);
+        setBorderPainted(false);
 	}
 
 	public void DiceToggleLock() {

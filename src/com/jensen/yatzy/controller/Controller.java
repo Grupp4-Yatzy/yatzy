@@ -12,6 +12,7 @@ import com.jensen.yatzy.model.YatzyMode;
 import com.jensen.yatzy.view.DiceButton;
 import com.jensen.yatzy.model.YatzyTableModel;
 import com.jensen.yatzy.view.GameView;
+import com.jensen.yatzy.view.MenuView;
 import com.jensen.yatzy.view.NewGamePanel;
 import com.jensen.yatzy.view.Window;
 
@@ -116,7 +117,8 @@ public class Controller {
      */
     public Controller(Window window) {
         this.window = window;
-        newGame();
+        //newGame();
+        window.setCurrentPanel(new MenuView());
     }
 
     private void createPlayerFields() {
@@ -139,6 +141,7 @@ public class Controller {
     private void newGame() {
         newGamePanel = new NewGamePanel();
         newGamePanel.setYatzyModeOptions(YatzyMode.values());
+        mode = YatzyMode.NORMAL_YATZY;
         newGamePanel.AddMenuListener(new MenuListener());
         window.setCurrentPanel(newGamePanel);
         newGamePanel.getOkButton().setEnabled(false);
