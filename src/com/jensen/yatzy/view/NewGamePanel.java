@@ -135,7 +135,8 @@ public class NewGamePanel extends JPanel {
     }
     
     /**
-     * Adds an ActionListener to the okButton and the numberOfPlayers JTextField
+     * Adds an ActionListener to the okButton, the numberOfPlayers and
+     * yatzyModeOptions
      *
      * @param listener A action listener to be notified when an action has
      * occurred
