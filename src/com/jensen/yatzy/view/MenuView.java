@@ -11,15 +11,11 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.image.ImageObserver;
-import java.awt.image.ImageProducer;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
@@ -29,7 +25,6 @@ import javax.swing.JPanel;
 public class MenuView extends JPanel {
     
     JPanel centerPanel;
-    Image bgImage;
     
     public MenuView() {
         this.setLayout(new BorderLayout());
@@ -113,13 +108,6 @@ public class MenuView extends JPanel {
         
         this.add(northPanel, BorderLayout.NORTH);
         this.add(centerPanel, BorderLayout.CENTER);
-    }
-    
-    @Override
-    protected void paintComponent(Graphics g) {
-        
-        super.paintComponent(g);
-        //g.drawImage(bgImage, 0, 0, null);
     }
     
 }
