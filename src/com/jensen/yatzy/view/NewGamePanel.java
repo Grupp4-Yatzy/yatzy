@@ -94,6 +94,9 @@ public class NewGamePanel extends JPanel {
         yatzyModeOptions = new ArrayList<>();
         for (YatzyMode mode : modes) {
             JRadioButton option = new JRadioButton(mode.getMode());
+            if (mode == YatzyMode.NORMAL_YATZY) {
+                option.setSelected(true);
+            }
             headPanel.add(option);
             yatzyModeOptions.add(option);
             buttonGroup.add(option);
