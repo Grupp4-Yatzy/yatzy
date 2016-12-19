@@ -4,8 +4,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
 /**
- * This class contains three different images of the dices
- * 
+ * This class contains three different images of the dices.
  * @author Benjamin Rosman
  */
 public class DiceIcon {
@@ -40,7 +39,7 @@ public class DiceIcon {
 	}
 	
         /**
-         * 
+         * Gets the image that are equal to the value
          * @param diceValue
          * @return diceIcons
          */

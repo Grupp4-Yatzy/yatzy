@@ -46,8 +46,7 @@ public class Dice {
 	}
         
 	/**
-         * Enables the user to lock and unlock dices
-         *  
+         * Enables the user to lock and unlock dices  
          */
         public void toggleLock(){
 		if(isLocked) {

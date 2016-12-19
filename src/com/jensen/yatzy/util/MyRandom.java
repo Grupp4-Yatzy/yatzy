@@ -14,8 +14,8 @@ public final class MyRandom {
 	}
 	
 	/**
-	 * 
-	 * @param max
+	 * Generates an int from 0-max.
+	 * @param max, is inclusive
 	 * @return random int + 1
 	 */
 	public static int getInt(int max) {
@@ -24,10 +24,10 @@ public final class MyRandom {
 	}
 	
 	/**
-	 * 
-	 * @param lowerLimit
-	 * @param upperLimit
-	 * @return
+	 * Generates an int from lowerLimit to upperLimit
+	 * @param lowerLimit, is inclusive
+	 * @param upperLimit, is inclusive
+	 * @return lowerLimit + getInt(upperLimit - lowerLimit)
 	 */
 	public static int getInt(int lowerLimit, int upperLimit) {
 		return lowerLimit + getInt(upperLimit - lowerLimit);

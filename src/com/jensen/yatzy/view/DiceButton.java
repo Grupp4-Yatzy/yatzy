@@ -6,7 +6,7 @@ import javax.swing.Icon;
 import javax.swing.JButton;
 
 /**
- * Models a dice button. It inherits from JButton
+ * Models a dice button. It inherits from JButton.
  *
  * @author RobertoBlanco
  */
@@ -21,7 +21,7 @@ public class DiceButton extends JButton {
     
     /**
      *Intialize super and sets preferred size
-     * @param text
+     * 
      */
     public DiceButton() {
         super();

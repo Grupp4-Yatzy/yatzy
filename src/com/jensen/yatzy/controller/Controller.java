@@ -117,8 +117,8 @@ public class Controller {
      */
     public Controller(Window window) {
         this.window = window;
-        //newGame();
-        window.setCurrentPanel(new MenuView());
+        newGame();
+        //window.setCurrentPanel(new MenuView());
     }
 
     /**
