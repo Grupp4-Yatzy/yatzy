@@ -8,11 +8,11 @@ import java.util.Random;
  *
  */
 public final class MyRandom {
-	
+
 	private MyRandom() {
-		
+
 	}
-	
+
 	/**
 	 * 
 	 * @param max
@@ -22,7 +22,7 @@ public final class MyRandom {
 		Random rGen = new Random();
 		return rGen.nextInt(max + 1);
 	}
-	
+
 	/**
 	 * 
 	 * @param lowerLimit
@@ -32,5 +32,5 @@ public final class MyRandom {
 	public static int getInt(int lowerLimit, int upperLimit) {
 		return lowerLimit + getInt(upperLimit - lowerLimit);
 	}
-	
+
 }
