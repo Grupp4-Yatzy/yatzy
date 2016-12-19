@@ -14,10 +14,6 @@ import com.jensen.yatzy.model.YatzyTableModel;
 import com.jensen.yatzy.view.GameView;
 import com.jensen.yatzy.view.NewGamePanel;
 import com.jensen.yatzy.view.Window;
-import java.awt.Font;
-import java.util.ArrayList;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
 
 /**
  * Controls how actions are performed throughout a game of Yatzy
@@ -55,15 +51,20 @@ public class Controller {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            String ac = e.getActionCommand();
+            //String ac = e.getActionCommand();
             Dice[] dices = game.getDices();
 
-            String value = ac.substring(ac.length() - 1);
-            Integer index = Integer.parseInt(value);
-
-            dices[index].toggleLock();
-            DiceButton button = (DiceButton) e.getSource();
-            button.DiceToggleLock();
+            //String value = ac.substring(ac.length() - 1);
+            //Integer index = Integer.parseInt(value);
+            DiceButton[] buttons = gamePanel.getDiceButtons();
+            DiceButton button;
+            for (int index = 0; index < buttons.length; index++) {
+                button = buttons[index];
+                if (button.equals(e.getSource())) {
+                    dices[index].toggleLock();
+                    button.DiceToggleLock();
+                }
+            }
         }
     }
 
@@ -117,16 +118,16 @@ public class Controller {
         this.window = window;
         newGame();
     }
-    
+
     /**
-     * This method creates player fields in the first window. User choose how 
-     * many participants will play in the game. If the user choose 1< or 6> players or enter an
-     * integer an error message will be shown.
+     * This method creates player fields in the first window. User choose how
+     * many participants will play in the game. If the user choose 1< or 6>
+     * players or enter an integer an error message will be shown.
      */
-    public void createPlayerFields() {
-        JTextField textField = newGamePanel.getNumberOfPlayers();
-        String text = textField.getText();
-        int numberOfPlayers = 1;
+    private void createPlayerFields() {
+        String text = newGamePanel.getNumberOfPlayers().getText();
+        int numberOfPlayers;
+
         try {
             numberOfPlayers = Integer.parseInt(text);
             if (numberOfPlayers >= 1 && numberOfPlayers <= 6) {
@@ -140,13 +141,13 @@ public class Controller {
         }
         window.pack();
     }
-    
+
     /**
-     * This method sets a new first window where the user choose yatzy mode and how
-     * many participants it will be in the game. The okButton is disabled until
-     * the user has entered the number of participants.
+     * This method sets a new first window where the user choose yatzy mode and
+     * how many participants it will be in the game. The okButton is disabled
+     * until the user has entered the number of participants.
      */
-    public void newGame() {
+    private void newGame() {
         newGamePanel = new NewGamePanel();
         newGamePanel.setYatzyModeOptions(YatzyMode.values());
         newGamePanel.AddMenuListener(new MenuListener());
@@ -201,23 +202,7 @@ public class Controller {
         gamePanel.getRollButton().setText("Roll (" + game.getNumbersOfRollsLeft() + ")");
         gamePanel.getDoneButton().setEnabled(true);
 
-        System.out.println("ettor: " + game.sumNumber(1));
-        System.out.println("tvåor: " + game.sumNumber(2));
-        System.out.println("treor: " + game.sumNumber(3));
-        System.out.println("fyror: " + game.sumNumber(4));
-        System.out.println("femmor: " + game.sumNumber(5));
-        System.out.println("sexor: " + game.sumNumber(6));
-        System.out.println("---------------------");
-        System.out.println("par: " + game.onePair());
-        System.out.println("tvåpar: " + game.twoPair());
-        System.out.println("tretal: " + game.numberOfAKind(3));
-        System.out.println("fyrtal: " + game.numberOfAKind(4));
-        System.out.println("Liten stege: " + game.straight(6));
-        System.out.println("Stor stege: " + game.straight(1));
-        System.out.println("Kåk: " + game.fullHouse());
-        System.out.println("Chans: " + game.sum());
-        System.out.println("Yatzy: " + game.yatzy());
-        System.out.println("---------------------");
+        System.out.println(game);
     }
 
     private void doneButton() {
@@ -230,30 +215,28 @@ public class Controller {
         try {
             modeController(player);
             saveScore(selectedRow, selectedCol, player);
-            if (player.getFirstEmptyScoreIndex() == Constant.INDEX_OF_TOTAL) {
-                calculateTotal(player);
-            }
             if (player.getFirstEmptyScoreIndex() == Constant.INDEX_OF_SUM) {
                 calculateSumBonus(player);
             }
+            if (player.getFirstEmptyScoreIndex() == Constant.INDEX_OF_TOTAL) {
+                calculateTotal(player);
+            }
 
             Dice[] dices = game.getDices();
-            for (Dice dice : dices) {
-                dice.setLock(false);
-            }
-
             DiceButton[] buttons = gamePanel.getDiceButtons();
-
-            for (DiceButton button : buttons) {
-            	button.setSelected(false);
+            for (int i = 0; i < dices.length; i++) {
+                dices[i].setLock(false);
+                buttons[i].setSelected(false);
+                buttons[i].setEnabled(false);
             }
 
-            gamePanel.setEnableDice(false);
+            //gamePanel.setEnableDice(false);
             game.nextPlayer();
             gamePanel.playerIndicator(game.getPlayerIndex(game.getCurrentPlayer()));
             gamePanel.getRollButton().setEnabled(true);
             gamePanel.getRollButton().setText("Roll (" + game.getNumbersOfRollsLeft() + ")");
             gamePanel.getDoneButton().setEnabled(false);
+            gamePanel.getTable().clearSelection();
         } catch (InvalidSelectionException e) {
             window.displayErrorMessage(e.getMessage());
         }
@@ -334,7 +317,7 @@ public class Controller {
                 break;
             case 16:
                 // Yatzy
-                score = game.numberOfAKind(5);
+                score = game.yatzy();
                 break;
             default:
                 System.out.println("Missing case for given index: " + index);
@@ -350,7 +333,7 @@ public class Controller {
         int bonusIndex = Constant.INDEX_OF_BONUS;
         player.addSum();
         tableModel.setValueAt(playerScore[sumIndex], sumIndex, playerIndex);
-        player.addBonus();
+        player.addBonus(getReqScoreForBonus());
         tableModel.setValueAt(playerScore[bonusIndex], bonusIndex, playerIndex);
 
     }
@@ -376,6 +359,16 @@ public class Controller {
             player.addScore(score, row);
             tableModel.setValueAt(score, row, col);
         }
+    }
+
+    private int getReqScoreForBonus() {
+        switch (mode) {
+            case FORCED_YATZY:
+                return Constant.FORCED_REQUIRED_SCORE_FOR_BONUS;
+            default:
+                return Constant.DEFAULT_REQUIRED_SCORE_FOR_BONUS;
+        }
+
     }
 
 }

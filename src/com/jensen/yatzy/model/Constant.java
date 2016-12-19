@@ -11,7 +11,8 @@ public class Constant {
 	public static final int COLUMN_WIDTH = 100;
 	public static final int YATZY = 50 ;
 	public static final int DEFUALT_NUMBER_OF_DICES = 5;
-	public static final int REQUIRED_SCORE_FOR_BONUS = 42;
+	public static final int FORCED_REQUIRED_SCORE_FOR_BONUS = 42;
+        public static int DEFAULT_REQUIRED_SCORE_FOR_BONUS = 63;
 	public static final int BONUS = 50;
 	public static final int INDEX_OF_SUM = 6;
 	public static final int INDEX_OF_BONUS = 7;

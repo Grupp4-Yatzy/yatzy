@@ -3,7 +3,6 @@ package com.jensen.yatzy.view;
 import com.jensen.yatzy.model.Constant;
 import com.jensen.yatzy.model.Dice;
 import com.jensen.yatzy.model.DiceIcon;
-import com.jensen.yatzy.model.Player;
 import com.jensen.yatzy.model.YatzyTableModel;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -13,7 +12,10 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTable;
 import javax.swing.table.TableCellRenderer;
 
 /**
@@ -100,9 +102,8 @@ public class GameView extends JPanel {
      * @param names The array of names you want displayed above the table
      */
     public void setPlayerNames(String[] names) {
-        for (int i = 0; i < names.length; i++) {
-
-            JLabel label = new JLabel(names[i]);
+        for (String name : names) {
+            JLabel label = new JLabel(name);
             label.setBackground(Color.GREEN);
             label.setOpaque(true);
             label.setHorizontalAlignment(JLabel.CENTER);

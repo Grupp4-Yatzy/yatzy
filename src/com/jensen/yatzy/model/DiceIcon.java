@@ -11,7 +11,7 @@ import javax.swing.ImageIcon;
 public class DiceIcon {
 	
 	private static DiceIcon instance;
-	private Icon[][] diceIcons;
+	private final Icon[][] diceIcons;
 	
         /**
          * The constructor initiates three different images of each value.
@@ -19,9 +19,9 @@ public class DiceIcon {
 	private DiceIcon(){
 		diceIcons = new Icon[6][3];
 		for(int i = 0; i<diceIcons.length; i++){
-			diceIcons[i][0]= new ImageIcon("src/images/normal/"+(i+1)+".png");
-			diceIcons[i][1]= new ImageIcon("src/images/gray/"+(i+1)+".png");
-			diceIcons[i][2]= new ImageIcon("src/images/blue/"+(i+1)+".png");
+			diceIcons[i][0]= new ImageIcon(getClass().getResource("/images/normal/"+(i+1)+".png"));
+			diceIcons[i][1]= new ImageIcon(getClass().getResource("/images/gray/"+(i+1)+".png"));
+			diceIcons[i][2]= new ImageIcon(getClass().getResource("/images/blue/"+(i+1)+".png"));
 		}
 		
 	}

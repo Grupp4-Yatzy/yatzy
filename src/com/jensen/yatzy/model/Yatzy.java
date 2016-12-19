@@ -1,6 +1,7 @@
 package com.jensen.yatzy.model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -261,6 +262,32 @@ public class Yatzy {
             }
         }
         return table;
+    }
+
+    @Override
+    public String toString() {
+        String text = "Players: " + players + "\n"
+                + "Current player: " + getCurrentPlayer() + "\n"
+                + "Dices: " + Arrays.toString(dices) + "\n"
+                + "number of rolls left: " + getNumbersOfRollsLeft() + "\n"
+                + "ettor: " + sumNumber(1) + "\n"
+                + "tvåor: " + sumNumber(2) + "\n"
+                + "treor: " + sumNumber(3) + "\n"
+                + "fyror: " + sumNumber(4) + "\n"
+                + "femmor: " + sumNumber(5) + "\n"
+                + "sexor: " + sumNumber(6) + "\n"
+                + "---------------------" + "\n"
+                + "par: " + onePair() + "\n"
+                + "tvåpar: " + twoPair() + "\n"
+                + "tretal: " + numberOfAKind(3) + "\n"
+                + "fyrtal: " + numberOfAKind(4) + "\n"
+                + "Liten stege: " + straight(6) + "\n"
+                + "Stor stege: " + straight(1) + "\n"
+                + "Kåk: " + fullHouse() + "\n"
+                + "Chans: " + sum() + "\n"
+                + "Yatzy: " + yatzy() + "\n"
+                + "---------------------";
+        return text;
     }
 
 }

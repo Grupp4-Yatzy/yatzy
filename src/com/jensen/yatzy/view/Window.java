@@ -1,8 +1,5 @@
 package com.jensen.yatzy.view;
 
-import java.awt.GraphicsConfiguration;
-import java.awt.HeadlessException;
-
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
