@@ -9,7 +9,7 @@ import com.jensen.yatzy.util.MyRandom;
  * 
  */
 public class Dice {
- 	private static final int DEFUALT_DICE_VALUE=6;
+    
 	private int value;
 	private boolean isLocked;
         
@@ -18,7 +18,7 @@ public class Dice {
          * Sets the dice to unlocked and sets the dice value to 6
          */
 	public Dice() {
-		value = DEFUALT_DICE_VALUE;
+		value = Constant.DEFUALT_DICE_VALUE;
                 isLocked = false;
 	}
         
