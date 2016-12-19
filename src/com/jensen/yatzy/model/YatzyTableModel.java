@@ -1,9 +1,6 @@
 package com.jensen.yatzy.model;
 
-import java.awt.Color;
-import java.awt.Component;
 import javax.swing.table.AbstractTableModel;
-import javax.swing.table.TableCellRenderer;
 
 /**
  * Is a model of a yatzy score board
