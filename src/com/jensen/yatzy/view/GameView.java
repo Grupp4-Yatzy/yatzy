@@ -35,7 +35,7 @@ public class GameView extends JPanel {
     private ArrayList<JLabel> playerNames = new ArrayList<>();
     private JTable table;
     private JPanel northGridPanel = new JPanel();
-    private Dimension combinationLabelSize = new Dimension(100, 100 / 10);
+    private Dimension combinationLabelSize = new Dimension(110, 110 / 10);
 
     /**
      * Creates a GameView
@@ -45,27 +45,25 @@ public class GameView extends JPanel {
         this.setLayout(new BorderLayout());
         westPanel = new JPanel();
         GridLayout westGrid = new GridLayout(0, 1);
-        westGrid.setVgap(5);
+        westGrid.setVgap(1);
         westPanel.setLayout(westGrid);
-        westPanel.setBackground(Color.blue);
+        westPanel.setBackground(Color.BLACK);
 
         JPanel northPanel = new JPanel();
         GridLayout northGrid = new GridLayout(1, 0);
         northPanel.setLayout(new BorderLayout());
         northPanel.setBackground(Color.BLACK);
         northGridPanel.setLayout(northGrid);
-        northGrid.setHgap(2);
-        northGridPanel.setBackground(Color.CYAN);
+        northGrid.setHgap(1);
+        northGridPanel.setBackground(Color.BLACK);
 
         centerPanel = new JPanel();
-        centerPanel.setBackground(Color.yellow);
 
         newGameButton = new JButton("New Game");
         newGameButton.setPreferredSize(combinationLabelSize);
         JLabel label = new JLabel("Yatzy");
         northPanel.add(newGameButton, BorderLayout.WEST);
         northPanel.add(northGridPanel, BorderLayout.CENTER);
-        label.setForeground(Color.white);
         label.setPreferredSize(combinationLabelSize);
 
         JPanel southCenter = new JPanel();
@@ -78,7 +76,7 @@ public class GameView extends JPanel {
         }
 
         JPanel southEast = new JPanel();
-        southEast.setBackground(Color.BLUE);
+        southEast.setBackground(Color.GRAY);
         rollButton = new JButton("Roll");
         rollButton.setActionCommand("Roll");
         doneButton = new JButton("Done");
@@ -104,7 +102,7 @@ public class GameView extends JPanel {
     public void setPlayerNames(String[] names) {
         for (String name : names) {
             JLabel label = new JLabel(name);
-            label.setBackground(Color.GREEN);
+            label.setBackground(Color.getHSBColor(0.3305556f, 1.0f, 0.74f));
             label.setOpaque(true);
             label.setHorizontalAlignment(JLabel.CENTER);
             playerNames.add(label);
@@ -112,9 +110,9 @@ public class GameView extends JPanel {
             northGridPanel.add(label);
         }
     }
-    
+
     /**
-     * 
+     *
      * @return playerNames
      */
     public ArrayList<JLabel> getPlayerNames() {
@@ -134,12 +132,16 @@ public class GameView extends JPanel {
             @Override
             public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
                 Component c = super.prepareRenderer(renderer, row, column);
+              
                 if (row % 2 == 0) {
                     c.setBackground(Color.LIGHT_GRAY);
                 } else {
                     c.setBackground(Color.WHITE);
                 }
+                super.setBackground(Color.BLACK);
+                c.setForeground(Color.BLACK);
                 return c;
+
             }
             // Slut på lånad kod
         };
@@ -191,15 +193,15 @@ public class GameView extends JPanel {
     }
 
     /**
-     * 
+     *
      * @return doneButton
      */
     public JButton getDoneButton() {
         return doneButton;
     }
-    
+
     /**
-     * 
+     *
      * @return newGameButton
      */
     public JButton getNewGameButton() {
@@ -218,26 +220,27 @@ public class GameView extends JPanel {
             JLabel label = new JLabel(combinations[i]);
             label.setPreferredSize(combinationLabelSize);
             label.setSize(combinationLabelSize);
-            label.setBackground(Color.PINK);
+            label.setBackground(Color.getHSBColor(0.3305556f, 1.0f, 0.74f));
             label.setOpaque(true);
             label.setHorizontalAlignment(JLabel.CENTER);
             westPanel.add(label);
         }
     }
-    
+
     /**
      * This metod marks the current player with bold font and bigger size and
      * the non current player with a plain font and a smaller size.
-     * @param playerIndex 
+     *
+     * @param playerIndex
      */
     public void playerIndicator(int playerIndex) {
 
         for (int i = 0; i < playerNames.size(); i++) {
             JLabel label = playerNames.get(i);
             if (playerIndex == i) {
-                label.setFont(new Font("Courier New", Font.BOLD, 14));
+                label.setFont(new Font("Arial", Font.BOLD, 14));
             } else {
-                label.setFont(new Font("Courier New", Font.PLAIN, 12));
+                label.setFont(new Font("Arial", Font.PLAIN, 12));
             }
         }
 
