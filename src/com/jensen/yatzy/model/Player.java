@@ -29,8 +29,8 @@ public class Player {
     
     /**
      * Gets the score of the specific index.
-     * @param index
-     * @return the index in scoreList
+     * @param index 
+     * @return the score stored at given index
      */
     public Integer getScore(int index) {
         return scoreList[index];
@@ -45,9 +45,9 @@ public class Player {
     }
     
     /**
-     * Adds the score in the JTable in a specific index.
-     * @param score
-     * @param index 
+     * Adds a score to a specific index.
+     * @param score the score to be saved
+     * @param index the index in which the score should be saved
      */
     public void addScore(int score, int index) {
         scoreList[index] = score;
@@ -69,7 +69,7 @@ public class Player {
      * This methods checks if index 6 has a value of 42 or more, if so the bonus
      * will be given (50 points), else no bonus will be given.
      * 
-     * @param reqScore
+     * @param reqScore the amount needed to get the bonus
      */
     public void addBonus(int reqScore) {
 		if (scoreList[Constant.INDEX_OF_SUM] >= reqScore) {
@@ -106,8 +106,8 @@ public class Player {
 	}
     
     /**
-     * Checks if index is empty or not
-     * @param index
+     * Checks if scoreList is empty at index
+     * @param index 
      * @return true if index is empty, false if its not empty
      */
     public boolean isEmpty(int index) {

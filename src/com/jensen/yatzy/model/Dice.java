@@ -58,8 +58,8 @@ public class Dice {
 	} 
         
         /**
-         * Decides if dices are locked or not
-         * @param b 
+         * Sets whether dice is locked or not
+         * @param b true to lock the dice, otherwise false.
          */
 	public void setLock(boolean b) {
 		isLocked = b;
