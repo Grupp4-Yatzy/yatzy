@@ -1,6 +1,7 @@
 package com.jensen.yatzy.model;
 
 import com.jensen.yatzy.util.MyRandom;
+
 /**
  * Dice class is created to give the dices values and set the dices
  * different states.

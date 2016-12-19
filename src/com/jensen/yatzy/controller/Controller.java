@@ -121,9 +121,15 @@ public class Controller {
         window.setCurrentPanel(new MenuView());
     }
 
+    /**
+     * This method creates player fields in the first window. User choose how
+     * many participants will play in the game. If the user choose 1< or 6>
+     * players or enter an integer an error message will be shown.
+     */
     private void createPlayerFields() {
         String text = newGamePanel.getNumberOfPlayers().getText();
         int numberOfPlayers;
+
         try {
             numberOfPlayers = Integer.parseInt(text);
             if (numberOfPlayers >= 1 && numberOfPlayers <= 6) {
@@ -138,6 +144,11 @@ public class Controller {
         window.pack();
     }
 
+    /**
+     * This method sets a new first window where the user choose yatzy mode and
+     * how many participants it will be in the game. The okButton is disabled
+     * until the user has entered the number of participants.
+     */
     private void newGame() {
         newGamePanel = new NewGamePanel();
         newGamePanel.setYatzyModeOptions(YatzyMode.values());
@@ -352,15 +363,15 @@ public class Controller {
             tableModel.setValueAt(score, row, col);
         }
     }
-    
+
     private int getReqScoreForBonus() {
-        switch(mode) {
+        switch (mode) {
             case FORCED_YATZY:
                 return Constant.FORCED_REQUIRED_SCORE_FOR_BONUS;
             default:
                 return Constant.DEFAULT_REQUIRED_SCORE_FOR_BONUS;
         }
-                        
+
     }
 
 }
