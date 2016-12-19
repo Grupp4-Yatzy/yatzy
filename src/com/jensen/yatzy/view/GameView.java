@@ -223,6 +223,11 @@ public class GameView extends JPanel {
             label.setBackground(Color.getHSBColor(0.3305556f, 1.0f, 0.74f));
             label.setOpaque(true);
             label.setHorizontalAlignment(JLabel.CENTER);
+            if(Constant.INDEX_OF_BONUS==i || Constant.INDEX_OF_SUM==i || Constant.INDEX_OF_TOTAL==i){
+                label.setFont(new Font("Arial", Font.BOLD, 14));
+            } else {
+                label.setFont(new Font("Arial", Font.PLAIN, 12));
+            }
             westPanel.add(label);
         }
     }
