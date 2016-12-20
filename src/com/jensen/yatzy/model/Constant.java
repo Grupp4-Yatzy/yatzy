@@ -56,9 +56,9 @@ public class Constant {
          * An array of all the combinations
          */
         public static final String[] COMBINATIONS = {"Ones", "Twos", "Threes",
-			"Fours", "Fives", "Sixs",
+			"Fours", "Fives", "Sixes",
 			"Sum", "Bonus", "One Pair", "Two Pair", "Three Of A Kind", "Four Of A Kind",
-			"Small Straight", "Big Straight", "Fullhouse", "Chans", "Yatzy", "Total"};
+			"Small Straight", "Big Straight", "Fullhouse", "Chance", "Yatzy", "Total"};
         
         /**
          * The total score is shown in index of total
