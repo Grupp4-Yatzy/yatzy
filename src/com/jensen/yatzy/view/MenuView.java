@@ -10,6 +10,8 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.Icon;
@@ -24,6 +26,7 @@ import javax.swing.JPanel;
 public class MenuView extends JPanel {
     
     JPanel centerPanel;
+    ArrayList<JButton> menuButtons;
     
     public MenuView() {
         this.setLayout(new BorderLayout());
@@ -52,13 +55,18 @@ public class MenuView extends JPanel {
         centerPanel.setPreferredSize(new Dimension(300, 600));
         centerPanel.setOpaque(false);
         centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
-                
+        
+        menuButtons = new ArrayList<>();
         for (String buttonText : bigButtonTexts) {
             JButton bigButton = new JButton(buttonText);
+            menuButtons.add(bigButton);
             
             if (buttonText.equalsIgnoreCase("options"))
                 bigButton.setEnabled(false);
-            
+            if (buttonText.equalsIgnoreCase("continue")) {
+                bigButton.setEnabled(false);
+                bigButton.setVisible(false);
+            }
             bigButton.setIcon(frame);
             bigButton.setDisabledIcon(disabledFrame);
             bigButton.setRolloverIcon(rollOverFrame);
@@ -107,6 +115,22 @@ public class MenuView extends JPanel {
         
         this.add(northPanel, BorderLayout.NORTH);
         this.add(centerPanel, BorderLayout.CENTER);
+    }
+    
+    public void enableContinueButton() {
+        for (JButton button : menuButtons) {
+            if (button.getText().equalsIgnoreCase("continue")) {
+                button.setEnabled(true);
+                button.setVisible(true);
+                break;
+            }
+        }
+    }
+    
+    public void addMenuLListener(ActionListener listener) {
+        for (JButton button : menuButtons) {
+            button.addActionListener(listener);
+        }
     }
     
 }
