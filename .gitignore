@@ -105,9 +105,6 @@ nbproject/
 ### Java ###
 *.class
 
-# javadoc
-doc/
-
 # BlueJ files
 *.ctxt
 
