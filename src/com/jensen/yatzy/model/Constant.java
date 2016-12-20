@@ -1,5 +1,7 @@
 package com.jensen.yatzy.model;
 
+import java.awt.Color;
+
 /**
  * This class is buildt for the constant in this program.
  * This class only contains instance variables. 
@@ -64,7 +66,7 @@ public class Constant {
          * The total score is shown in index of total
          */
         public static final int INDEX_OF_TOTAL = COMBINATIONS.length-1;
-    
 
+        public static final Color BG_COLOR_GREEN = Color.getHSBColor(0.3305556f, 1.0f, 0.74f);
 
 }
