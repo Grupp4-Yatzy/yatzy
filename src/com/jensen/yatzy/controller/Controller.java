@@ -37,9 +37,6 @@ public class Controller {
                 case "done":
                     doneButton();
                     break;
-                case "new game":
-                    newGame();
-                    break;
                 default:
                     System.out.println("No Command for: " + ac);
                     break;
@@ -73,7 +70,23 @@ public class Controller {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            switch (e.getActionCommand().toLowerCase()) {
+                case "new game":
+                    newGame();
+                    break;
+                default:
+                    break;
+            }
+            
 
+        }
+
+    }
+    
+    private class OptionListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
             switch (e.getActionCommand().toLowerCase()) {
                 case "forced":
                     mode = YatzyMode.FORCED_YATZY;
@@ -94,16 +107,16 @@ public class Controller {
                 createPlayerFields();
 
             }
-
         }
-
+        
     }
 
     private Window window;
     private GameView gamePanel;
     private Yatzy game;
-    private YatzyTableModel tableModel;
     private NewGamePanel newGamePanel;
+    private MenuView menu;
+    private YatzyTableModel tableModel;
     private YatzyMode mode;
     private int selectedCol;
     private int selectedRow;
@@ -117,8 +130,9 @@ public class Controller {
      */
     public Controller(Window window) {
         this.window = window;
-        //newGame();
-        window.setCurrentPanel(new MenuView());
+        this.menu = new MenuView();
+        newGame();
+        //window.setCurrentPanel(new MenuView());
     }
 
     /**
@@ -153,7 +167,7 @@ public class Controller {
         newGamePanel = new NewGamePanel();
         newGamePanel.setYatzyModeOptions(YatzyMode.values());
         mode = YatzyMode.NORMAL_YATZY;
-        newGamePanel.AddMenuListener(new MenuListener());
+        newGamePanel.AddMenuListener(new OptionListener());
         window.setCurrentPanel(newGamePanel);
         newGamePanel.getOkButton().setEnabled(false);
     }
@@ -163,6 +177,7 @@ public class Controller {
         this.game = new Yatzy();
         gamePanel.addPlayListener(new PlayListener());
         gamePanel.addDiceListener(new DiceListener());
+        gamePanel.addMenuListener(new MenuListener());
         gamePanel.setDiceButtons(game.getDices(), DiceIcon.getInstance());
 
         String[] names = newGamePanel.getPlayerNames();
