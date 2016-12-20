@@ -1,5 +1,6 @@
 package com.jensen.yatzy.view;
 
+import com.jensen.yatzy.model.Constant;
 import com.jensen.yatzy.model.YatzyMode;
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
@@ -35,32 +36,38 @@ public class NewGamePanel extends JPanel {
      */
     public NewGamePanel() {
         super();
-        //this.setPreferredSize(new Dimension (400,500));
+        this.setBackground(Constant.BG_COLOR_GREEN);
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         headPanel = new JPanel();
+        headPanel.setOpaque(false);
 
         JPanel northPanel = new JPanel();
-        centerPanel = new JPanel();
-        centerPanel.setPreferredSize(new Dimension(200, 250));
-        JPanel southPanel = new JPanel();
-
+        northPanel.setOpaque(false);
         playerLabel = new JLabel("Choose Number Of Players (1-6) & press enter: ");
+        playerLabel.setOpaque(false);
         playerNames = new ArrayList<>();
         numberOfPlayers = new JTextField(3);
         numberOfPlayers.setMaximumSize(new Dimension(20, 10));
-        playButton = new JButton("Play");
-        backButton = new JButton("Back");
-        backButton.setActionCommand("Menu");
-
-        this.add(headPanel);
         northPanel.add(playerLabel);
         northPanel.add(numberOfPlayers);
-        this.add(northPanel);
+        
+        centerPanel = new JPanel();
+        centerPanel.setOpaque(false);
+        centerPanel.setPreferredSize(new Dimension(200, 250));
         centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
-        this.add(centerPanel);
+
+        JPanel southPanel = new JPanel();
+        southPanel.setOpaque(false);
+        playButton = new MenuButton("Play", true);
+        backButton = new MenuButton("Back", true);
+        backButton.setActionCommand("Menu");
         southPanel.add(backButton);
         southPanel.add(playButton);
+        
+        this.add(headPanel);
+        this.add(northPanel);
+        this.add(centerPanel);
         this.add(southPanel);
 
     }
@@ -107,6 +114,7 @@ public class NewGamePanel extends JPanel {
         yatzyModeOptions = new ArrayList<>();
         for (YatzyMode mode : modes) {
             JRadioButton option = new JRadioButton(mode.getMode());
+            option.setContentAreaFilled(false);
             if (mode == YatzyMode.NORMAL_YATZY) {
                 option.setSelected(true);
             }
