@@ -8,10 +8,6 @@ import com.jensen.yatzy.view.Window;
  */
 public class Main {
 
-    /**
-     *
-     * @param args
-     */
     public static void main(String[] args) {
         Window window = new Window();
         new Controller(window);

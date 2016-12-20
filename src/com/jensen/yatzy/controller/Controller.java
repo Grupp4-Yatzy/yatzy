@@ -111,7 +111,7 @@ public class Controller {
      * Creates a controller and initiates the default view and sets the window
      * to display it.
      *
-     * @param window
+     * @param window The window in wich the game will be displayed.
      *
      */
     public Controller(Window window) {

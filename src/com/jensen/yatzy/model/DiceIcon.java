@@ -39,9 +39,9 @@ public class DiceIcon {
 	}
 	
         /**
-         * Gets the image that are equal to the value
-         * @param diceValue
-         * @return diceIcons
+         * Gets the images that is represented by the given value
+         * @param diceValue 
+         * @return diceIcons Representing the given value
          */
 	public Icon[] getDiceIcons(int diceValue){
 		

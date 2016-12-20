@@ -44,7 +44,7 @@ public class NewGamePanel extends JPanel {
         centerPanel.setPreferredSize(new Dimension(200, 250));
         JPanel southPanel = new JPanel();
 
-        playerLabel = new JLabel("Choose Number Of Players (1-6):");
+        playerLabel = new JLabel("Choose Number Of Players (1-6) & press enter: ");
         playerNames = new ArrayList<>();
         numberOfPlayers = new JTextField(3);
         numberOfPlayers.setMaximumSize(new Dimension(20, 10));
