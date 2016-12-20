@@ -70,11 +70,26 @@ public class Controller {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            switch (e.getActionCommand().toLowerCase()) {
+            String ac = e.getActionCommand().toLowerCase();
+            switch (ac) {
+                case "menu":
+                    menu();
+                    break;
+                case "continue":
+                    continueGame();
+                    break;
                 case "new game":
                     newGame();
                     break;
+                case "options":
+                    break;
+                case "rules":
+                    break;
+                case "quit":
+                    System.exit(0);
+                    break;
                 default:
+                    System.out.println("No Command for: " + ac);
                     break;
             }
             
@@ -131,8 +146,8 @@ public class Controller {
     public Controller(Window window) {
         this.window = window;
         this.menu = new MenuView();
-        newGame();
-        //window.setCurrentPanel(new MenuView());
+        this.menu.addMenuLListener(new MenuListener());
+        menu();
     }
 
     /**
@@ -167,7 +182,8 @@ public class Controller {
         newGamePanel = new NewGamePanel();
         newGamePanel.setYatzyModeOptions(YatzyMode.values());
         mode = YatzyMode.NORMAL_YATZY;
-        newGamePanel.AddMenuListener(new OptionListener());
+        newGamePanel.AddOptionListener(new OptionListener());
+        newGamePanel.addMenuListener(new MenuListener());
         window.setCurrentPanel(newGamePanel);
         newGamePanel.getOkButton().setEnabled(false);
     }
@@ -192,7 +208,6 @@ public class Controller {
 
         gamePanel.setEnableDice(false);
         gamePanel.getDoneButton().setEnabled(false);
-        gamePanel.getNewGameButton();
         gamePanel.playerIndicator(game.getPlayerIndex(game.getCurrentPlayer()));
         this.window.setCurrentPanel(gamePanel);
     }
@@ -255,6 +270,17 @@ public class Controller {
             window.displayErrorMessage(e.getMessage());
         }
 
+    }
+    
+    private void menu() {
+        if (gamePanel != null)
+            menu.enableContinueButton();
+        window.setCurrentPanel(menu);
+    }
+    
+    private void continueGame() {
+        if (gamePanel != null)
+            window.setCurrentPanel(gamePanel);
     }
 
     private void modeController(Player player) throws InvalidSelectionException {
