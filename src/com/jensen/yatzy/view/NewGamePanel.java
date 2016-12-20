@@ -22,7 +22,8 @@ public class NewGamePanel extends JPanel {
 
     private JPanel headPanel;
     private JPanel centerPanel;
-    private JButton okButton;
+    private JButton playButton;
+    private JButton backButton;
     private JLabel playerLabel;
     private ArrayList<JRadioButton> yatzyModeOptions;
     private JTextField numberOfPlayers;
@@ -48,7 +49,9 @@ public class NewGamePanel extends JPanel {
         playerNames = new ArrayList<>();
         numberOfPlayers = new JTextField(3);
         numberOfPlayers.setMaximumSize(new Dimension(20, 10));
-        okButton = new JButton("OK");
+        playButton = new JButton("Play");
+        backButton = new JButton("Back");
+        backButton.setActionCommand("Menu");
 
         this.add(headPanel);
         northPanel.add(playerLabel);
@@ -56,7 +59,8 @@ public class NewGamePanel extends JPanel {
         this.add(northPanel);
         centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
         this.add(centerPanel);
-        southPanel.add(okButton);
+        southPanel.add(backButton);
+        southPanel.add(playButton);
         this.add(southPanel);
 
     }
@@ -65,8 +69,8 @@ public class NewGamePanel extends JPanel {
      * 
      * @return okButton
      */
-    public JButton getOkButton() {
-        return okButton;
+    public JButton getPlayButton() {
+        return playButton;
     }
 
     /**
@@ -143,13 +147,17 @@ public class NewGamePanel extends JPanel {
      * @param listener A action listener to be notified when an action has
      * occurred
      */
-    public void AddMenuListener(ActionListener listener) {
-        okButton.addActionListener(listener);
+    public void AddOptionListener(ActionListener listener) {
+        playButton.addActionListener(listener);
         numberOfPlayers.addActionListener(listener);
         for (int i = 0; i < yatzyModeOptions.size(); i++) {
             yatzyModeOptions.get(i).addActionListener(listener);
         }
 
+    }
+    
+    public void addMenuListener(ActionListener listener) {
+        backButton.addActionListener(listener);
     }
 
 }
