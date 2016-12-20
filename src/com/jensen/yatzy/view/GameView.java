@@ -59,7 +59,7 @@ public class GameView extends JPanel {
 
         centerPanel = new JPanel();
 
-        menuButton = new JButton("Menu");
+        menuButton = new MenuButton("Menu", true);
         menuButton.setPreferredSize(combinationLabelSize);
         JLabel label = new JLabel("Yatzy");
         northPanel.add(menuButton, BorderLayout.WEST);
@@ -77,9 +77,9 @@ public class GameView extends JPanel {
 
         JPanel southEast = new JPanel();
         southEast.setBackground(Color.GRAY);
-        rollButton = new JButton("Roll");
+        rollButton = new MenuButton("Roll", true);
         rollButton.setActionCommand("Roll");
-        doneButton = new JButton("Done");
+        doneButton = new MenuButton("Done", true);
         southEast.add(rollButton);
         southEast.add(doneButton);
 
