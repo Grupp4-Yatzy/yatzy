@@ -30,7 +30,7 @@ public class GameView extends JPanel {
     private JPanel centerPanel;
     private JButton rollButton;
     private JButton doneButton;
-    private JButton newGameButton;
+    private JButton menuButton;
     private DiceButton[] diceButtons = new DiceButton[5];
     private ArrayList<JLabel> playerNames = new ArrayList<>();
     private JTable table;
@@ -59,10 +59,10 @@ public class GameView extends JPanel {
 
         centerPanel = new JPanel();
 
-        newGameButton = new JButton("New Game");
-        newGameButton.setPreferredSize(combinationLabelSize);
+        menuButton = new JButton("Menu");
+        menuButton.setPreferredSize(combinationLabelSize);
         JLabel label = new JLabel("Yatzy");
-        northPanel.add(newGameButton, BorderLayout.WEST);
+        northPanel.add(menuButton, BorderLayout.WEST);
         northPanel.add(northGridPanel, BorderLayout.CENTER);
         label.setPreferredSize(combinationLabelSize);
 
@@ -204,8 +204,8 @@ public class GameView extends JPanel {
      *
      * @return newGameButton
      */
-    public JButton getNewGameButton() {
-        return newGameButton;
+    public JButton getMenuButton() {
+        return menuButton;
     }
 
     /**
@@ -275,6 +275,6 @@ public class GameView extends JPanel {
     }
     
     public void addMenuListener(ActionListener listener) {
-        newGameButton.addActionListener(listener);
+        menuButton.addActionListener(listener);
     }
 }
