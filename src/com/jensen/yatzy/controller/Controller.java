@@ -12,6 +12,7 @@ import com.jensen.yatzy.model.YatzyMode;
 import com.jensen.yatzy.view.DiceButton;
 import com.jensen.yatzy.model.YatzyTableModel;
 import com.jensen.yatzy.view.GameView;
+import com.jensen.yatzy.view.MenuView;
 import com.jensen.yatzy.view.NewGamePanel;
 import com.jensen.yatzy.view.Window;
 
@@ -116,7 +117,8 @@ public class Controller {
      */
     public Controller(Window window) {
         this.window = window;
-        newGame();
+        //newGame();
+        window.setCurrentPanel(new MenuView());
     }
 
     /**
@@ -180,6 +182,9 @@ public class Controller {
         this.window.setCurrentPanel(gamePanel);
     }
 
+    /**
+     * Rolls all unlocked dices TODO unlock all dices
+     */
     private void rollButton() {
         gamePanel.setEnableDice(true);
         Dice[] dices = game.getDices();
@@ -204,6 +209,7 @@ public class Controller {
     }
 
     private void doneButton() {
+        // TODO implement save and update functionality
         // get current player
         Player player = game.getCurrentPlayer();
         //int col = game.getPlayerIndex(player);
