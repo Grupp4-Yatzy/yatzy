@@ -272,6 +272,9 @@ public class GameView extends JPanel {
     public void addPlayListener(ActionListener listener) {
         rollButton.addActionListener(listener);
         doneButton.addActionListener(listener);
+    }
+    
+    public void addMenuListener(ActionListener listener) {
         newGameButton.addActionListener(listener);
     }
 }
