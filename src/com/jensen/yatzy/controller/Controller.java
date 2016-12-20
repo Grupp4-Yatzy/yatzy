@@ -182,9 +182,6 @@ public class Controller {
         this.window.setCurrentPanel(gamePanel);
     }
 
-    /**
-     * Rolls all unlocked dices TODO unlock all dices
-     */
     private void rollButton() {
         gamePanel.setEnableDice(true);
         Dice[] dices = game.getDices();
@@ -209,7 +206,6 @@ public class Controller {
     }
 
     private void doneButton() {
-        // TODO implement save and update functionality
         // get current player
         Player player = game.getCurrentPlayer();
         //int col = game.getPlayerIndex(player);
