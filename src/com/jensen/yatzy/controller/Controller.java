@@ -119,7 +119,6 @@ public class Controller {
         initGame();
       } else if (e.getSource() == newGamePanel.getNumberOfPlayers()) {
         createPlayerFields();
-
       }
     }
 
@@ -162,13 +161,13 @@ public class Controller {
       if (numberOfPlayers >= 1 && numberOfPlayers <= 6) {
         newGamePanel.setPlayerFields(numberOfPlayers);
         newGamePanel.getPlayButton().setEnabled(true);
+        window.pack();  // Needed for the number of textfields to update
       } else {
         window.displayErrorMessage("Number of players must be [1-6].");
       }
     } catch (NumberFormatException ex) {
       window.displayErrorMessage("You need to enter an integer.");
     }
-    //window.pack();
   }
 
   /**
