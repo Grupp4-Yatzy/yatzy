@@ -306,7 +306,6 @@ public class Controller {
             || selectedRow == Constant.INDEX_OF_TOTAL) {
           throw new InvalidSelectionException("Bonus, sum and total are invalid selections");
         }
-
         break;
       default:
         break;
