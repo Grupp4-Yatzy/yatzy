@@ -235,7 +235,7 @@ public class Controller {
     selectedCol = gamePanel.getTable().getSelectedColumn();
     selectedRow = gamePanel.getTable().getSelectedRow();
     try {
-      modeController(player);
+      checkPlayerSelection(player);
       saveScore(selectedRow, selectedCol, player);
       if (player.getFirstEmptyScoreIndex() == Constant.INDEX_OF_SUM) {
         calculateSumBonus(player);
@@ -280,7 +280,7 @@ public class Controller {
     }
   }
 
-  private void modeController(Player player) throws InvalidSelectionException {
+  private void checkPlayerSelection(Player player) throws InvalidSelectionException {
     switch (mode) {
       case FORCED_YATZY:
         selectedCol = game.getPlayerIndex(player);
