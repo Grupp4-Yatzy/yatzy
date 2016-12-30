@@ -14,8 +14,8 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 /**
- * NewGamePanel class creates the first window where you can choose how many players will
- * participate in the game and choose which yatzy mode the user wants to play.
+ * NewGamePanel is a JPanel, which displays a menu of sorts where users can choose number of players
+ * and what yatzy mode to play.
  *
  * @author Benjamin Rosman, Roberto Blanco, Kami Hazzansadeh, Robin Nilsson
  */
@@ -31,7 +31,9 @@ public class NewGamePanel extends JPanel {
   private ArrayList<JTextField> playerNames;
 
   /**
-   * The constructor initialize panels, labels, an ArrayList, textfields and a button.
+   * Creates a predefined newGamePanel. Containting a panel for displaying and choosing yatzy mode,
+   * a panel where a player can choose number of players, a panel where players can enter their
+   * names & a panel containing a back button and a play button.
    */
   public NewGamePanel() {
     super();
@@ -72,25 +74,27 @@ public class NewGamePanel extends JPanel {
   }
 
   /**
+   * Returns the play button.
    *
-   * @return okButton
+   * @return a JButton.
    */
   public JButton getPlayButton() {
     return playButton;
   }
 
   /**
+   * Returns text field that is holding the player input with the desired number of players.
    *
-   * @return numberOfPlayers
+   * @return a JTextField.
    */
   public JTextField getNumberOfPlayers() {
     return numberOfPlayers;
   }
 
   /**
-   * An ArrayList that stores player names in a textfield
+   * Returns an array of strings containing the players choosen names.
    *
-   * @return player names
+   * @return a String array with the player names.
    */
   public String[] getPlayerNames() {
     String[] names = new String[playerNames.size()];
@@ -102,9 +106,9 @@ public class NewGamePanel extends JPanel {
   }
 
   /**
-   * Creates ButtonGroup for three different Yatzy modes and adds them to the headPanel.
-   *
-   * @param modes
+   * Creates a ButtonGroup of JRadioButtons for each YatzyMode in modes. 
+   * TODO move to constructor
+   * @param modes an array of YatzyMode to be displayed as options to the player.
    */
   public void setYatzyModeOptions(YatzyMode[] modes) {
     // headPanel = new JPanel();
@@ -125,7 +129,7 @@ public class NewGamePanel extends JPanel {
   }
 
   /**
-   * Creates the player fields name
+   * Creates the text fields for the player names.
    *
    * @param numberOfPlayers
    */
@@ -148,9 +152,9 @@ public class NewGamePanel extends JPanel {
   }
 
   /**
-   * Adds an ActionListener to the okButton, the numberOfPlayers and yatzyModeOptions
+   * Adds an ActionListener to the playButton, the numberOfPlayers and yatzyModeOptions
    *
-   * @param listener A action listener to be notified when an action has occurred
+   * @param listener the action listener to be notified when an action has occurred
    */
   public void AddOptionListener(ActionListener listener) {
     playButton.addActionListener(listener);
