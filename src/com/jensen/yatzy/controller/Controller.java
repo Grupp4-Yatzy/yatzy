@@ -386,9 +386,8 @@ public class Controller {
   }
 
   private void saveScore(int row, int col, Player player) {
-
     Integer[] playerScore = player.getScoreList();
-    //  If done add total and update table
+    //  guard against null pointer exception after a forced game is completed
     if (row < playerScore.length - 1) {
       // get score for index
       int score = getScore(row);
