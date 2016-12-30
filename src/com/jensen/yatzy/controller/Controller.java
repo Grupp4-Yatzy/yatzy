@@ -118,7 +118,7 @@ public class Controller {
       if (e.getSource() == newGamePanel.getPlayButton()) {
         initGame();
       } else if (e.getSource() == newGamePanel.getNumberOfPlayers()) {
-        createPlayerFields();
+        updateNumberOfPlayerFields();
       }
     }
 
@@ -148,14 +148,13 @@ public class Controller {
   }
 
   /**
-   * This method creates player fields in the first window. User choose how many participants will
-   * play in the game. If the user choose 1< or 6>
-   * players or enter an integer an error message will be shown.
+   * This method checks so the user has entered correct input for the number of players desired.
+   * If so the amount of text fields with player names will be updated or a error message will be
+   * displayed.
    */
-  private void createPlayerFields() {
+  private void updateNumberOfPlayerFields() {
     String text = newGamePanel.getNumberOfPlayers().getText();
     int numberOfPlayers;
-
     try {
       numberOfPlayers = Integer.parseInt(text);
       if (numberOfPlayers >= 1 && numberOfPlayers <= 6) {
