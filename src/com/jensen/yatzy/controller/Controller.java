@@ -128,7 +128,6 @@ public class Controller {
   private GameView gamePanel;
   private Yatzy game;
   private NewGamePanel newGamePanel;
-  private MenuView menu;
   private YatzyTableModel tableModel;
   private YatzyMode mode;
   private int selectedCol;
@@ -142,8 +141,6 @@ public class Controller {
    */
   public Controller(Window window) {
     this.window = window;
-    this.menu = new MenuView();
-    this.menu.addMenuLListener(new MenuListener());
     displayMenu();
   }
 
@@ -269,6 +266,8 @@ public class Controller {
   }
 
   private void displayMenu() {
+    MenuView menu = new MenuView();
+    menu.addMenuLListener(new MenuListener());
     if (gamePanel != null) {
       menu.enableContinueButton();
     }
