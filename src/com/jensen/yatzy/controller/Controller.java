@@ -73,7 +73,7 @@ public class Controller {
       String ac = e.getActionCommand().toLowerCase();
       switch (ac) {
         case "menu":
-          menu();
+          displayMenu();
           break;
         case "continue":
           continueGame();
@@ -144,7 +144,7 @@ public class Controller {
     this.window = window;
     this.menu = new MenuView();
     this.menu.addMenuLListener(new MenuListener());
-    menu();
+    displayMenu();
   }
 
   /**
@@ -269,7 +269,7 @@ public class Controller {
 
   }
 
-  private void menu() {
+  private void displayMenu() {
     if (gamePanel != null) {
       menu.enableContinueButton();
     }
