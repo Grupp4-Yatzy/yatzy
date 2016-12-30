@@ -167,9 +167,7 @@ public class Controller {
   }
 
   /**
-   * This method sets a new first window where the user choose yatzy mode and how many participants
-   * it will be in the game. The okButton is disabled until the user has entered the number of
-   * participants.
+   * Displays a view where the user can choose options for initiating a new game.
    */
   private void newGame() {
     newGamePanel = new NewGamePanel();
@@ -181,9 +179,12 @@ public class Controller {
     newGamePanel.getPlayButton().setEnabled(false);
   }
 
+  /** 
+   * Initiates a new game with the player names and mode
+   */
   private void initGame() {
     gamePanel = new GameView();
-    this.game = new Yatzy();
+    game = new Yatzy();
     gamePanel.addPlayListener(new PlayListener());
     gamePanel.addDiceListener(new DiceListener());
     gamePanel.addMenuListener(new MenuListener());
@@ -194,15 +195,14 @@ public class Controller {
     gamePanel.setPlayerNames(names);
     gamePanel.setCombinations(Constant.COMBINATIONS);
 
-    Integer[][] data = game.createTable();
     tableModel = new YatzyTableModel();
-    tableModel.initTable(data.length, data[0].length);
+    tableModel.initTable(Constant.COMBINATIONS.length, names.length);
     gamePanel.initTable(tableModel);
 
     gamePanel.setEnableDice(false);
     gamePanel.getDoneButton().setEnabled(false);
     gamePanel.playerIndicator(game.getPlayerIndex(game.getCurrentPlayer()));
-    this.window.setCurrentPanel(gamePanel);
+    window.setCurrentPanel(gamePanel);
   }
 
   private void rollButton() {
