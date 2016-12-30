@@ -202,6 +202,7 @@ public class Controller {
     gamePanel.setEnableDice(false);
     gamePanel.getDoneButton().setEnabled(false);
     gamePanel.playerIndicator(game.getPlayerIndex(game.getCurrentPlayer()));
+    window.setTitle("Yatzy - " + mode.getMode());
     window.setCurrentPanel(gamePanel);
   }
 
