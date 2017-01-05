@@ -3,8 +3,7 @@ package com.jensen.yatzy.model;
 import java.awt.Color;
 
 /**
- * This class is buildt for the constant in this program. This class only contains instance
- * variables.
+ * This class gathers most of the constants in this program to a single file.
  *
  * @author Benjamin Rosman, Roberto Blanco, Kami Hazzansadeh, Robin Nilsson
  */
@@ -13,10 +12,10 @@ public class Constant {
   /** Width of columns */
   public static final int COLUMN_WIDTH = 100;
 
-  /** Score if player gets Yatzy */
+  /** The score rewarded when a player gets yatzy */
   public static final int YATZY = 50;
 
-  /** Set the number of dices */
+  /** The default number of dices */
   public static final int DEFUALT_NUMBER_OF_DICES = 5;
 
   /** Score required for getting bonus in Forced mode */
@@ -25,7 +24,7 @@ public class Constant {
   /** Score required for getting bonus in Normal and Wild mode */
   public static int DEFAULT_REQUIRED_SCORE_FOR_BONUS = 63;
 
-  /** Score given if user reach the amount that is required */
+  /** The Amount of bonus points recieved */
   public static final int BONUS = 50;
 
   /** Index where the sum is shown */
@@ -34,7 +33,7 @@ public class Constant {
   /** Index where the bonus is shown */
   public static final int INDEX_OF_BONUS = 7;
 
-  /** The defualt dive value */
+  /** The defualt dice value */
   public static final int DEFUALT_DICE_VALUE = 6;
 
   /** An array of all the combinations */
@@ -43,10 +42,10 @@ public class Constant {
     "Sum", "Bonus", "One Pair", "Two Pair", "Three Of A Kind", "Four Of A Kind",
     "Small Straight", "Big Straight", "Fullhouse", "Chance", "Yatzy", "Total"};
 
-  /** The total score is shown in index of total */
+  /** Index where the total is shown */
   public static final int INDEX_OF_TOTAL = COMBINATIONS.length - 1;
 
-  /** A green color (used for the background */
+  /** The background color (green) */
   public static final Color BG_COLOR_GREEN = Color.getHSBColor(0.3305556f, 1.0f, 0.74f);
 
 }
