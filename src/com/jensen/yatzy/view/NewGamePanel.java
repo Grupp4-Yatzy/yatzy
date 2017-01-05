@@ -76,7 +76,7 @@ public class NewGamePanel extends JPanel {
   /**
    * Returns the play button.
    *
-   * @return a JButton.
+   * @return the play button.
    */
   public JButton getPlayButton() {
     return playButton;
@@ -85,14 +85,14 @@ public class NewGamePanel extends JPanel {
   /**
    * Returns text field that is holding the player input with the desired number of players.
    *
-   * @return a JTextField.
+   * @return the text field containing the number of players.
    */
   public JTextField getNumberOfPlayers() {
     return numberOfPlayers;
   }
 
   /**
-   * Returns an array of strings containing the players choosen names.
+   * Returns an array of strings containing the player names.
    *
    * @return a String array with the player names.
    */
@@ -107,10 +107,11 @@ public class NewGamePanel extends JPanel {
 
   /**
    * Creates a ButtonGroup of JRadioButtons for each YatzyMode in modes. 
-   * TODO move to constructor
+   * 
    * @param modes an array of YatzyMode to be displayed as options to the player.
    */
   public void setYatzyModeOptions(YatzyMode[] modes) {
+    // TODO move to constructor
     // headPanel = new JPanel();
     headPanel.removeAll();
     ButtonGroup buttonGroup = new ButtonGroup();
@@ -131,7 +132,7 @@ public class NewGamePanel extends JPanel {
   /**
    * Creates the text fields for the player names.
    *
-   * @param numberOfPlayers
+   * @param numberOfPlayers number of text fields to be created.
    */
   public void setPlayerFields(int numberOfPlayers) {
 
@@ -154,7 +155,8 @@ public class NewGamePanel extends JPanel {
   /**
    * Adds an ActionListener to the playButton, the numberOfPlayers and yatzyModeOptions
    *
-   * @param listener the action listener to be notified when an action has occurred
+   * @param listener the action listener to be notified when an option has changed and when the game
+   * should begin.
    */
   public void AddOptionListener(ActionListener listener) {
     playButton.addActionListener(listener);
@@ -165,6 +167,10 @@ public class NewGamePanel extends JPanel {
 
   }
 
+  /** 
+   * Adds an ActionListener to the backButton.
+   * @param listener The listener to be notified when the back button have been clicked.
+   */
   public void addMenuListener(ActionListener listener) {
     backButton.addActionListener(listener);
   }
