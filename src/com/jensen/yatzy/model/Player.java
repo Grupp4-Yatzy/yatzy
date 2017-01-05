@@ -1,7 +1,7 @@
 package com.jensen.yatzy.model;
 
 /**
- * Player class holds the player name and the score list
+ * Player class holds the player name and a players score
  *
  * @author Benjamin Rosman, Roberto Blanco, Kami Hazzansadeh, Robin Nilsson
  *
@@ -12,9 +12,9 @@ public class Player {
   private Integer[] scoreList;
 
   /**
-   * Initialze Player name and sets the scoreList to the constant Combination list
+   * Creates a player and initializes name and scoreList to the length of combinations in Constant.
    *
-   * @param name
+   * @param name The players name.
    */
   public Player(String name) {
     this.name = name;
@@ -22,20 +22,11 @@ public class Player {
   }
 
   /**
-   * Gets the scoreList array (All the combinations).
+   * Gets the score at the specific index.
    *
-   * @return the scoreList
-   */
-  public Integer[] getScoreList() {
-    return scoreList;
-  }
-
-  /**
-   * Gets the score of the specific index.
+   * @param index Index Of the score to be returned.
    *
-   * @param index
-   *
-   * @return the score stored at given index
+   * @return the score stored at given index.
    */
   public Integer getScore(int index) {
     return scoreList[index];
@@ -44,7 +35,7 @@ public class Player {
   /**
    * Gets the name of the player.
    *
-   * @return name of the player
+   * @return name of the player.
    */
   public String getName() {
     return name;
@@ -53,16 +44,15 @@ public class Player {
   /**
    * Adds a score to a specific index.
    *
-   * @param score the score to be saved
-   * @param index the index in which the score should be saved
+   * @param score The score to be saved.
+   * @param index The index in which the score should be stored.
    */
   public void addScore(int score, int index) {
     scoreList[index] = score;
   }
 
   /**
-   * Adds all the combinations from the upper scoreboard (1-6) and stores the value in index 6
-   * (total).
+   * Sums a players score from the uppersection (ones to sixes) and stores the sum in index of sum.
    */
   public void addSum() {
     int sum = 0;
@@ -73,10 +63,10 @@ public class Player {
   }
 
   /**
-   * This methods checks if index 6 has a value of 42 or more, if so the bonus will be given (50
-   * points), else no bonus will be given.
+   * This methods checks if index of sum has a value of reqScore or more, if so the bonus will be
+   * added to index of bonus, else zero will be added to index of bonus.
    *
-   * @param reqScore the amount needed to get the bonus
+   * @param reqScore The amount needed to receive the bonus.
    */
   public void addBonus(int reqScore) {
     if (scoreList[Constant.INDEX_OF_SUM] >= reqScore) {
@@ -87,10 +77,10 @@ public class Player {
   }
 
   /**
-   * This method adds all the index and stores the value in the last index(Total)
+   * Adds all the scores and stores the value in the index of total.
    */
   public void addTotal() {
-    int totalIndex = scoreList.length - 1;
+    int totalIndex = Constant.INDEX_OF_TOTAL;
     int total = getScore(Constant.INDEX_OF_SUM) + getScore(Constant.INDEX_OF_BONUS);
     for (int i = Constant.INDEX_OF_BONUS + 1; i < totalIndex; i++) {
       total += getScore(i);
@@ -99,13 +89,13 @@ public class Player {
   }
 
   /**
-   * Checks after the first empty index in the scoreList
+   * Checks for the first empty index in the scoreList.
    *
-   * @return the first empty score index
+   * @return The first empty score index
    */
   public int getFirstEmptyScoreIndex() {
     for (int i = 0; i < scoreList.length; i++) {
-      if (getScore(i) == null) {
+      if (isEmpty(i)) {
         return i;
       }
     }
@@ -113,17 +103,14 @@ public class Player {
   }
 
   /**
-   * Checks if scoreList is empty at index
+   * Returns if scoreList is empty at index.
    *
-   * @param index
+   * @param index The index that is checked if its empty.
    *
-   * @return true if index is empty, false if its not empty
+   * @return True if index is empty, false if is not empty.
    */
   public boolean isEmpty(int index) {
-    if (scoreList[index] == null) {
-      return true;
-    }
-    return false;
+    return scoreList[index] == null;
   }
 
   @Override
