@@ -106,8 +106,8 @@ public class NewGamePanel extends JPanel {
   }
 
   /**
-   * Creates a ButtonGroup of JRadioButtons for each YatzyMode in modes. 
-   * 
+   * Creates a ButtonGroup of JRadioButtons for each YatzyMode in modes.
+   *
    * @param modes an array of YatzyMode to be displayed as options to the player.
    */
   public void setYatzyModeOptions(YatzyMode[] modes) {
@@ -156,7 +156,7 @@ public class NewGamePanel extends JPanel {
    * Adds an ActionListener to the playButton, the numberOfPlayers and yatzyModeOptions
    *
    * @param listener the action listener to be notified when an option has changed and when the game
-   * should begin.
+   *                 should begin.
    */
   public void AddOptionListener(ActionListener listener) {
     playButton.addActionListener(listener);
@@ -167,8 +167,9 @@ public class NewGamePanel extends JPanel {
 
   }
 
-  /** 
+  /**
    * Adds an ActionListener to the backButton.
+   *
    * @param listener The listener to be notified when the back button have been clicked.
    */
   public void addMenuListener(ActionListener listener) {
