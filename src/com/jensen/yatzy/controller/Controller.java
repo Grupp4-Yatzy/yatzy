@@ -364,31 +364,28 @@ public class Controller {
   }
 
   private void calculateSumBonus(Player player) {
-    Integer[] playerScore = player.getScoreList();
     int playerIndex = game.getPlayerIndex(player);
     int sumIndex = Constant.INDEX_OF_SUM;
     int bonusIndex = Constant.INDEX_OF_BONUS;
     player.addSum();
-    tableModel.setValueAt(playerScore[sumIndex], sumIndex, playerIndex);
+    tableModel.setValueAt(player.getScore(sumIndex), sumIndex, playerIndex);
     player.addBonus(getReqScoreForBonus());
-    tableModel.setValueAt(playerScore[bonusIndex], bonusIndex, playerIndex);
+    tableModel.setValueAt(player.getScore(bonusIndex), bonusIndex, playerIndex);
 
   }
 
   private void calculateTotal(Player player) {
-    Integer[] playerScore = player.getScoreList();
     int playerIndex = game.getPlayerIndex(player);
     final int totalIndex = Constant.INDEX_OF_TOTAL;
 
     player.addTotal();
-    tableModel.setValueAt(playerScore[totalIndex], totalIndex, playerIndex);
+    tableModel.setValueAt(player.getScore(totalIndex), totalIndex, playerIndex);
 
   }
 
   private void saveScore(int row, int col, Player player) {
-    Integer[] playerScore = player.getScoreList();
     //  guard against null pointer exception after a forced game is completed
-    if (row < playerScore.length - 1) {
+    if (row < Constant.INDEX_OF_TOTAL) {
       // get score for index
       int score = getScore(row);
       // add score to player & update table
