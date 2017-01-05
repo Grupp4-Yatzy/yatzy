@@ -4,7 +4,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
 /**
- * This class contains three different images of the dices.
+ * This class holds three different images for each dice value (1-6).
  *
  * @author Benjamin Rosman, Robin Nilsson
  */
@@ -14,7 +14,7 @@ public class DiceIcon {
   private final Icon[][] diceIcons;
 
   /**
-   * The constructor initiates three different images of each value.
+   * The constructor initiates three different images for each value.
    */
   private DiceIcon() {
     diceIcons = new Icon[6][3];
@@ -27,9 +27,9 @@ public class DiceIcon {
   }
 
   /**
-   * Creates an object if instance is null
+   * Return the DiceIcon instance if there is no intance a new instance is created.
    *
-   * @return instance of DiceIcon
+   * @return the instance of DiceIcon.
    */
   public static DiceIcon getInstance() {
 
@@ -40,11 +40,11 @@ public class DiceIcon {
   }
 
   /**
-   * Gets the images that is represented by the given value
+   * Gets the images that is represented by the given value.
    *
-   * @param diceValue
+   * @param diceValue the value of the dice for which you require icons.
    *
-   * @return diceIcons Representing the given value
+   * @return Icons representing the given value.
    */
   public Icon[] getDiceIcons(int diceValue) {
     return diceIcons[diceValue - 1];
