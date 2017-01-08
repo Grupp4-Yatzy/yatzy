@@ -3,7 +3,7 @@ package com.jensen.yatzy.model;
 import javax.swing.table.AbstractTableModel;
 
 /**
- * Is a model of a yatzy score board
+ * Is a abstract table model of a yatzy score board
  *
  * @author Benjamin Rosman, Robin Nilsson
  *
@@ -21,12 +21,13 @@ public class YatzyTableModel extends AbstractTableModel {
   public void initTable(int rowCount, int colCount) {
     data = new Object[rowCount][colCount];
   }
-  //Källa på följande kodstycke taget från https://www.youtube.com/watch?v=iMBfneE2Ztg
 
+  // Källa på följande kodstycke taget från https://www.youtube.com/watch?v=iMBfneE2Ztg
   @Override
   public boolean isCellEditable(int row, int column) {
     return false;
   }
+  // Slut på lånad kod
 
   @Override
   public int getRowCount() {
