@@ -8,7 +8,8 @@ import java.util.Set;
 /**
  * Holds the state of a yatzy game, which include the dices, all the players, whos turn it is and
  * how many rolls he has left. Also includes some game logic such as calculating points and
- * switching player.
+ * switching player. Some of the logic for calculating scores may only work correctly for five
+ * dices.
  *
  * @author Benjamin Rosman, Roberto Blanco, Kami Hazzansadeh, Robin Nilsson
  *
@@ -209,8 +210,8 @@ public class Yatzy {
   }
 
   /**
-   * Checks for a fullhouse.
-   * 
+   * Checks for a fullhouse. Only works for five dices.
+   *
    * @return The sum of all dices if it's a fullhouse otherwise zero.
    */
   public int fullHouse() {
@@ -229,39 +230,42 @@ public class Yatzy {
   }
 
   /**
-   * Looks after Yatzy(five dices with the same value)
+   * Checks if all dices are the same and returns the score.
    *
-   * @return the sum of five dices
+   * @return The score for yatzy or zero.
+   * @see Constant#YATZY
    */
   public int yatzy() {
-    if (numberOfAKind(Constant.DEFUALT_NUMBER_OF_DICES) > 0) {
+    if (numberOfAKind(dices.length) > 0) {
       return Constant.YATZY;
     }
     return 0;
   }
 
   /**
-   * Checks after a small straight or a big straight(1-5, 2-6)
+   * Checks that all dices have different values and none of the values are equal to number. If so
+   * it returns the sum of the dices otherwise zero. Used for checking for a small straight (1-5) or
+   * a big straight (2-6).
    *
-   * @param number
+   * @param number Is the dice value to be excluded from the dices.
    *
-   * @return the sum of the two different straights
+   * @return The sum of the dices or zero.
    */
   public int straight(int number) {
     Set set = new HashSet();
     for (Dice dice : dices) {
       set.add(dice.getValue());
     }
-    if (set.size() == 5 && !set.contains(number)) {
+    if (set.size() == dices.length && !set.contains(number)) {
       return sum();
     }
     return 0;
   }
 
   /**
-   * Creates a two dimensional array that contains all the values, combinations and the player names
+   * Creates a two dimensional array that contains all the player scores.
    *
-   * @return the table
+   * @return All player scores in a two-dimensional array.
    */
   public Integer[][] createTable() {
     Integer[][] table = new Integer[Constant.COMBINATIONS.length][players.size()];
