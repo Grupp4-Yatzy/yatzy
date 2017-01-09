@@ -8,14 +8,15 @@ import javax.swing.JPanel;
  * Window class is a JFrame that holds the currentPanel
  *
  * @author Benjamin Rosman
- *
+ * @see JFrame
  */
 public class Window extends JFrame {
 
   private JPanel currentPanel;
 
   /**
-   * Constructor initialize super(), setTitle(), setResizable() and setDefaultCloseOperation()
+   * Creates a new window with the title "Yatzy" and the default close operation set to exit on
+   * close.
    */
   public Window() {
     super();
@@ -27,9 +28,9 @@ public class Window extends JFrame {
   }
 
   /**
-   * This method removes the panel if its not empty and sets the currentPanel
+   * This method removes the current panel, sets the currentPanel to newPanel, repaints and packs.
    *
-   * @param newPanel
+   * @param newPanel The new panel to be displayed.
    */
   public void setCurrentPanel(JPanel newPanel) {
     if (this.currentPanel != null) {
@@ -42,17 +43,18 @@ public class Window extends JFrame {
   }
 
   /**
+   * Returns the current panel, which displays the content of the window.
    *
-   * @return the currentPanel
+   * @return The current panel.
    */
   public JPanel getCurrentPanel() {
     return currentPanel;
   }
 
   /**
-   * A window with an error message pop ups if the users input is incorrect
+   * Displays a pop up containing a error message.
    *
-   * @param errorMessage
+   * @param errorMessage The message to be displayed.
    */
   public void displayErrorMessage(String errorMessage) {
     JOptionPane.showMessageDialog(this, errorMessage);
