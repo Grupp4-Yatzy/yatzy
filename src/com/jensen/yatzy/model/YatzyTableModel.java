@@ -6,7 +6,7 @@ import javax.swing.table.AbstractTableModel;
  * Is a abstract table model of a yatzy score board
  *
  * @author Benjamin Rosman, Robin Nilsson
- *
+ * @see AbstractTableModel
  */
 public class YatzyTableModel extends AbstractTableModel {
 
