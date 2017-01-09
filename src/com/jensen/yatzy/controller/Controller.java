@@ -145,8 +145,8 @@ public class Controller {
   }
 
   /**
-   * This method checks so the user has entered correct input for the number of players desired.
-   * If so the amount of text fields with player names will be updated or a error message will be
+   * This method checks so the user has entered correct input for the number of players desired. If
+   * so the amount of text fields with player names will be updated or a error message will be
    * displayed.
    */
   private void updateNumberOfPlayerFields() {
@@ -179,7 +179,7 @@ public class Controller {
     newGamePanel.getPlayButton().setEnabled(false);
   }
 
-  /** 
+  /**
    * Initiates a new game with the player names and mode
    */
   private void initGame() {
@@ -288,15 +288,18 @@ public class Controller {
         selectedRow = player.getFirstEmptyScoreIndex();
         break;
       case NORMAL_YATZY:
-        if (selectedRow > Constant.INDEX_OF_BONUS && player.getScore(Constant.INDEX_OF_SUM) == null) {
+        if (selectedRow > Constant.INDEX_OF_BONUS && 
+            player.getScore(Constant.INDEX_OF_SUM) == null) {
           throw new InvalidSelectionException("You have to finish the upper section first.");
         }
       case WILD_YATZY:
         if (selectedCol == -1) {
-          throw new InvalidSelectionException(player.getName() + ", you have to choose a combination");
+          throw new InvalidSelectionException(
+              player.getName() + ", you have to choose a combination");
         }
         if (selectedCol != game.getPlayerIndex(player)) {
-          throw new InvalidSelectionException("Wrong column. It is " + player.getName() + "'s turn.");
+          throw new InvalidSelectionException(
+              "Wrong column. It is " + player.getName() + "'s turn.");
         }
         if (!player.isEmpty(selectedRow)) {
           throw new InvalidSelectionException("Already taken");

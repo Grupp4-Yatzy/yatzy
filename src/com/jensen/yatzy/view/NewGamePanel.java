@@ -31,9 +31,9 @@ public class NewGamePanel extends JPanel {
   private ArrayList<JTextField> playerNames;
 
   /**
-   * Creates a default newGamePanel. Containting a panel for displaying and choosing yatzy mode,
-   * a panel where a player can choose number of players, a panel where players can enter their
-   * names & a panel containing a back button and a play button.
+   * Creates a default newGamePanel. Containting a panel for displaying and choosing yatzy mode, a
+   * panel where a player can choose number of players, a panel where players can enter their names
+   * & a panel containing a back button and a play button.
    */
   public NewGamePanel() {
     super();
@@ -155,7 +155,7 @@ public class NewGamePanel extends JPanel {
   /**
    * Adds an ActionListener to the playButton, the numberOfPlayers and yatzyModeOptions
    *
-   * @param listener the action listener to be notified when an option has changed and when the game
+   * @param listener The action listener to be notified when an option has changed and when the game
    *                 should begin.
    */
   public void AddOptionListener(ActionListener listener) {
