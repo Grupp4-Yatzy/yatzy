@@ -31,7 +31,7 @@ public class NewGamePanel extends JPanel {
   private ArrayList<JTextField> playerNames;
 
   /**
-   * Creates a predefined newGamePanel. Containting a panel for displaying and choosing yatzy mode,
+   * Creates a default newGamePanel. Containting a panel for displaying and choosing yatzy mode,
    * a panel where a player can choose number of players, a panel where players can enter their
    * names & a panel containing a back button and a play button.
    */
@@ -106,7 +106,7 @@ public class NewGamePanel extends JPanel {
   }
 
   /**
-   * Creates a ButtonGroup of JRadioButtons for each YatzyMode in modes.
+   * Creates and displays a ButtonGroup of JRadioButtons for each YatzyMode in modes.
    *
    * @param modes an array of YatzyMode to be displayed as options to the player.
    */
@@ -130,7 +130,7 @@ public class NewGamePanel extends JPanel {
   }
 
   /**
-   * Creates the text fields for the player names.
+   * Creates and displays the text fields for the player names.
    *
    * @param numberOfPlayers number of text fields to be created.
    */
