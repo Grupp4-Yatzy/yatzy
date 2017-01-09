@@ -12,6 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 /**
+ * JPanel for displaying a menu.
  *
  * @author Benjamin Rosman
  */
@@ -21,6 +22,11 @@ public class MenuView extends JPanel {
   ArrayList<JButton> menuButtons;
   Component continueFiller;
 
+  /**
+   * Creates a MenuView with five large menu buttons (continue, new game, options, rules and quit).
+   *
+   * @see MenuButton
+   */
   public MenuView() {
     this.setLayout(new BorderLayout());
     // special green color
@@ -68,6 +74,10 @@ public class MenuView extends JPanel {
     this.add(centerPanel, BorderLayout.CENTER);
   }
 
+  /**
+   * Displays and enables the continue button. Also sets the filler wich was in the place of the
+   * continue button to invisible.
+   */
   public void enableContinueButton() {
     for (JButton button : menuButtons) {
       if (button.getText().equalsIgnoreCase("continue")) {
@@ -79,6 +89,11 @@ public class MenuView extends JPanel {
     }
   }
 
+  /**
+   * Add a ActionListener for all the button in the menu.
+   *
+   * @param listener The listener to be notified when a button is clicked.
+   */
   public void addMenuLListener(ActionListener listener) {
     for (JButton button : menuButtons) {
       button.addActionListener(listener);
