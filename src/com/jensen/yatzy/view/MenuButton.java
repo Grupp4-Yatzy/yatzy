@@ -8,11 +8,25 @@ import java.awt.Font;
 import javax.swing.JButton;
 
 /**
+ * Definition of the menu buttons, so they all look the same.
  *
  * @author Benjamin Rosman
+ * @see JButton
+ * @see ButtonIcon
  */
 public class MenuButton extends JButton {
 
+  /**
+   * Creates a menu button. With a predefined text color, font and horizontal text position. Without
+   * a border and content area. The preferre size and maximum size is set to match the icon size.
+   * Uses ButtonIcon.
+   *
+   * @param txt   The text to be displayed on the button.
+   * @param small If true the button will be small otherwise large. Small and large uses different
+   *              sized icons.
+   *
+   * @see ButtonIcon
+   */
   public MenuButton(String txt, boolean small) {
     super(txt);
     if (small) {
@@ -20,43 +34,35 @@ public class MenuButton extends JButton {
     } else {
       initLargeButton();
     }
-    this.setHorizontalTextPosition(JButton.CENTER);
-    this.setAlignmentX(CENTER_ALIGNMENT);
+    Dimension d = new Dimension(getIcon().getIconWidth(), getIcon().getIconHeight());
+    setPreferredSize(d);
+    setMaximumSize(d);
+    
+    setHorizontalTextPosition(JButton.CENTER);
+    setAlignmentX(CENTER_ALIGNMENT);
 
-    this.setBorderPainted(false);
-    this.setContentAreaFilled(false);
+    setBorderPainted(false);
+    setContentAreaFilled(false);
     // set text color to match the frame
-    this.setForeground(Color.getHSBColor(0.152778f, 0.91f, 0.92f));
+    setForeground(Color.getHSBColor(0.152778f, 0.91f, 0.92f));
   }
 
   private void initSmallButton() {
-    this.setIcon(ButtonIcon.SMALL_FRAME);
-    this.setDisabledIcon(ButtonIcon.SMALL_DISABLED_FRAME);
-    this.setRolloverIcon(ButtonIcon.SMALL_ROLL_OVER_FRAME);
-    this.setPressedIcon(ButtonIcon.SMALL_PRESSED_FRAME);
+    setIcon(ButtonIcon.SMALL_FRAME);
+    setDisabledIcon(ButtonIcon.SMALL_DISABLED_FRAME);
+    setRolloverIcon(ButtonIcon.SMALL_ROLL_OVER_FRAME);
+    setPressedIcon(ButtonIcon.SMALL_PRESSED_FRAME);
 
-    Dimension d = new Dimension(ButtonIcon.SMALL_FRAME.getIconWidth(),
-        ButtonIcon.SMALL_FRAME.getIconHeight());
-
-    this.setPreferredSize(d);
-    this.setMaximumSize(d);
-
-    this.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 15));
+    setFont(new Font(Font.SANS_SERIF, Font.BOLD, 15));
   }
 
   private void initLargeButton() {
-    this.setIcon(ButtonIcon.FRAME);
-    this.setDisabledIcon(ButtonIcon.DISABLED_FRAME);
-    this.setRolloverIcon(ButtonIcon.ROLL_OVER_FRAME);
-    this.setPressedIcon(ButtonIcon.PRESSED_FRAME);
+    setIcon(ButtonIcon.FRAME);
+    setDisabledIcon(ButtonIcon.DISABLED_FRAME);
+    setRolloverIcon(ButtonIcon.ROLL_OVER_FRAME);
+    setPressedIcon(ButtonIcon.PRESSED_FRAME);
 
-    Dimension d = new Dimension(ButtonIcon.FRAME.getIconWidth(),
-        ButtonIcon.FRAME.getIconHeight());
-
-    this.setPreferredSize(d);
-    this.setMaximumSize(d);
-
-    this.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 20));
+    setFont(new Font(Font.SANS_SERIF, Font.BOLD, 20));
   }
 
 }
