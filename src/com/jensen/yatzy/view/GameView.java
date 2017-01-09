@@ -180,7 +180,7 @@ public class GameView extends JPanel {
    *
    * @param enableDice given true all dice buttons will be enabled otherwise disabled.
    */
-  public void setEnableDice(boolean enableDice) {
+  public void setEnableDiceButtons(boolean enableDice) {
     for (int i = 0; i < diceButtons.length; i++) {
       diceButtons[i].setEnabled(enableDice);
     }

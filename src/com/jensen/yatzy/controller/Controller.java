@@ -199,7 +199,7 @@ public class Controller {
     tableModel.initTable(Constant.COMBINATIONS.length, names.length);
     gamePanel.initTable(tableModel);
 
-    gamePanel.setEnableDice(false);
+    gamePanel.setEnableDiceButtons(false);
     gamePanel.getDoneButton().setEnabled(false);
     gamePanel.playerIndicator(game.getPlayerIndex(game.getCurrentPlayer()));
     window.setTitle("Yatzy - " + mode.getMode());
@@ -207,7 +207,7 @@ public class Controller {
   }
 
   private void rollButton() {
-    gamePanel.setEnableDice(true);
+    gamePanel.setEnableDiceButtons(true);
     Dice[] dices = game.getDices();
     for (Dice dice : dices) {
 
