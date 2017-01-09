@@ -27,7 +27,7 @@ public class DiceButton extends JButton {
   /**
    * Toggles whether a dice is selected or not.
    */
-  public void DiceToggleLock() {
+  public void toggleSelection() {
     setSelected(!isSelected());
   }
 

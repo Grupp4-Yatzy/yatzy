@@ -60,7 +60,7 @@ public class Controller {
         button = buttons[index];
         if (button.equals(e.getSource())) {
           dices[index].toggleLock();
-          button.DiceToggleLock();
+          button.toggleSelection();
         }
       }
     }
