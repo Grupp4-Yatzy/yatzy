@@ -19,7 +19,7 @@ import javax.swing.JTable;
 import javax.swing.table.TableCellRenderer;
 
 /**
- * A JPanel for displaying an ongoing Yatzy game
+ * A JPanel for displaying a game of yatzy
  *
  * @author Benjamin Rosman, Roberto Blanco, Kami Hazzansadeh, Robin Nilsson
  *
@@ -112,20 +112,21 @@ public class GameView extends JPanel {
   }
 
   /**
+   * Returns the list of JLabels with the player names.
    *
-   * @return playerNames
+   * @return playerNames The list of JLabels with the player names.
    */
   public ArrayList<JLabel> getPlayerNames() {
-
     return playerNames;
   }
 
   /**
-   * Creates a new JTable with the given model and adds it to the panel
+   * Creates a new JTable with the given model and adds it to the panel. Used to initiate the table.
+   * The table displays the scores.
    *
-   * @param model
+   * @param model The model to update the table.
    *
-   * @see AbstractTableModel
+   * @see YatzyTableModel
    */
   public void initTable(YatzyTableModel model) {
     this.table = new JTable(model) {
@@ -149,14 +150,24 @@ public class GameView extends JPanel {
     this.add(table, BorderLayout.CENTER);
   }
 
+  /**
+   * Returns the table displaying the scores.
+   *
+   * @return The table displeying the scores.
+   */
   public JTable getTable() {
     return this.table;
   }
 
   /**
-   * Sets the text on the dice buttons to display the values on the dices
+   * Sets the dice buttons to display the values of the dices.
    *
-   * @param dices Array of dices which values will be displayed on the buttons
+   * @param dices Array of dices which values will be displayed on the buttons.
+   * @param icons Object containg all dice icons.
+   *
+   * @see Dice
+   * @see DiceButton
+   * @see DiceIcon
    */
   public void setDiceButtons(Dice[] dices, DiceIcon icons) {
     for (int i = 0; i < diceButtons.length; i++) {
@@ -165,9 +176,9 @@ public class GameView extends JPanel {
   }
 
   /**
-   * Sets each dice button to be enabled or disabled
+   * Sets all dice button to be enabled or disabled.
    *
-   * @param enableDice given true all dice buttons will be enabled
+   * @param enableDice given true all dice buttons will be enabled otherwise disabled.
    */
   public void setEnableDice(boolean enableDice) {
     for (int i = 0; i < diceButtons.length; i++) {
@@ -176,9 +187,9 @@ public class GameView extends JPanel {
   }
 
   /**
-   * Returns an array of all dice buttons
+   * Returns the array with all dice buttons.
    *
-   * @return an array of all dice buttons
+   * @return The array with all dice buttons.
    */
   public DiceButton[] getDiceButtons() {
     return diceButtons;
@@ -194,16 +205,18 @@ public class GameView extends JPanel {
   }
 
   /**
+   * Returns the done button.
    *
-   * @return doneButton
+   * @return doneButton The done button.
    */
   public JButton getDoneButton() {
     return doneButton;
   }
 
   /**
+   * Returns the menu button.
    *
-   * @return newGameButton
+   * @return The menu button.
    */
   public JButton getMenuButton() {
     return menuButton;
@@ -232,13 +245,12 @@ public class GameView extends JPanel {
   }
 
   /**
-   * This metod marks the current player with bold font and bigger size and the non current player
-   * with a plain font and a smaller size.
+   * Marks the current player with bold and bigger font size and set all other player fonts to
+   * plain.
    *
-   * @param playerIndex
+   * @param playerIndex The index of the current player.
    */
   public void playerIndicator(int playerIndex) {
-
     for (int i = 0; i < playerNames.size(); i++) {
       JLabel label = playerNames.get(i);
       if (playerIndex == i) {
@@ -247,13 +259,12 @@ public class GameView extends JPanel {
         label.setFont(new Font("Arial", Font.PLAIN, 12));
       }
     }
-
   }
 
   /**
-   * Adds an ActionListener to all the dice buttons
+   * Adds an ActionListener to all the dice buttons.
    *
-   * @param listener A action listener to be notified when an action has occurred
+   * @param listener The action listener to be notified when a dice is clicked.
    */
   public void addDiceListener(ActionListener listener) {
     for (int i = 0; i < diceButtons.length; i++) {
@@ -262,15 +273,20 @@ public class GameView extends JPanel {
   }
 
   /**
-   * Adds an ActionListener to the roll button and the done button
+   * Adds an ActionListener to the roll button and the done button.
    *
-   * @param listener A action listener to be notified when an action has occurred
+   * @param listener The action listener to be notified when the roll or done button is clicked.
    */
   public void addPlayListener(ActionListener listener) {
     rollButton.addActionListener(listener);
     doneButton.addActionListener(listener);
   }
 
+  /**
+   * Adds an ActionListener to the menu button.
+   *
+   * @param listener The action listener to be notified when the menu button is clicked.
+   */
   public void addMenuListener(ActionListener listener) {
     menuButton.addActionListener(listener);
   }
