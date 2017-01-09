@@ -1,6 +1,6 @@
 package com.jensen.yatzy.model;
 
-import com.jensen.yatzy.util.MyRandom;
+import com.jensen.yatzy.util.Randomizer;
 
 /**
  * A class that represent a six sided dice with the property of being locked or unlocked.
@@ -34,7 +34,7 @@ public class Dice {
    * Sets the dice value to a random number 1-6 even if the dice is locked.
    */
   public void roll() {
-    value = MyRandom.getInt(1, 6);
+    value = Randomizer.getInt(1, 6);
   }
 
   /**

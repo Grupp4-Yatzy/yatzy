@@ -8,9 +8,9 @@ import java.util.Random;
  * @author Benjamin Rosman
  *
  */
-public final class MyRandom {
+public final class Randomizer {
 
-  private MyRandom() {
+  private Randomizer() {
   }
 
   /**
