@@ -51,4 +51,8 @@ public class Constant {
   /** The background color (green) */
   public static final Color BG_COLOR_GREEN = Color.getHSBColor(0.3305556f, 1.0f, 0.74f);
 
+  /** The font color for the manu buttons (matches the icon color) */
+  public static final Color FONT_COLOR_YELLOW = Color.getHSBColor(0.152778f, 0.91f, 0.92f);
+  
+
 }

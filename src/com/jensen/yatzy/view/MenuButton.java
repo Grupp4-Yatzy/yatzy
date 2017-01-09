@@ -1,7 +1,7 @@
 package com.jensen.yatzy.view;
 
 import com.jensen.yatzy.model.ButtonIcon;
-import java.awt.Color;
+import com.jensen.yatzy.model.Constant;
 import static java.awt.Component.CENTER_ALIGNMENT;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -44,7 +44,7 @@ public class MenuButton extends JButton {
     setBorderPainted(false);
     setContentAreaFilled(false);
     // set text color to match the frame
-    setForeground(Color.getHSBColor(0.152778f, 0.91f, 0.92f));
+    setForeground(Constant.FONT_COLOR_YELLOW);
   }
 
   private void initSmallButton() {
