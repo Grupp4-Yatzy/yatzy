@@ -16,7 +16,7 @@ import java.util.Set;
  */
 public class Yatzy {
 
-  private int numberOfRollsLeft = 3;
+  private int numberOfRollsLeft = Constant.NUMBER_OF_ROLLS;
   private Dice[] dices;
   private ArrayList<Player> players = new ArrayList<>();
   private Player currentPlayer;
@@ -71,14 +71,14 @@ public class Yatzy {
    * @return The number of rolls left.
    */
   public int getNumbersOfRollsLeft() {
-    return this.numberOfRollsLeft;
+    return numberOfRollsLeft;
   }
 
   /**
    * Decreases number of rolls left by one.
    */
   public void decreaseRolls() {
-    this.numberOfRollsLeft -= 1;
+    numberOfRollsLeft -= 1;
   }
 
   /**
@@ -90,7 +90,7 @@ public class Yatzy {
       nextPlayerIndex = 0;
     }
     currentPlayer = players.get(nextPlayerIndex);
-    this.numberOfRollsLeft = 3;
+    numberOfRollsLeft = Constant.NUMBER_OF_ROLLS;
   }
 
   /**
