@@ -4,7 +4,8 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
 /**
- * Class for holding the constant icons used for the menu buttons.
+ * Class for holding the constant icons used for the menu buttons. Contains a set of 'large' icons
+ * and a set of small icons. Large icons are 187x77 and small are 100x41 (Width x Height).
  *
  * @author Benjamin Rosman
  */
